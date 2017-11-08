@@ -1,0 +1,26 @@
+{
+  "name": "mm-dashboard",
+  "description": "Dashboard bundle for MelbourneMelee broadcasts.",
+  "version": "1.0.0",
+  "contributors": [
+    "Dom Hynes <contact@domhyn.es>"
+  ],
+  "dependencies": {},
+  "homepage": "https://domhyn.es",
+  "license": "MIT",
+  "nodecg": {
+    "compatibleRange": "~0.9.0",
+    "dashboardPanels": [
+      {
+        "name": "playersAndScores",
+        "title": "Players & Scores",
+        "file": "players-and-scores.html"
+      }
+    ],
+    "graphics": [],
+    "repository": {
+      "type": "git",
+      "url": "git://github.com/DomHynes/mm-dashboard.git"
+    }
+  }
+}

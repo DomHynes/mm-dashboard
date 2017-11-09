@@ -1,0 +1,25 @@
+{
+	"type": "object",
+	"properties": {
+		"games":{
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": "string",
+					"longName": "string",
+					"shortName": "string"
+				}
+			}
+		}
+	},
+	"default": {
+		"games": [
+			{
+				"name": "ssbm",
+				"longName": "Super Smash Bros. Melee",
+				"shortName": "SSBM"
+			}
+		]
+	}
+}

@@ -11,32 +11,51 @@
 				width: 24px;
 				height: 24px;
 			}
+			paper-dialog {
+				width: 530px;
+			}
+			.characterList {
+				@apply(--layout-horizontal);
+				@apply(--layout-wrap);
+				@apply(--layout-center-justified);
+			}
 		</style>
 
-		<paper-button raised on-tap="openCharacterDialog"> SELECT CHAR </paper-button>
+		<div>
+			<paper-button raised on-tap="openCharacterDialog">
+				<div
+					class="icon"
+					style="{{_findIndexOffset(characterIndex)}}"
+				></div>
+			</paper-button>
+		</div>
 
-		<paper-dialog
-			id="characterDialog"
-			on-iron-overlay-opened="onDialogOpen"
-			on-iron-overlay-closed="onDialogClose">
-			<paper-input
-				id="characterInput"
-				tabindex="0"
-				value="{{characterFilter}}"
-			></paper-input>
-			<template
-				is="dom-repeat"
-				items="{{selectedGame.characters}}"
-				filter="{{_applyFilter(characterFilter)}}">
-				<paper-button>
-					<div
-						class="icon"
-						style="background-position: 0px {{_findVertOffset(item)}}px;"
-						on-tap="_selectCharacter">
-					</div>
-				</paper-button>
-			</template>
-		</paper-dialog>
+		<div>
+			<paper-dialog
+				id="characterDialog"
+				on-iron-overlay-opened="onDialogOpen"
+				on-iron-overlay-closed="onDialogClose">
+				<paper-input
+					id="characterInput"
+					tabindex="0"
+					value="{{characterFilter}}"
+				></paper-input>
+				<div class="characterList">
+					<template
+						is="dom-repeat"
+						items="{{selectedGame.characters}}"
+						filter="{{_applyFilter(characterFilter)}}">
+						<paper-button on-tap="_selectCharacter">
+							<div
+								class="icon"
+								style="{{_findItemOffset(item)}}"
+								>
+							</div>
+						</paper-button>
+					</template>
+				</div>
+			</paper-dialog>
+		</div>
 
 	</template>
 	<script src="character-selector.js"></script>

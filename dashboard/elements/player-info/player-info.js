@@ -6,12 +6,20 @@
 		}
 
 		static get properties() {
-			return {};
+			return {
+				char: {
+					type: Number,
+					value: 0
+				},
+				name: {
+					type: String,
+					value: ''
+				}
+			};
 		}
 
 		ready() {
 			super.ready();
-
 		}
 	}
 

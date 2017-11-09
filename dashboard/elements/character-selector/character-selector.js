@@ -33,8 +33,6 @@
 			super.ready();
 			currentGameData.on('change', newData => {
 				this.selectedGame = gameData.value[0];
-				this.xchar = this.selectedGame.images.dashboard.scaleX * this.colourIndex;
-				this.ychar = this.selectedGame.images.dashboard.scaleY * this.characterIndex;
 			});
 		}
 
@@ -50,13 +48,20 @@
 			this.characterFilter = "";
 		}
 
-		_findVertOffset(item) {
-			const index = this.selectedGame.characters.findIndex( char => char.name === item.name );
-			return index * -24;
+		_findCharIndex(char) {
+			return this.selectedGame.characters.findIndex( character => character.name === char.name );
+		}
+
+		_findItemOffset(item) {
+			return `background-position: 0px ${this._findCharIndex(item) * -24}px;`
+		}
+
+		_findIndexOffset(index) {
+			return `background-position: 0px ${index * -24}px;`
 		}
 
 		_selectCharacter(e) {
-			console.log(e.model.item);
+			this.characterIndex = this._findCharIndex(e.model.item);
 		}
 
 		_applyFilter(characterFilter) {

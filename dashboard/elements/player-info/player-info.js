@@ -14,12 +14,20 @@
 				name: {
 					type: String,
 					value: ''
+				},
+				reversed: {
+					type: Boolean,
+					value: false
 				}
 			};
 		}
 
 		ready() {
 			super.ready();
+
+		}
+		_computeReversed(reversed) {
+			return reversed ? 'reversed' : '';
 		}
 	}
 

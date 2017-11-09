@@ -8,11 +8,15 @@
 		<style>
 			paper-card {
 				@apply (--layout-horizontal);
+				@apply(--layout-center);
+			}
+			.reversed {
+				@apply(--layout-horizontal-reverse);
 			}
 
 		</style>
 
-		<paper-card>
+		<paper-card class$="[[_computeReversed(reversed)]]">
 			<paper-input label="Player Name"></paper-input>
 			<character-selector character="{{char}}"></character-selector>
 		</paper-card>

@@ -14,7 +14,8 @@
       {
         "name": "playersAndScores",
         "title": "Players & Scores",
-        "file": "players-and-scores.html"
+        "file": "players-and-scores.html",
+        "fullbleed": true
       }
     ],
     "graphics": [],

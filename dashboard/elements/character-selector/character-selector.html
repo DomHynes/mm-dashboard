@@ -1,0 +1,43 @@
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+
+
+<dom-module id="character-selector">
+	<template>
+		<style>
+			.icon {
+				background-image: url('/bundles/mm-dashboard/shared/games/ssbm/images.png');
+				width: 24px;
+				height: 24px;
+			}
+		</style>
+
+		<paper-button raised on-tap="openCharacterDialog"> SELECT CHAR </paper-button>
+
+		<paper-dialog
+			id="characterDialog"
+			on-iron-overlay-opened="onDialogOpen"
+			on-iron-overlay-closed="onDialogClose">
+			<paper-input
+				id="characterInput"
+				tabindex="0"
+				value="{{characterFilter}}"
+			></paper-input>
+			<template
+				is="dom-repeat"
+				items="{{selectedGame.characters}}"
+				filter="{{_applyFilter(characterFilter)}}">
+				<paper-button>
+					<div
+						class="icon"
+						style="background-position: 0px {{_findVertOffset(item)}}px;"
+						on-tap="_selectCharacter">
+					</div>
+				</paper-button>
+			</template>
+		</paper-dialog>
+
+	</template>
+	<script src="character-selector.js"></script>
+</dom-module>

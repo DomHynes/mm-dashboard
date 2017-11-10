@@ -25,6 +25,18 @@
 				colourIndex: {
 					type: Number,
 					value: 5
+				},
+				selectedGame: {
+					type: Object,
+					value: {
+						characters:[{}],
+						images:{
+							dashboard: {
+								scaleX: 24,
+								scaleY: 24
+							}
+						}
+					}
 				}
 			};
 		}
@@ -53,15 +65,17 @@
 		}
 
 		_findItemOffset(item) {
-			return `background-position: 0px ${this._findCharIndex(item) * -24}px;`
+			return `background-position: 0px ${this._findCharIndex(item) * -(this.selectedGame.images.dashboard.scaleY)}px;`
 		}
 
 		_findIndexOffset(index) {
-			return `background-position: 0px ${index * -24}px;`
+			return `background-position: 0px ${index * -(this.selectedGame.images.dashboard.scaleY)}px;`
 		}
 
 		_selectCharacter(e) {
 			this.characterIndex = this._findCharIndex(e.model.item);
+			this.$.characterDialog.close();
+			console.log(this.characterIndex)
 		}
 
 		_applyFilter(characterFilter) {

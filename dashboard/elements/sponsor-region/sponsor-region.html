@@ -18,7 +18,11 @@
 			<paper-dropdown-menu label="Sponsor/Region Image">
 				<paper-listbox slot="dropdown-content">
 					<template is="dom-repeat" items="{{regionImages}}">
-						<paper-item>ASDF</paper-item>
+						<paper-item>{{item.name}}</paper-item>
+					</template>
+					<hr style$="{{_bothAssets(regionImages, sponsorImages)}}">
+					<template is="dom-repeat" items="{{sponsorImages}}">
+						<paper-item>{{item.name}}</paper-item>
 					</template>
 				</paper-listbox>
 			</paper-dropdown-menu>

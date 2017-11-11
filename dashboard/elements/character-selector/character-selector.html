@@ -62,8 +62,7 @@
 			<div class="characterList">
 				<template
 					is="dom-repeat"
-					items="{{_selectedCharacterColours(selectedGame, characterIndex)}}"
-					filter="{{_applyFilter(characterFilter)}}">
+					items="{{_selectedCharacterColours(selectedGame, characterIndex)}}">
 					<paper-button on-tap="_selectColor">
 						<div
 							class="icon"

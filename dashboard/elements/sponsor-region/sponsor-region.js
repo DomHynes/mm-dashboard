@@ -7,6 +7,15 @@
 
 		static get properties() {
 			return {
+				regionImages: {
+					type: Array,
+					value: [{}]
+				},
+				sponsorRegionImage: {
+					type: String,
+					value: null,
+					notify: true
+				}
 			};
 		}
 

@@ -24,6 +24,16 @@
 				reversed: {
 					type: Boolean,
 					value: false
+				},
+				sponsorRegion: {
+					type: String,
+					value: null,
+					notify: true
+				},
+				sponsorRegionImage: {
+					type: String,
+					value: null,
+					notify: true
 				}
 			};
 		}

@@ -1,17 +1,28 @@
 <link rel="import" href="../../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
 
 <dom-module id="sponsor-region">
 	<template>
-		<paper-dropdown-menu label="Sponsor/Region">
-			<paper-listbox slot="dropdown-content">
-				<paper-item>asdf</paper-item>
-				<paper-item>asdf</paper-item>
-				<paper-item>asdf</paper-item>
-				<paper-item>asdf</paper-item>
-			</paper-listbox>
-		</paper-dropdown-menu>
+		<style>
+			.row {
+				@apply(--layout-horizontal);
+				@apply(--layout-center-justified);
+			}
+		</style>
+		<div class="row">
+			<paper-input label="Sponsor/Region Prefix" value="{{sponsorRegion}}">
+
+			</paper-input>
+			<paper-dropdown-menu label="Sponsor/Region Image">
+				<paper-listbox slot="dropdown-content">
+					<template is="dom-repeat" items="{{regionImages}}">
+						<paper-item>ASDF</paper-item>
+					</template>
+				</paper-listbox>
+			</paper-dropdown-menu>
+		</div>
 	</template>
 
 	<script src="sponsor-region.js"></script>

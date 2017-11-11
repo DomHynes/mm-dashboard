@@ -4,7 +4,9 @@
 			p1: {
 				name: "asdf",
 				characterIndex: 4,
-				colourIndex: 2
+				colourIndex: 2,
+				sponsorRegion: null,
+				sponsorRegionImage: null
 			},
 			p2: {
 				name: "",
@@ -13,11 +15,12 @@
 			},
 			scores: [ 0, 0 ]
 		},
-		persistent: false,
+		persistent: false
 	});
 
-
 	const gameData = nodecg.Replicant('gameData');
+	const sponsorImages = nodecg.Replicant('assets:sponsors');
+	const regionImages = nodecg.Replicant('assets:regions');
 
 	class PlayersPanel extends Polymer.Element {
 		static get is() {
@@ -50,7 +53,9 @@
 			});
 			gameData.on('change', newData => {
 				this.selectedGame = newData[0];
-			})
+			});
+			sponsorImages.on('change', newData => this.sponsorImages = newData);
+			regionImages.on('change', newData => this.regionImages = newData);
 		}
 	}
 

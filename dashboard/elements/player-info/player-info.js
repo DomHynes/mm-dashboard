@@ -18,7 +18,8 @@
 				},
 				name: {
 					type: String,
-					value: ''
+					value: '',
+					notify: true
 				},
 				reversed: {
 					type: Boolean,

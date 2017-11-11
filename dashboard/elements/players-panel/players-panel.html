@@ -13,8 +13,18 @@
 				@apply(--layout-center-justified);
 			}
 			.controls {
-				display: inline-block;
 				@apply(--layout-vertical);
+				@apply(--layout-center-justified);
+			}
+			paper-button.save {
+				background-color: var(--paper-green-500);
+				color: white;
+			}
+			paper-button.save.modified {
+				background-color: var(--paper-amber-500);
+			}
+			paper-button.swap {
+				background-color: var(--paper-amber-500);
 			}
 		</style>
 
@@ -28,7 +38,12 @@
 				selected-game="{{selectedGame}}"></player-info>
 
 			<div class="controls">
-				<paper-button raised>SWAP</paper-button>
+				<paper-button
+					raised
+					class="swap"
+					on-tap="swapPlayers">
+					SWAP
+				</paper-button>
 			</div>
 
 
@@ -39,7 +54,12 @@
 				colour-index="{{playerdata.p2.colourIndex}}"
 				selected-game="{{selectedGame}}"></player-info>
 
-			<paper-button raised on-tap="savePlayers">SAVE</paper-button>
+			<paper-button
+				raised
+				on-tap="savePlayers"
+				class="save">
+				SAVE
+			</paper-button>
 		</paper-card>
 	</template>
 	<script src="players-panel.js"></script>

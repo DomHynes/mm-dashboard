@@ -36,6 +36,13 @@
 			playerinfo.value = this.playerdata;
 		}
 
+		swapPlayers() {
+			const p1 = _.cloneDeep(this.playerdata.p1);
+			const p2 = _.cloneDeep(this.playerdata.p2);
+			this.set('playerdata.p1', p2);
+			this.set('playerdata.p2', p1);
+		}
+
 		ready() {
 			super.ready();
 			playerinfo.on('change', newData => {

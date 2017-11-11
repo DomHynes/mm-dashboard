@@ -19,7 +19,6 @@ nodecg.bundleConfig.games.forEach( game => {
 		}
 	});
 });
-console.log(gameArray);
 gameData.value = gameArray;
 
 

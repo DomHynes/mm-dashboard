@@ -1,0 +1,59 @@
+{
+	"images": {
+		"dashboard": {
+			"scaleX": 45,
+			"scaleY": 42,
+			"colours": false
+		}
+	},
+	"characters":[
+		{
+			"name":"pikachu",
+			"longName": "Pikachu"
+		},
+		{
+			"name":"kirby",
+			"longName": "Kirby"
+		},
+		{
+			"name":"falcon",
+			"longName": "Captain Falcon"
+		},
+		{
+			"name":"fox",
+			"longName": "Fox"
+		},
+		{
+			"name":"yoshi",
+			"longName": "Yoshi"
+		},
+		{
+			"name":"jigglypuff",
+			"longName": "Jigglypuff"
+		},
+		{
+			"name":"mario",
+			"longName": "Mario"
+		},
+		{
+			"name":"samus",
+			"longName": "Samus"
+		},
+		{
+			"name":"dk",
+			"longName": "Donkey Kong"
+		},
+		{
+			"name":"ness",
+			"longName": "Ness"
+		},
+		{
+			"name":"link",
+			"longName": "Link"
+		},
+		{
+			"name":"luigi",
+			"longName": "Luigi"
+		}
+	]
+}

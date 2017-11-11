@@ -1,0 +1,46 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../../shared/imports/lodash.html">
+
+<link rel="import" href="../player-info/player-info.html">
+<dom-module id="players-panel">
+	<template>
+		<style>
+			.players {
+				@apply(--layout-horizontal);
+				@apply(--layout-center-justified);
+			}
+			.controls {
+				display: inline-block;
+				@apply(--layout-vertical);
+			}
+		</style>
+
+
+		<paper-card class="players">
+			<player-info
+				id="p1"
+				name="{{playerdata.p1.name}}"
+				character-index="{{playerdata.p1.characterIndex}}"
+				colour-index="{{playerdata.p1.colourIndex}}"
+				selected-game="{{selectedGame}}"></player-info>
+
+			<div class="controls">
+				<paper-button raised>SWAP</paper-button>
+			</div>
+
+
+			<player-info reversed
+				id="p2"
+				name="{{playerdata.p2.name}}"
+				character-index="{{playerdata.p2.characterIndex}}"
+				colour-index="{{playerdata.p2.colourIndex}}"
+				selected-game="{{selectedGame}}"></player-info>
+
+			<paper-button raised on-tap="savePlayers">SAVE</paper-button>
+		</paper-card>
+	</template>
+	<script src="players-panel.js"></script>
+</dom-module>

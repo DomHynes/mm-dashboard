@@ -1,5 +1,4 @@
 (function() {
-
 	class PlayerInfo extends Polymer.Element {
 		static get is() {
 			return 'player-info';
@@ -7,9 +6,15 @@
 
 		static get properties() {
 			return {
-				char: {
+				characterIndex: {
 					type: Number,
-					value: 0
+					value: 0,
+					notify: true
+				},
+				colourIndex: {
+					type: Number,
+					value: 0,
+					notify: true
 				},
 				name: {
 					type: String,
@@ -24,7 +29,6 @@
 
 		ready() {
 			super.ready();
-
 		}
 		_computeReversed(reversed) {
 			return reversed ? 'reversed' : '';

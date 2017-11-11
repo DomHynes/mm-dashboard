@@ -1,8 +1,4 @@
 (function() {
-
-	const gameData = nodecg.Replicant('gameData');
-	const currentGameData = nodecg.Replicant('currentGameData');
-
 	class CharacterSelector extends Polymer.Element {
 		static get is() {
 			return 'character-selector';
@@ -20,17 +16,17 @@
 				},
 				characterIndex: {
 					type: Number,
-					value: 2
+					notify: true
 				},
 				colourIndex: {
 					type: Number,
-					value: 5
+					notify: true
 				},
 				selectedGame: {
 					type: Object,
 					value: {
-						characters:[{}],
-						images:{
+						characters: [{}],
+						images: {
 							dashboard: {
 								scaleX: 24,
 								scaleY: 24
@@ -38,26 +34,30 @@
 						}
 					}
 				}
-			};
+			}
 		}
 
 		ready() {
 			super.ready();
-			currentGameData.on('change', newData => {
-				this.selectedGame = gameData.value[0];
-			});
 		}
 
 		openCharacterDialog() {
 			this.$.characterDialog.open();
 		}
 
-		onDialogOpen() {
+		onCharacterDialogOpen() {
 			this.$.characterInput.focus();
 		}
 
-		onDialogClose() {
+		onCharacterDialogClose() {
 			this.characterFilter = "";
+		}
+
+		onColourDialogOpen() {
+			this.colourIndex = 0;
+		}
+
+		onColourDialogClose() {
 		}
 
 		_findCharIndex(char) {
@@ -68,14 +68,27 @@
 			return `background-position: 0px ${this._findCharIndex(item) * -(this.selectedGame.images.dashboard.scaleY)}px;`
 		}
 
-		_findIndexOffset(index) {
-			return `background-position: 0px ${index * -(this.selectedGame.images.dashboard.scaleY)}px;`
+		_findColourOffset(x, y, selectedGame) {
+			if(selectedGame !== undefined) {
+				return `background-position: ${x* -(selectedGame.images.dashboard.scaleX)}px ${y * -(selectedGame.images.dashboard.scaleY)}px;`
+			}
 		}
 
 		_selectCharacter(e) {
 			this.characterIndex = this._findCharIndex(e.model.item);
 			this.$.characterDialog.close();
-			console.log(this.characterIndex)
+			this.$.colourDialog.open();
+		}
+
+		_selectColor(e) {
+			this.colourIndex = e.model.index;
+			this.$.colourDialog.close();
+		}
+
+		_selectedCharacterColours(selectedGame, characterIndex) {
+			if (selectedGame.characters[characterIndex] !== undefined) {
+				return selectedGame.characters[characterIndex].colours;
+			}
 		}
 
 		_applyFilter(characterFilter) {

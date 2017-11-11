@@ -1,15 +1,17 @@
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-card/paper-card.html">
 
 
 <dom-module id="character-selector">
 	<template>
 		<style>
 			.icon {
-				background-image: url('/bundles/mm-dashboard/shared/games/ssbm/images.png');
+				background-image: url('/bundles/mm-dashboard/shared/games/ssbm/dashboard.png');
 				width: 24px;
 				height: 24px;
+				image-rendering: pixelated;
 			}
 			paper-dialog {
 				width: 530px;
@@ -21,41 +23,57 @@
 			}
 		</style>
 
-		<div>
-			<paper-button raised on-tap="openCharacterDialog">
-				<div
-					class="icon"
-					style="{{_findIndexOffset(characterIndex)}}"
-				></div>
-			</paper-button>
-		</div>
+		<paper-button raised on-tap="openCharacterDialog">
+			<div
+				class="icon"
+				style="{{_findColourOffset(colourIndex, characterIndex, selectedGame)}}"
+			></div>
+		</paper-button>
 
-		<div>
-			<paper-dialog
-				id="characterDialog"
-				on-iron-overlay-opened="onDialogOpen"
-				on-iron-overlay-closed="onDialogClose">
-				<paper-input
-					id="characterInput"
-					tabindex="0"
-					value="{{characterFilter}}"
-				></paper-input>
-				<div class="characterList">
-					<template
-						is="dom-repeat"
-						items="{{selectedGame.characters}}"
-						filter="{{_applyFilter(characterFilter)}}">
-						<paper-button on-tap="_selectCharacter">
-							<div
-								class="icon"
-								style="{{_findItemOffset(item)}}"
-								>
-							</div>
-						</paper-button>
-					</template>
-				</div>
-			</paper-dialog>
-		</div>
+
+		<paper-dialog
+			id="characterDialog"
+			on-iron-overlay-opened="onCharacterDialogOpen"
+			on-iron-overlay-closed="onCharacterDialogClose">
+			<paper-input
+				id="characterInput"
+				tabindex="0"
+				value="{{characterFilter}}"
+			></paper-input>
+			<div class="characterList">
+				<template
+					is="dom-repeat"
+					items="{{selectedGame.characters}}"
+					filter="{{_applyFilter(characterFilter)}}">
+					<paper-button on-tap="_selectCharacter">
+						<div
+							class="icon"
+							style="{{_findItemOffset(item)}}"
+							>
+						</div>
+					</paper-button>
+				</template>
+			</div>
+		</paper-dialog>
+		<paper-dialog
+			id="colourDialog"
+			on-iron-overlay-opened="onColourDialogOpen"
+			on-iron-overlay-closed="onColourDialogClose">
+			<div class="characterList">
+				<template
+					is="dom-repeat"
+					items="{{_selectedCharacterColours(selectedGame, characterIndex)}}"
+					filter="{{_applyFilter(characterFilter)}}">
+					<paper-button on-tap="_selectColor">
+						<div
+							class="icon"
+							style="{{_findColourOffset(index, characterIndex, selectedGame)}}"
+							>
+						</div>
+					</paper-button>
+				</template>
+			</div>
+		</paper-dialog>
 
 	</template>
 	<script src="character-selector.js"></script>

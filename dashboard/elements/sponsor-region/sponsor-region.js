@@ -23,12 +23,6 @@
 			super.ready();
 
 		}
-
-		_bothAssets(region, sponsor) {
-			const regionValid = region && region.length;
-			const sponsorValid = sponsor && sponsor.length;
-			return (regionValid && sponsorValid) ? '' : 'display: none;'
-		}
 	}
 
 	customElements.define(SponsorRegion.is, SponsorRegion);

@@ -29,6 +29,10 @@
 			const sponsorValid = sponsor && sponsor.length;
 			return (regionValid && sponsorValid) ? '' : 'display: none;'
 		}
+
+		getBgImage(asset) {
+			return `background-image: url('${asset.url}');`;
+		}
 	}
 
 	customElements.define(SponsorRegion.is, SponsorRegion);

@@ -10,6 +10,12 @@
 				@apply(--layout-horizontal);
 				@apply(--layout-center-justified);
 			}
+			.sponsorImage {
+				width: 24px;
+				height: 24px;
+				background-size: contain;
+			}
+
 		</style>
 		<div class="row">
 			<paper-input label="Sponsor/Region Prefix" value="{{sponsorRegion}}">
@@ -18,11 +24,11 @@
 			<paper-dropdown-menu label="Sponsor/Region Image">
 				<paper-listbox slot="dropdown-content">
 					<template is="dom-repeat" items="{{regionImages}}">
-						<paper-item>{{item.name}}</paper-item>
+						<paper-item><div style$={{getBgImage(item)}}></div></paper-item>
 					</template>
 					<hr style$="{{_bothAssets(regionImages, sponsorImages)}}">
 					<template is="dom-repeat" items="{{sponsorImages}}">
-						<paper-item>{{item.name}}</paper-item>
+						<paper-item><div class="sponsorImage" style$="{{getBgImage(item)}}"></div><span>  -  {{item.name}}</span></paper-item>
 					</template>
 				</paper-listbox>
 			</paper-dropdown-menu>

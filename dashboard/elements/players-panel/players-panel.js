@@ -54,7 +54,7 @@
 			gameData.on('change', newData => {
 				this.selectedGame = newData[0];
 			});
-			sponsorImages.on('change', newData => {this.sponsorImages = newData; console.log(newData);});
+			sponsorImages.on('change', newData => this.sponsorImages = newData);
 			regionImages.on('change', newData => this.regionImages = newData);
 		}
 	}

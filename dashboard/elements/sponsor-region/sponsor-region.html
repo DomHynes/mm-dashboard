@@ -2,6 +2,7 @@
 <link rel="import" href="../../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-toggle-button/paper-toggle-button.html">
 
 <dom-module id="sponsor-region">
 	<template>
@@ -15,22 +16,30 @@
 				height: 24px;
 				background-size: contain;
 			}
+			.hidden {
+				display: none;
+			}
 
 		</style>
-		<div class="row">
-			<paper-input label="Sponsor/Region Prefix" value="{{sponsorRegion}}">
-
-			</paper-input>
-			<paper-dropdown-menu label="Sponsor/Region Image">
+		<div>
+			<span>sponsored</span>
+			<paper-toggle-button checked="{{sponsored}}"></paper-toggle-button>
+		</div>
+		<div class$="row region [[_rowHidden('region', sponsored)]]">
+			<paper-dropdown-menu label="Region Image">
 				<paper-listbox slot="dropdown-content">
 					<template is="dom-repeat" items="{{regionImages}}">
 						<paper-item><div style$={{getBgImage(item)}}></div></paper-item>
 					</template>
-					<hr style$="{{_bothAssets(regionImages, sponsorImages)}}">
-					<template is="dom-repeat" items="{{sponsorImages}}">
-						<paper-item><div class="sponsorImage" style$="{{getBgImage(item)}}"></div><span>  -  {{item.name}}</span></paper-item>
-					</template>
 				</paper-listbox>
+			</paper-dropdown-menu>
+		</div>
+		<div class$="row sponsor [[_rowHidden('sponsor', sponsored)]]">
+			<paper-input label="Sponsor Prefix" value="{{sponsorRegion}}"></paper-input>
+			<paper-dropdown-menu label="Sponsor Image">
+				<template is="dom-repeat" items="{{sponsorImages}}">
+					<paper-item><div class="sponsorImage" style$="{{getBgImage(item)}}"></div><span>  -  {{item.name}}</span></paper-item>
+				</template>
 			</paper-dropdown-menu>
 		</div>
 	</template>

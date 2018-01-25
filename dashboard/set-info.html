@@ -8,10 +8,16 @@
 
 	<custom-style>
 		<style>
+			body {
+				@apply(--layout-horizontal);
+				@apply(--layout-center-justified);
+			}
 		</style>
 	</custom-style>
 </head>
 <body>
-	<players-panel></players-panel>
+	<div class="col">
+		<players-panel></players-panel>
+	</div>
 </body>
 </html>

@@ -19,8 +19,7 @@
 				sponsored: {
 					type: Boolean,
 					value: false,
-					notify: true,
-					observer: 'sponsoredchange'
+					notify: true
 				}
 			};
 		}
@@ -28,10 +27,6 @@
 		ready() {
 			super.ready();
 
-		}
-
-		sponsoredchange(spon) {
-			console.log(spon);
 		}
 
 		_bothAssets(region, sponsor) {
@@ -45,8 +40,7 @@
 		}
 
 		_rowHidden(rowType, sponsored) {
-			console.log(rowType);
-			return (rowType === 'sponsor' && sponsored) || (rowType === 'region' && !sponsored ) ? 'hidden' : '';
+			return (rowType === 'sponsor' && !sponsored) || (rowType === 'region' && sponsored ) ? 'hidden' : '';
 		}
 	}
 

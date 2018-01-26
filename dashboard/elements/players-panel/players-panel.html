@@ -17,10 +17,6 @@
 			.col {
 				@apply(--layout-vertical);
 			}
-			.controls {
-				@apply(--layout-vertical);
-				@apply(--layout-center-justified);
-			}
 			.panel {
 				margin: 15px;
 			}
@@ -59,25 +55,22 @@
 						region-images="{{regionImages}}"
 						selected-game="{{selectedGame}}"></player-info>
 
-					<div class="controls">
-						<paper-button
-							raised
-							class="swap"
-							on-tap="swapPlayers">
-							<iron-icon icon="icons:swap-horiz"></iron-icon>
-						</paper-button>
-					</div>
-
+					<paper-button
+						raised
+						class="swap"
+						on-tap="swapPlayers">
+						<iron-icon icon="icons:swap-horiz"></iron-icon>
+					</paper-button>
 
 					<player-info reversed
-								 id="p2"
-								 name="{{playerdata.p2.name}}"
-								 character-index="{{playerdata.p2.characterIndex}}"
-								 colour-index="{{playerdata.p2.colourIndex}}"
-								 sponsor-region="{{playerdata.p2.sponsorRegion}}"
-								 sponsor-images="{{sponsorImages}}"
-								 region-images="{{regionImages}}"
-								 selected-game="{{selectedGame}}"></player-info>
+						 id="p2"
+						 name="{{playerdata.p2.name}}"
+						 character-index="{{playerdata.p2.characterIndex}}"
+						 colour-index="{{playerdata.p2.colourIndex}}"
+						 sponsor-region="{{playerdata.p2.sponsorRegion}}"
+						 sponsor-images="{{sponsorImages}}"
+						 region-images="{{regionImages}}"
+						 selected-game="{{selectedGame}}"></player-info>
 				</div>
 			</div>
 

@@ -16,35 +16,55 @@
 				height: 24px;
 				background-size: contain;
 			}
-			.hidden {
-				display: none;
+			paper-toggle-button {
+				@apply(--layout-flex-none)
+			}
+			.playerboxes {
+				@apply(--layout-horizontal);
 			}
 			.playerboxes > * {
 				@apply(--layout-flex-auto);
 			}
 
 
+
 		</style>
 		<div class="row">
 			<paper-toggle-button checked="{{sponsored}}"></paper-toggle-button>
-			<div class$="row region [[_rowHidden('region', sponsored)]] playerboxes">
-				<paper-dropdown-menu label="Region Image">
-					<paper-listbox slot="dropdown-content">
-						<template is="dom-repeat" items="{{regionImages}}">
-							<paper-item><div style$={{getBgImage(item)}}></div></paper-item>
+
+			<template is="dom-if" if="{{!sponsored}}">
+
+				<div class="playerboxes">
+					<paper-dropdown-menu label="Region Image">
+						<paper-listbox slot="dropdown-content">
+							<template is="dom-repeat" items="{{regionImages}}">
+								<paper-item>
+									<div style$={{getBgImage(item)}}></div>
+								</paper-item>
+							</template>
+						</paper-listbox>
+					</paper-dropdown-menu>
+				</div>
+
+			</template>
+
+			<template is="dom-if" if="{{sponsored}}">
+
+				<div class="playerboxes">
+					<paper-input label="Sponsor Prefix" value="{{sponsorRegion}}"></paper-input>
+					<paper-dropdown-menu label="Sponsor Image">
+						<template is="dom-repeat" items="{{sponsorImages}}">
+							<paper-item>
+								<div class="sponsorImage" style$="{{getBgImage(item)}}"></div>
+								<span>  -  {{item.name}}</span>
+							</paper-item>
 						</template>
-					</paper-listbox>
-				</paper-dropdown-menu>
-			</div>
-			<div class$="row sponsor [[_rowHidden('sponsor', sponsored)]] pleyerboxes">
-				<paper-input label="Sponsor Prefix" value="{{sponsorRegion}}"></paper-input>
-				<paper-dropdown-menu label="Sponsor Image">
-					<template is="dom-repeat" items="{{sponsorImages}}">
-						<paper-item><div class="sponsorImage" style$="{{getBgImage(item)}}"></div><span>  -  {{item.name}}</span></paper-item>
-					</template>
-				</paper-dropdown-menu>
-			</div>
+					</paper-dropdown-menu>
+				</div>
+
+			</template>
 		</div>
+
 	</template>
 
 	<script src="sponsor-region.js"></script>

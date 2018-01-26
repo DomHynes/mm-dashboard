@@ -16,6 +16,9 @@
 			.panel {
 				margin: 15px;
 			}
+			.cards {
+				@apply(--layout-flex)
+			}
 			paper-button {
 				height: 120px;
 			}
@@ -24,19 +27,19 @@
 				color: white;
 			}
 			paper-card {
-				margin: 5px;
+				margin-bottom: 5px;
 				padding: 5px 15px 0;
 			}
 			.prop {
 				height: 0;
-				margin: 5px;
-				padding: 5px 15px 0;
+				margin: 0 5px;
+				padding: 0 15px;
 				overflow: hidden;
 			}
 		</style>
 
 		<div class="row panel">
-			<div class="col">
+			<div class="col cards">
 				<comms-info class="prop"></comms-info>
 				<template is="dom-repeat" items="{{commsinfo}}">
 					<paper-card>

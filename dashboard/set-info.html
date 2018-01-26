@@ -15,6 +15,9 @@
 			}
 			.col {
 				@apply(--layout-vertical);
+				@apply(--layout-flex-none);
+				width: 680px;
+				margin: 0 15px 15px 0;
 			}
 			paper-card {
 				--paper-card-header-text: {
@@ -28,10 +31,11 @@
 </head>
 <body>
 	<div class="col">
-		<paper-card class="col" heading="Players">
+		<paper-card heading="Players">
 			<players-panel></players-panel>
 		</paper-card>
-
+	</div>
+	<div class="col">
 		<paper-card heading="Commentators">
 			<comms-panel></comms-panel>
 		</paper-card>

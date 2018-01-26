@@ -8,6 +8,10 @@
 			{
 				name: "Commentator 2",
 				tw: "asdf"
+			},
+			{
+				name: "Commentator 2",
+				tw: "asdf"
 			}
 		]
 	});
@@ -29,10 +33,15 @@
 			commsinfo.value = this.commsinfo;
 		}
 
-		swapComms() {
-			const comms = this.commsinfo.forEach( com => _.cloneDeep(com));
-			comms.reverse();
-			comms.forEach( ( com, index ) => this.set( `commsinfo.${index}`, com ));
+		addCom() {
+			this.push('commsinfo', {
+				name: 'New Commentator',
+				tw: 'New Twitter'
+			})
+		}
+
+    deleteCom(e) {
+			this.splice('commsinfo', e.detail.index, 1);
 		}
 
 		ready() {

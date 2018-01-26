@@ -17,36 +17,46 @@
 				margin: 15px;
 			}
 			paper-button {
-				@apply(--layout-flex-auto)
+				height: 120px;
 			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
 				color: white;
 			}
-			paper-button.swap {
-				background-color: var(--paper-amber-500);
+			paper-card {
+				margin: 5px;
+				padding: 5px 15px 0;
 			}
-			comms-info {
-				@apply(--layout-flex-auto);
-				margin-right: 15px;
+			.prop {
+				height: 0;
+				margin: 5px;
+				padding: 5px 15px 0;
+				overflow: hidden;
 			}
-
 		</style>
 
 		<div class="row panel">
-			<template is="dom-repeat" items="{{commsinfo}}">
-				<comms-info
-					name="{{item.name}}"
-					tw="{{item.tw}}"
-				></comms-info>
-			</template>
+			<div class="col">
+				<comms-info class="prop"></comms-info>
+				<template is="dom-repeat" items="{{commsinfo}}">
+					<paper-card>
+						<comms-info
+								name="{{item.name}}"
+								tw="{{item.tw}}"
+								index="{{index}}"
+								on-deletecom="deleteCom"
+						></comms-info>
+					</paper-card>
+				</template>
+			</div>
 
 			<div class="col">
 				<paper-button
 					raised
-					class="swap"
-					on-tap="swapComms">
-					<iron-icon icon="icons:swap-horiz"></iron-icon>
+					on-tap="addCom"
+					class="addCom"
+				>
+					<iron-icon icon="icons:add"></iron-icon>
 				</paper-button>
 				<paper-button
 					raised

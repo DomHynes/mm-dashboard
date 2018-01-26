@@ -19,6 +19,15 @@
 			};
 		}
 
+		handleDeleteCom(e) {
+			console.log(e);
+			this.dispatchEvent(new CustomEvent(
+				'deletecom', {
+					detail: { index: 0 }, bubbles: true, composed: true
+				}
+			))
+		}
+
 		ready() {
 			super.ready();
 		}

@@ -64,23 +64,24 @@
 						 sponsor-images="{{sponsorImages}}"
 						 region-images="{{regionImages}}"
 						 selected-game="{{selectedGame}}"></player-info>
-
-					<div class="col">
-						<paper-button
-							raised
-							class="swap"
-							on-tap="swapPlayers">
-							<iron-icon icon="icons:swap-horiz"></iron-icon>
-						</paper-button>
-
-						<paper-button
-							raised
-							on-tap="savePlayers"
-							class="save">
-							SAVE
-						</paper-button>
-					</div>
 				</div>
+			</div>
+
+
+			<div class="col">
+				<paper-button
+						raised
+						class="swap"
+						on-tap="swapPlayers">
+					<iron-icon icon="icons:swap-horiz"></iron-icon>
+				</paper-button>
+
+				<paper-button
+						raised
+						on-tap="savePlayers"
+						class="save">
+					SAVE
+				</paper-button>
 			</div>
 		</div>
 	</template>

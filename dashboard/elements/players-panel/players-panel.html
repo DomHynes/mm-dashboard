@@ -1,6 +1,8 @@
 <link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../iron-icons/iron-icons.html">
+<link rel="import" href="../../../iron-icon/iron-icon.html">
 
 <link rel="import" href="../../../shared/imports/lodash.html">
 
@@ -19,6 +21,9 @@
 				@apply(--layout-vertical);
 				@apply(--layout-center-justified);
 			}
+			.panel {
+				margin: 15px;
+			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
 				color: white;
@@ -35,7 +40,7 @@
 		</style>
 
 
-		<div class="row">
+		<div class="row panel">
 			<div class="col">
 				<div class="row">
 					<set-scores scores={{playerdata.scores}}></set-scores>
@@ -59,7 +64,7 @@
 							raised
 							class="swap"
 							on-tap="swapPlayers">
-							SWAP
+							<iron-icon icon="icons:swap-horiz"></iron-icon>
 						</paper-button>
 					</div>
 

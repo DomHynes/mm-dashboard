@@ -1,0 +1,26 @@
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+
+<dom-module id="comms-info">
+	<template>
+		<style>
+			.row {
+				@apply (--layout-horizontal);
+				@apply(--layout-center);
+			}
+			paper-input {
+				@apply(--layout-flex-auto);
+			}
+
+		</style>
+
+		<div class$="row">
+			<paper-input label="Commentator Name" value="{{name}}"></paper-input>
+			<paper-input label="Commentator Twitter" value="{{tw}}">
+				<div slot="prefix">@</div>
+			</paper-input>
+		</div>
+
+	</template>
+	<script src="comms-info.js"></script>
+</dom-module>

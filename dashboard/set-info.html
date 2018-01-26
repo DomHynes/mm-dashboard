@@ -5,6 +5,7 @@
   <title>Players & Scores</title>
   <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="import" href="elements/players-panel/players-panel.html">
+  <link rel="import" href="elements/comms-panel/comms-panel.html">
   <link rel="import" href="elements/scores/scores.html">
 
 	<custom-style>
@@ -12,13 +13,27 @@
 			body {
 				@apply(--layout-horizontal);
 			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			paper-card {
+				--paper-card-header-text: {
+					text-align: center;
+				};
+				margin-bottom: 30px;
+			}
 		</style>
 	</custom-style>
+
 </head>
 <body>
 	<div class="col">
-		<paper-card>
+		<paper-card class="col" heading="Players">
 			<players-panel></players-panel>
+		</paper-card>
+
+		<paper-card heading="Commentators">
+			<comms-panel></comms-panel>
 		</paper-card>
 	</div>
 </body>

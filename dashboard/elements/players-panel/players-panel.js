@@ -11,11 +11,12 @@
 			p2: {
 				name: "",
 				characterIndex: 2,
-				colourIndex: 2
+				colourIndex: 2,
+				sponsorRegion: null,
+				sponsorRegionImage: null
 			},
 			scores: [ 0, 0 ]
-		},
-		persistent: false
+		}
 	});
 
 	const gameData = nodecg.Replicant('gameData');

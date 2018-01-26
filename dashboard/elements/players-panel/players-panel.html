@@ -20,12 +20,12 @@
 			.panel {
 				margin: 15px;
 			}
+			paper-button {
+				@apply(--layout-flex-auto)
+			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
 				color: white;
-			}
-			paper-button.save.modified {
-				background-color: var(--paper-amber-500);
 			}
 			paper-button.swap {
 				background-color: var(--paper-amber-500);
@@ -55,13 +55,6 @@
 						region-images="{{regionImages}}"
 						selected-game="{{selectedGame}}"></player-info>
 
-					<paper-button
-						raised
-						class="swap"
-						on-tap="swapPlayers">
-						<iron-icon icon="icons:swap-horiz"></iron-icon>
-					</paper-button>
-
 					<player-info reversed
 						 id="p2"
 						 name="{{playerdata.p2.name}}"
@@ -71,15 +64,24 @@
 						 sponsor-images="{{sponsorImages}}"
 						 region-images="{{regionImages}}"
 						 selected-game="{{selectedGame}}"></player-info>
+
+					<div class="col">
+						<paper-button
+							raised
+							class="swap"
+							on-tap="swapPlayers">
+							<iron-icon icon="icons:swap-horiz"></iron-icon>
+						</paper-button>
+
+						<paper-button
+							raised
+							on-tap="savePlayers"
+							class="save">
+							SAVE
+						</paper-button>
+					</div>
 				</div>
 			</div>
-
-			<paper-button
-				raised
-				on-tap="savePlayers"
-				class="save">
-				SAVE
-			</paper-button>
 		</div>
 	</template>
 	<script src="players-panel.js"></script>

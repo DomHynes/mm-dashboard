@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 
-
+ 
 const nodecg = require('./util/nodecg-api-context').get();
 
 const gameData = nodecg.Replicant('gameData');

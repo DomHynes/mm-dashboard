@@ -42,8 +42,11 @@
 		swapPlayers() {
 			const p1 = _.cloneDeep(this.playerdata.p1);
 			const p2 = _.cloneDeep(this.playerdata.p2);
+			const tempscore = this.playerdata.scores[0];
 			this.set('playerdata.p1', p2);
 			this.set('playerdata.p2', p1);
+			this.set('playerdata.scores.0', this.playerdata.scores[1]);
+			this.set('playerdata.scores.1', tempscore);
 		}
 
 		ready() {

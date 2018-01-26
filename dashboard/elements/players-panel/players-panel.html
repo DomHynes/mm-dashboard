@@ -8,9 +8,12 @@
 <dom-module id="players-panel">
 	<template>
 		<style>
-			.players {
+			.row {
 				@apply(--layout-horizontal);
 				@apply(--layout-center-justified);
+			}
+			.col {
+				@apply(--layout-vertical);
 			}
 			.controls {
 				@apply(--layout-vertical);
@@ -32,36 +35,46 @@
 		</style>
 
 
-		<paper-card class="players">
-			<player-info
-				id="p1"
-				name="{{playerdata.p1.name}}"
-				character-index="{{playerdata.p1.characterIndex}}"
-				colour-index="{{playerdata.p1.colourIndex}}"
-				sponsor-region="{{playerdata.p1.sponsorRegion}}"
-				sponsor-images="{{sponsorImages}}"
-				region-images="{{regionImages}}"
-				selected-game="{{selectedGame}}"></player-info>
+		<div class="row">
+			<div class="col">
+				<div class="row">
+					<set-scores scores={{playerdata.scores}}></set-scores>
+				</div>
 
-			<div class="controls">
-				<paper-button
-					raised
-					class="swap"
-					on-tap="swapPlayers">
-					SWAP
-				</paper-button>
+				<br>
+
+				<div class="row">
+					<player-info
+						id="p1"
+						name="{{playerdata.p1.name}}"
+						character-index="{{playerdata.p1.characterIndex}}"
+						colour-index="{{playerdata.p1.colourIndex}}"
+						sponsor-region="{{playerdata.p1.sponsorRegion}}"
+						sponsor-images="{{sponsorImages}}"
+						region-images="{{regionImages}}"
+						selected-game="{{selectedGame}}"></player-info>
+
+					<div class="controls">
+						<paper-button
+							raised
+							class="swap"
+							on-tap="swapPlayers">
+							SWAP
+						</paper-button>
+					</div>
+
+
+					<player-info reversed
+								 id="p2"
+								 name="{{playerdata.p2.name}}"
+								 character-index="{{playerdata.p2.characterIndex}}"
+								 colour-index="{{playerdata.p2.colourIndex}}"
+								 sponsor-region="{{playerdata.p2.sponsorRegion}}"
+								 sponsor-images="{{sponsorImages}}"
+								 region-images="{{regionImages}}"
+								 selected-game="{{selectedGame}}"></player-info>
+				</div>
 			</div>
-
-
-			<player-info reversed
-				id="p2"
-				name="{{playerdata.p2.name}}"
-				character-index="{{playerdata.p2.characterIndex}}"
-				colour-index="{{playerdata.p2.colourIndex}}"
-				sponsor-region="{{playerdata.p2.sponsorRegion}}"
-				sponsor-images="{{sponsorImages}}"
-				region-images="{{regionImages}}"
-				selected-game="{{selectedGame}}"></player-info>
 
 			<paper-button
 				raised
@@ -69,7 +82,7 @@
 				class="save">
 				SAVE
 			</paper-button>
-		</paper-card>
+		</div>
 	</template>
 	<script src="players-panel.js"></script>
 </dom-module>

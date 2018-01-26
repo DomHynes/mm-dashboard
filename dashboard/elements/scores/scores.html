@@ -1,0 +1,29 @@
+<link rel="import" href="../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="score-input/score-input.html">
+
+<dom-module id="set-scores">
+	<template>
+		<style>
+			.row {
+				@apply(--layout-horizontal);
+				@apply(--layout-justified);
+				width: 100%;
+			}
+			paper-input {
+				--paper-input-container-input: {
+					font-size: 45px;
+					text-align: center;
+				}
+			}
+		</style>
+
+
+		<div class="row">
+			<score-input score={{scores.0}}></score-input>
+			<score-input score={{scores.1}}></score-input>
+		</div>
+
+	</template>
+
+	<script src="scores.js"></script>
+</dom-module>

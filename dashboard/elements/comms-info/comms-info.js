@@ -20,11 +20,20 @@
 		}
 
 		handleDeleteCom(e) {
-			console.log(e);
 			this.dispatchEvent(new CustomEvent(
-				'deletecom', {
-					detail: { index: 0 }, bubbles: true, composed: true
-				}
+				'deletecom', { bubbles: true, composed: true }
+			))
+		}
+
+		handleUpCom(e) {
+			this.dispatchEvent(new CustomEvent(
+				'upcom', { bubbles: true, composed: true }
+			))
+		}
+
+		handleDownCom(e) {
+			this.dispatchEvent(new CustomEvent(
+				'downcom', { bubbles: true, composed: true }
 			))
 		}
 

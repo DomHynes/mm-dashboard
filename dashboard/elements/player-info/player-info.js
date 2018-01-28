@@ -34,6 +34,11 @@
 					type: String,
 					value: null,
 					notify: true
+				},
+				sponsored: {
+					type: Boolean,
+					value: false,
+					notify: true
 				}
 			};
 		}

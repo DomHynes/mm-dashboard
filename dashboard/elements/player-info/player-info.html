@@ -21,7 +21,10 @@
 		</style>
 
 		<div class$="[[_computeReversed(reversed)]] row">
-			<paper-input label="Player Name" value="{{name}}"></paper-input>
+			<paper-input
+				label="Player Name"
+				value="{{name}}"
+				></paper-input>
 			<character-selector
 				character-index="{{characterIndex}}"
 				colour-index="{{colourIndex}}"
@@ -29,6 +32,7 @@
 		</div>
 		<div class$="[[_computeReversed(reversed)]] row">
 			<sponsor-region
+				sponsored="{{sponsored}}"
 				region-images="{{regionImages}}"
 				sponsor-images="{{sponsorImages}}">
 			</sponsor-region>

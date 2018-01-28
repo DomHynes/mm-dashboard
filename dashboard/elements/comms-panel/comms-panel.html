@@ -44,10 +44,12 @@
 				<template is="dom-repeat" items="{{commsinfo}}">
 					<paper-card>
 						<comms-info
-								name="{{item.name}}"
-								tw="{{item.tw}}"
-								index="{{index}}"
-								on-deletecom="deleteCom"
+							name="{{item.name}}"
+							tw="{{item.tw}}"
+							index="{{index}}"
+							on-deletecom="deleteCom"
+							on-upcom="upCom"
+							on-downcom="downCom"
 						></comms-info>
 					</paper-card>
 				</template>

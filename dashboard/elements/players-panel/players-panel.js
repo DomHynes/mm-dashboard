@@ -5,6 +5,7 @@
 				name: "asdf",
 				characterIndex: 4,
 				colourIndex: 2,
+				sponsored: false,
 				sponsorRegion: null,
 				sponsorRegionImage: null
 			},
@@ -12,6 +13,7 @@
 				name: "",
 				characterIndex: 2,
 				colourIndex: 2,
+				sponsored: false,
 				sponsorRegion: null,
 				sponsorRegionImage: null
 			},
@@ -37,6 +39,7 @@
 		}
 
 		savePlayers() {
+			console.log(this.playerdata);
 			playerinfo.value = this.playerdata;
 		}
 
@@ -52,12 +55,8 @@
 
 		ready() {
 			super.ready();
-			playerinfo.on('change', newData => {
-				this.playerdata = _.cloneDeep(newData);
-			});
-			gameData.on('change', newData => {
-				this.selectedGame = newData[0];
-			});
+			playerinfo.on('change', newData => this.playerdata = _.cloneDeep(newData) );
+			gameData.on('change', newData => this.selectedGame = newData[0]);
 			sponsorImages.on('change', newData => this.sponsorImages = newData);
 			regionImages.on('change', newData => this.regionImages = newData);
 		}

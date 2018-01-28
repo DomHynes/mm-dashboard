@@ -40,9 +40,20 @@
 			})
 		}
 
-    deleteCom(e) {
-			this.splice('commsinfo', e.detail.index, 1);
+    deleteCom(e){
+      this.splice('commsinfo', e.model.index, 1)
 		}
+
+    upCom(e){
+			this.splice('commsinfo', e.model.index, 1);
+      this.splice('commsinfo', e.model.index - 1, 0, e.model.item);
+		}
+
+    downCom(e){
+      this.splice('commsinfo', e.model.index, 1);
+      this.splice('commsinfo', e.model.index + 1, 0, e.model.item);
+    }
+
 
 		ready() {
 			super.ready();

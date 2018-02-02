@@ -1,17 +1,17 @@
-(function() {
+(function () {
 	const commsinfo = nodecg.Replicant('commsinfo', {
 		defaultValue: [
 			{
-				name: "Commentator 1",
-				tw: "asdf"
+				name: 'Commentator 1',
+				tw: 'asdf'
 			},
 			{
-				name: "Commentator 2",
-				tw: "asdf"
+				name: 'Commentator 2',
+				tw: 'asdf'
 			},
 			{
-				name: "Commentator 2",
-				tw: "asdf"
+				name: 'Commentator 2',
+				tw: 'asdf'
 			}
 		]
 	});
@@ -37,23 +37,22 @@
 			this.push('commsinfo', {
 				name: 'New Commentator',
 				tw: 'New Twitter'
-			})
+			});
 		}
 
-    deleteCom(e){
-      this.splice('commsinfo', e.model.index, 1)
+		deleteCom(e) {
+      this.splice('commsinfo', e.model.index, 1);
 		}
 
-    upCom(e){
+		upCom(e) {
 			this.splice('commsinfo', e.model.index, 1);
       this.splice('commsinfo', e.model.index - 1, 0, e.model.item);
 		}
 
-    downCom(e){
+		downCom(e) {
       this.splice('commsinfo', e.model.index, 1);
       this.splice('commsinfo', e.model.index + 1, 0, e.model.item);
-    }
-
+		}
 
 		ready() {
 			super.ready();

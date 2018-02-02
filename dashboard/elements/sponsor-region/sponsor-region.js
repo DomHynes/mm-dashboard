@@ -1,5 +1,4 @@
-(function() {
-
+(function () {
 	class SponsorRegion extends Polymer.Element {
 		static get is() {
 			return 'sponsor-region';
@@ -26,13 +25,12 @@
 
 		ready() {
 			super.ready();
-
 		}
 
 		_bothAssets(region, sponsor) {
 			const regionValid = region && region.length;
 			const sponsorValid = sponsor && sponsor.length;
-			return (regionValid && sponsorValid) ? '' : 'display: none;'
+			return (regionValid && sponsorValid) ? '' : 'display: none;';
 		}
 
 		getBgImage(asset) {
@@ -40,7 +38,7 @@
 		}
 
 		_rowHidden(rowType, sponsored) {
-			return (rowType === 'sponsor' && !sponsored) || (rowType === 'region' && sponsored ) ? 'hidden' : '';
+			return (rowType === 'sponsor' && !sponsored) || (rowType === 'region' && sponsored) ? 'hidden' : '';
 		}
 	}
 

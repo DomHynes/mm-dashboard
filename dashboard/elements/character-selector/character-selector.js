@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	class CharacterSelector extends Polymer.Element {
 		static get is() {
 			return 'character-selector';
@@ -8,7 +8,7 @@
 			return {
 				characterFilter: {
 					type: String,
-					value: ""
+					value: ''
 				},
 				characters: {
 					type: Array,
@@ -34,7 +34,7 @@
 						}
 					}
 				}
-			}
+			};
 		}
 
 		ready() {
@@ -50,7 +50,7 @@
 		}
 
 		onCharacterDialogClose() {
-			this.characterFilter = "";
+			this.characterFilter = '';
 		}
 
 		onColourDialogOpen() {
@@ -61,16 +61,16 @@
 		}
 
 		_findCharIndex(char) {
-			return this.selectedGame.characters.findIndex( character => character.name === char.name );
+			return this.selectedGame.characters.findIndex(character => character.name === char.name);
 		}
 
 		_findItemOffset(item) {
-			return `background-position: 0px ${this._findCharIndex(item) * -(this.selectedGame.images.dashboard.scaleY)}px;`
+			return `background-position: 0px ${this._findCharIndex(item) * -(this.selectedGame.images.dashboard.scaleY)}px;`;
 		}
 
 		_findColourOffset(x, y, selectedGame) {
-			if(selectedGame !== undefined) {
-				return `background-position: ${x* -(selectedGame.images.dashboard.scaleX)}px ${y * -(selectedGame.images.dashboard.scaleY)}px;`
+			if (selectedGame !== undefined) {
+				return `background-position: ${x * -(selectedGame.images.dashboard.scaleX)}px ${y * -(selectedGame.images.dashboard.scaleY)}px;`;
 			}
 		}
 
@@ -94,20 +94,18 @@
 		_applyFilter(characterFilter) {
 			if (!characterFilter) {
 				return null;
-			} else {
-				characterFilter = characterFilter.toLowerCase();
-
-				return function(character) {
-					const first = character.name.toLowerCase();
-					const last = character.longName.toLowerCase();
-
-					return (
-						first.indexOf(characterFilter) != -1 ||
-						last.indexOf(characterFilter) != -1
-					)
-				}
-
 			}
+			characterFilter = characterFilter.toLowerCase();
+
+			return function (character) {
+				const first = character.name.toLowerCase();
+				const last = character.longName.toLowerCase();
+
+				return (
+						first.indexOf(characterFilter) !== -1 ||
+						last.indexOf(characterFilter) !== -1
+				);
+			};
 		}
 	}
 

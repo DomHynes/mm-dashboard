@@ -1,8 +1,8 @@
-(function() {
+(function () {
 	const playerinfo = nodecg.Replicant('playerinfo', {
 		defaultValue: {
 			p1: {
-				name: "asdf",
+				name: 'asdf',
 				characterIndex: 4,
 				colourIndex: 2,
 				sponsored: false,
@@ -10,14 +10,14 @@
 				sponsorRegionImage: null
 			},
 			p2: {
-				name: "",
+				name: '',
 				characterIndex: 2,
 				colourIndex: 2,
 				sponsored: false,
 				sponsorRegion: null,
 				sponsorRegionImage: null
 			},
-			scores: [ 0, 0 ]
+			scores: [0, 0]
 		}
 	});
 
@@ -39,7 +39,6 @@
 		}
 
 		savePlayers() {
-			console.log(this.playerdata);
 			playerinfo.value = this.playerdata;
 		}
 
@@ -55,10 +54,18 @@
 
 		ready() {
 			super.ready();
-			playerinfo.on('change', newData => this.playerdata = _.cloneDeep(newData) );
-			gameData.on('change', newData => this.selectedGame = newData[0]);
-			sponsorImages.on('change', newData => this.sponsorImages = newData);
-			regionImages.on('change', newData => this.regionImages = newData);
+			playerinfo.on('change', newData => {
+				this.playerdata = _.cloneDeep(newData);
+			});
+			gameData.on('change', newData => {
+				this.selectedGame = newData[0];
+			});
+			sponsorImages.on('change', newData => {
+				this.sponsorImages = newData;
+			});
+			regionImages.on('change', newData => {
+				this.regionImages = newData;
+			});
 		}
 	}
 

@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	class CommsInfo extends Polymer.Element {
 		static get is() {
 			return 'comms-info';
@@ -19,22 +19,16 @@
 			};
 		}
 
-		handleDeleteCom(e) {
-			this.dispatchEvent(new CustomEvent(
-				'deletecom', { bubbles: true, composed: true }
-			))
+		handleDeleteCom() {
+			this.dispatchEvent(new CustomEvent('deletecom', {bubbles: true, composed: true}));
 		}
 
-		handleUpCom(e) {
-			this.dispatchEvent(new CustomEvent(
-				'upcom', { bubbles: true, composed: true }
-			))
+		handleUpCom() {
+			this.dispatchEvent(new CustomEvent('upcom', {bubbles: true, composed: true}));
 		}
 
-		handleDownCom(e) {
-			this.dispatchEvent(new CustomEvent(
-				'downcom', { bubbles: true, composed: true }
-			))
+		handleDownCom() {
+			this.dispatchEvent(new CustomEvent('downcom', {bubbles: true, composed: true}));
 		}
 
 		ready() {

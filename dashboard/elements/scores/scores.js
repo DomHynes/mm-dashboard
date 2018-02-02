@@ -1,4 +1,4 @@
-(function() {
+(function () {
 	class SetScores extends Polymer.Element {
 		static get is() {
 			return 'set-scores';
@@ -10,7 +10,7 @@
 					type: Array,
 					notify: true
 				}
-			}
+			};
 		}
 
 		ready() {

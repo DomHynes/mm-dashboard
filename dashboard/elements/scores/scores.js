@@ -1,3 +1,5 @@
+const setinfo = nodecg.Replicant('set-info');
+
 (function () {
 	class SetScores extends Polymer.Element {
 		static get is() {
@@ -15,6 +17,10 @@
 
 		ready() {
 			super.ready();
+
+			setinfo.on('change', newData => {
+				this.scores = newData.scores;
+			});
 		}
 	}
 

@@ -1,29 +1,8 @@
 (function () {
-	const playerinfo = nodecg.Replicant('playerinfo', {
-		defaultValue: {
-			p1: {
-				name: 'asdf',
-				characterIndex: 4,
-				colourIndex: 2,
-				sponsored: false,
-				sponsorRegion: null,
-				sponsorRegionImage: null
-			},
-			p2: {
-				name: '',
-				characterIndex: 2,
-				colourIndex: 2,
-				sponsored: false,
-				sponsorRegion: null,
-				sponsorRegionImage: null
-			},
-			scores: [0, 0]
-		}
-	});
-
 	const gameData = nodecg.Replicant('gameData');
 	const sponsorImages = nodecg.Replicant('assets:sponsors');
 	const regionImages = nodecg.Replicant('assets:regions');
+	const setinfo = nodecg.Replicant('set-info');
 
 	class PlayersPanel extends Polymer.Element {
 		static get is() {
@@ -39,23 +18,23 @@
 		}
 
 		savePlayers() {
-			playerinfo.value = this.playerdata;
+			setinfo.value = this.playerdata;
 		}
 
 		swapPlayers() {
-			const p1 = _.cloneDeep(this.playerdata.p1);
-			const p2 = _.cloneDeep(this.playerdata.p2);
+			const p1 = _.cloneDeep(this.setinfo.p1);
+			const p2 = _.cloneDeep(this.setinfo.p2);
 			const tempscore = this.playerdata.scores[0];
 			this.set('playerdata.p1', p2);
 			this.set('playerdata.p2', p1);
-			this.set('playerdata.scores.0', this.playerdata.scores[1]);
+			this.set('playerdata.scores.0', this.setinfo.scores[1]);
 			this.set('playerdata.scores.1', tempscore);
 		}
 
 		ready() {
 			super.ready();
-			playerinfo.on('change', newData => {
-				this.playerdata = _.cloneDeep(newData);
+			setinfo.on('change', newData => {
+				this.setinfo = _.cloneDeep(newData);
 			});
 			gameData.on('change', newData => {
 				this.selectedGame = newData[0];

@@ -56,7 +56,9 @@
 
 		ready() {
 			super.ready();
-			commsinfo.on('change', newData => this.commsinfo = _.cloneDeep(newData));
+			commsinfo.on('change', newData => {
+				this.commsinfo = _.cloneDeep(newData);
+			});
 		}
 	}
 

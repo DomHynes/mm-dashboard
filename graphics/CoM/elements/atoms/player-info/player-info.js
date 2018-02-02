@@ -8,10 +8,6 @@ class PlayerInfo extends Polymer.Element {
 			name: {
 				type: String,
 				value: 'Player'
-			},
-			score: {
-				type: Number,
-				value: 0
 			}
 		};
 	}

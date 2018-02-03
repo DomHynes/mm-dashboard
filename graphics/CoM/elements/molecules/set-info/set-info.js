@@ -13,6 +13,12 @@ class SetInfo extends Polymer.Element {
 						name: 'Player 1',
 						tw: '@player'
 					}
+				],
+				[
+					{
+						name: 'Player 2',
+						tw: '@player'
+					}
 				]
 			],
 			scores: [
@@ -22,7 +28,9 @@ class SetInfo extends Polymer.Element {
 	}
 
 	ready() {
+		super.ready();
 		setinfo.on('change', newData => {
+			console.log(newData.scores);
 			this.scores = newData.scores;
 		});
 	}

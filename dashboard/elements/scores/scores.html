@@ -18,8 +18,9 @@
 
 
 		<div class="row">
-			<score-input score={{scores.0}}></score-input>
-			<score-input score={{scores.1}}></score-input>
+			<template is="dom-repeat" items="{{scores}}">
+				<score-input score={{item}}></score-input>
+			</template>
 		</div>
 
 	</template>

@@ -40,6 +40,11 @@
 		_rowHidden(rowType, sponsored) {
 			return (rowType === 'sponsor' && !sponsored) || (rowType === 'region' && sponsored) ? 'hidden' : '';
 		}
+
+		_computeReversed() {
+			console.log(this.reversed % 2 ? 'reversed' : '')
+			return this.reversed % 2 ? 'reversed' : '';
+		}
 	}
 
 	customElements.define(SponsorRegion.is, SponsorRegion);

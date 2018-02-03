@@ -11,30 +11,44 @@
 
 		static get properties() {
 			return {
-				playerdata: {
-					type: Object
+				setinfo: {
+					players: {
+						type: Array,
+						items: {
+							type: Array
+						}
+					},
+					scores: {
+						type: Array,
+						items: {
+							type: Number
+						}
+					}
+
 				}
 			};
 		}
 
 		savePlayers() {
-			setinfo.value = this.playerdata;
+			setinfo.value = this.setinfo;
 		}
 
 		swapPlayers() {
-			const p1 = _.cloneDeep(this.setinfo.p1);
-			const p2 = _.cloneDeep(this.setinfo.p2);
-			const tempscore = this.playerdata.scores[0];
-			this.set('playerdata.p1', p2);
-			this.set('playerdata.p2', p1);
-			this.set('playerdata.scores.0', this.setinfo.scores[1]);
-			this.set('playerdata.scores.1', tempscore);
+			const p1 = _.cloneDeep(this.setinfo.players[0]);
+			const p2 = _.cloneDeep(this.setinfo.players[1]);
+			this.set('setinfo.players.0', p2);
+			this.set('setinfo.players.1', p1);
+
+			const tempscore = this.setinfo.scores[0];
+			this.set('setinfo.scores.0', this.setinfo.scores[1]);
+			this.set('setinfo.scores.1', tempscore);
 		}
 
 		ready() {
 			super.ready();
 			setinfo.on('change', newData => {
-				this.setinfo = _.cloneDeep(newData);
+				const data = _.cloneDeep(newData);
+				this.setinfo = data;
 			});
 			gameData.on('change', newData => {
 				this.selectedGame = newData[0];

@@ -1,24 +1,4 @@
-const setinfo = nodecg.Replicant('set-info', {
-	defaultValue: {
-		p1: {
-			name: 'asdf',
-			characterIndex: 4,
-			colourIndex: 2,
-			sponsored: false,
-			sponsorRegion: null,
-			sponsorRegionImage: null
-		},
-		p2: {
-			name: '',
-			characterIndex: 2,
-			colourIndex: 2,
-			sponsored: false,
-			sponsorRegion: null,
-			sponsorRegionImage: null
-		},
-		scores: [0, 0]
-	}
-});
+const setinfo = nodecg.Replicant('set-info');
 
 class SetInfo extends Polymer.Element {
 	static get is() {
@@ -43,7 +23,7 @@ class SetInfo extends Polymer.Element {
 
 	ready() {
 		setinfo.on('change', newData => {
-			this.scores = newData;
+			this.scores = newData.scores;
 		});
 	}
 }

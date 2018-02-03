@@ -47,8 +47,8 @@
 			super.ready();
 		}
 
-		_computeReversed(reversed) {
-			return reversed ? 'reversed' : '';
+		_computeReversed() {
+			return this.reversed % 2 ? 'reversed' : '';
 		}
 	}
 

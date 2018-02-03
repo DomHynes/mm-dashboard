@@ -15,12 +15,12 @@
 				@apply(--layout-horizontal-reverse);
 			}
 			paper-input, character-selector, sponsor-region {
-				@apply(--layout-flex-auto);
+				@apply(--layout-flex-none);
 			}
 
 		</style>
 
-		<div class$="[[_computeReversed(reversed)]] row">
+		<div class$="[[_computeReversed()]] row">
 			<paper-input
 				label="Player Name"
 				value="{{name}}"
@@ -30,11 +30,12 @@
 				colour-index="{{colourIndex}}"
 				selected-game="{{selectedGame}}"></character-selector>
 		</div>
-		<div class$="[[_computeReversed(reversed)]] row">
+		<div class$="row">
 			<sponsor-region
 				sponsored="{{sponsored}}"
 				region-images="{{regionImages}}"
-				sponsor-images="{{sponsorImages}}">
+				sponsor-images="{{sponsorImages}}"
+				reversed="[[_computeReversed()]]">
 			</sponsor-region>
 		</div>
 

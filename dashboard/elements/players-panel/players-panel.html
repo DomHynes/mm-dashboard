@@ -1,8 +1,8 @@
 <link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../../iron-icons/iron-icons.html">
-<link rel="import" href="../../../iron-icon/iron-icon.html">
+<link rel="import" href="../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
 
 <link rel="import" href="../../../shared/imports/lodash.html">
 
@@ -12,10 +12,10 @@
 		<style>
 			.row {
 				@apply(--layout-horizontal);
-				@apply(--layout-center-justified);
 			}
 			.col {
 				@apply(--layout-vertical);
+				@apply(--layout-flex-2);
 			}
 			.panel {
 				margin: 15px;
@@ -31,10 +31,7 @@
 				background-color: var(--paper-amber-500);
 			}
 			player-info {
-				width: 50%;
-			}
-			.players {
-				padding: 15px;
+				@apply(--layout-flex-auto);
 			}
 		</style>
 
@@ -42,30 +39,30 @@
 		<div class="row panel">
 			<div class="col">
 				<div class="row">
-					<set-scores scores={{playerdata.scores}}></set-scores>
+					<set-scores scores={{setinfo.scores}}></set-scores>
 				</div>
 
 				<br>
 
 				<div class="row">
-					<player-info
-						id="p1"
-						name="{{playerdata.p1.name}}"
-						character-index="{{playerdata.p1.characterIndex}}"
-						colour-index="{{playerdata.p1.colourIndex}}"
-						sponsored="{{playerdata.p1.sponsored}}"
-						sponsor-images="{{sponsorImages}}"
-						region-images="{{regionImages}}"
-						selected-game="{{selectedGame}}"></player-info>
-					<player-info reversed
-						 id="p2"
-						 name="{{playerdata.p2.name}}"
-						 character-index="{{playerdata.p2.characterIndex}}"
-						 colour-index="{{playerdata.p2.colourIndex}}"
-						 sponsored="{{playerdata.p2.sponsored}}"
-						 sponsor-images="{{sponsorImages}}"
-						 region-images="{{regionImages}}"
-						 selected-game="{{selectedGame}}"></player-info>
+					<template is="dom-repeat" items="{{setinfo.players}}" as="team" index-as="i">
+						<div class="col">
+							<template is="dom-repeat" items="{{team}}" as="player">
+									<div class="row">
+										<player-info
+											id="p{{index}}"
+											name="{{player.name}}"
+											character-index="{{player.characterIndex}}"
+											colour-index="{{player.colourIndex}}"
+											sponsored="{{player.sponsored}}"
+											sponsor-images="{{sponsorImages}}"
+											region-images="{{regionImages}}"
+											selected-game="{{selectedGame}}"
+											reversed="{{i}}"></player-info>
+									</div>
+							</template>
+						</div>
+					</template>
 				</div>
 			</div>
 

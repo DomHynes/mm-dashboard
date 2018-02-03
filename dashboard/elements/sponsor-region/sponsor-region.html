@@ -21,14 +21,16 @@
 			}
 			.playerboxes {
 				@apply(--layout-horizontal);
+				width: 100%;
 			}
 			.playerboxes > * {
 				@apply(--layout-flex-auto);
 			}
+			.reversed {
+				@apply(--layout-horizontal-reverse);
+			}
 		</style>
-		<div class="row">
-			<paper-toggle-button checked="{{sponsored}}"></paper-toggle-button>
-
+		<div class$="row {{reversed}}">
 			<template is="dom-if" if="{{!sponsored}}">
 
 				<div class="playerboxes">
@@ -60,6 +62,8 @@
 				</div>
 
 			</template>
+
+			<paper-toggle-button checked="{{sponsored}}"></paper-toggle-button>
 		</div>
 
 	</template>

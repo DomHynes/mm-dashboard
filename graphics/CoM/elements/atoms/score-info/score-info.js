@@ -9,17 +9,24 @@ class ScoreInfo extends Polymer.Element {
 				type: Number,
 				value: 0,
 				observer: '_scoreChanged'
+			},
+			data: {
+				type: Number
 			}
 		};
 	}
 
-	_scoreChanged(newValue) {
-		console.log(newValue);
+	_scoreChanged() {
+		new TimelineMax()
+			.to(this.$.score, 0.5, {opacity: 0})
+			.call(() => {
+				this.data = this.score;
+			})
+			.to(this.$.score, 0.5, {opacity: 1});
 	}
 
 	ready() {
 		super.ready();
-		this.addEventListener('score-changed', change => console.log(change));
 	}
 }
 

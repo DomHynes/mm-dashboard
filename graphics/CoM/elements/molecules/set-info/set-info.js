@@ -30,7 +30,6 @@ class SetInfo extends Polymer.Element {
 	ready() {
 		super.ready();
 		setinfo.on('change', newData => {
-			console.log(newData.scores);
 			this.scores = newData.scores;
 		});
 	}

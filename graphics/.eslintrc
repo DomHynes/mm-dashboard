@@ -5,6 +5,7 @@
 	"globals": {
 		"nodecg": true,
 		"Polymer": true,
-		"_": true
+		"_": true,
+		"TimelineMax": true
 	}
 }

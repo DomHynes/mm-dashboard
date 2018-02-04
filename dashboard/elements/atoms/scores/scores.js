@@ -15,10 +15,6 @@
 				}
 			};
 		}
-
-		ready() {
-			super.ready();
-		}
 	}
 
 	customElements.define(SetScores.is, SetScores);

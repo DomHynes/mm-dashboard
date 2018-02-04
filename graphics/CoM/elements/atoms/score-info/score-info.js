@@ -10,7 +10,7 @@ class ScoreInfo extends Polymer.Element {
 				value: 0,
 				observer: '_scoreChanged'
 			},
-			data: {
+			_score: {
 				type: Number
 			}
 		};
@@ -20,13 +20,9 @@ class ScoreInfo extends Polymer.Element {
 		new TimelineMax()
 			.to(this.$.score, 0.5, {opacity: 0})
 			.call(() => {
-				this.data = this.score;
+				this._score = this.score;
 			})
 			.to(this.$.score, 0.5, {opacity: 1});
-	}
-
-	ready() {
-		super.ready();
 	}
 }
 

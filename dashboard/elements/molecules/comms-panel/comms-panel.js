@@ -1,5 +1,5 @@
 (function () {
-	const commsinfo = nodecg.Replicant('commsinfo', {
+	const commsinfo = nodecg.Replicant('comms-info', {
 		defaultValue: [
 			{
 				name: 'Commentator 1',
@@ -24,7 +24,8 @@
 		static get properties() {
 			return {
 				commsinfo: {
-					type: Object
+					type: Array,
+					value: []
 				}
 			};
 		}
@@ -34,10 +35,17 @@
 		}
 
 		addCom() {
-			this.push('commsinfo', {
-				name: 'New Commentator',
-				tw: 'New Twitter'
-			});
+			if (this.commsinfo && this.commsinfo.length) {
+				this.push('commsinfo', {
+					name: 'New Commentator',
+					tw: 'New Twitter'
+				});
+			} else {
+				this.set('commsinfo', [{
+					name: 'New Commentator',
+					tw: 'New Twitter'
+				}]);
+			}
 		}
 
 		deleteCom(e) {

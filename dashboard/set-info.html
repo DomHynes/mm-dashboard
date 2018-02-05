@@ -10,7 +10,7 @@
 
 	<custom-style>
 		<style>
-			body {
+			.container {
 				@apply(--layout-horizontal);
 			}
 			.col {
@@ -29,7 +29,10 @@
 	</custom-style>
 
 </head>
+
 <body>
+
+<div class="container" column-layout$="{{columns}}">
 	<div class="col">
 		<paper-card heading="Players">
 			<players-panel></players-panel>
@@ -40,5 +43,7 @@
 			<comms-panel></comms-panel>
 		</paper-card>
 	</div>
+</div>
+
 </body>
 </html>

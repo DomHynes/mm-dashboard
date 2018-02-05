@@ -1,0 +1,21 @@
+<link rel="import" href="../../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../atoms/commentator-info/commentator-info.html">
+<link rel="import" href="../../../../../shared/imports/gsap.html">
+
+<dom-module id="comms-info">
+	<template>
+		<style>
+
+		</style>
+
+		<template is="dom-repeat" items="{{comms}}">
+			<commentator-info
+				name="{{item.name}}"
+				tw="{{item.tw}}"
+			></commentator-info>
+		</template>
+
+	</template>
+
+	<script src="comms-info.js"></script>
+</dom-module>

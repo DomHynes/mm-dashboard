@@ -3,7 +3,7 @@
   "dependencies": {
     "EaselJS": "0.8.2",
     "gsap": "~1.19.1",
-    "iron-icons": "PolymerElements/iron-icons#^2.0.0",
+    "iron-icons": "PolymerElements/iron-icons#^2.0.1",
     "iron-image": "PolymerElements/iron-image#^2.1.1",
     "iron-list": "PolymerElements/iron-list#^2.0.2",
     "iron-pages": "PolymerElements/iron-pages#^1.0.8",

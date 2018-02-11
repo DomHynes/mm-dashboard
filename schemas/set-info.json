@@ -4,7 +4,7 @@
 	"properties": {
 		"players": {
 			"type" : "array",
-      "minItems": 2,
+      		"minItems": 2,
 			"items" : {
 				"type": "array",
 				"items": {
@@ -28,7 +28,11 @@
 			}
 		},
 		"scores": {
-			"type": "array"
+			"type": "array",
+			"minItems": 2,
+			"items": {
+				"type": "number"
+			}
 		}
 
 	}

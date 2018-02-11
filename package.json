@@ -5,7 +5,9 @@
   "contributors": [
     "Dom Hynes <contact@domhyn.es>"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "obs-websocket-js": "^1.1.0"
+  },
   "homepage": "https://domhyn.es",
   "license": "MIT",
   "nodecg": {

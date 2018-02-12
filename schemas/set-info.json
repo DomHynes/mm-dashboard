@@ -12,16 +12,20 @@
 					"type": "object",
 					"properties": {
 						"name": {
-							"type": "string"
+							"type": "string",
+							"default": "Player"
 						},
 						"characterIndex": {
-							"type": "number"
+							"type": "number",
+							"default": 0
 						},
 						"colourIndex": {
-							"type": "number"
+							"type": "number",
+							"default": 0
 						},
 						"sponsored": {
-							"type": "boolean"
+							"type": "boolean",
+							"default": false
 						}
 					},
 					"additionalProperties": false
@@ -32,7 +36,8 @@
 			"type": "array",
 			"minItems": 2,
 			"items": {
-				"type": "number"
+				"type": "number",
+				"default": 0
 			}
 		}
 

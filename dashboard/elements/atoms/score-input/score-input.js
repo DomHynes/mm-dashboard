@@ -23,7 +23,7 @@
 		}
 
 		scoreDown() {
-			this.score = this.score > 0 ? this.score - 1 : this.score;
+			this.score = this.score > 0 ? parseInt(this.score - 1, 10) : parseInt(this.score, 10);
 		}
 	}
 

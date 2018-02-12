@@ -47,6 +47,7 @@
 		ready() {
 			super.ready();
 			setinfo.on('change', newData => {
+				console.log(newData);
 				const data = _.cloneDeep(newData);
 				this.setinfo = data;
 			});

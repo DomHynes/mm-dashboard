@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Generators</title>
+	<script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+	<link rel="import" href="elements/molecules/player-generator-panel/player-generator-panel.html">
+	<custom-style>
+		<style>
+			.container {
+				@apply(--layout-horizontal);
+			}
+			.col {
+				@apply(--layout-vertical);
+				@apply(--layout-flex-none);
+				width: 680px;
+				margin: 0 15px 15px 0;
+			}
+			paper-card {
+				--paper-card-header-text: {
+					text-align: center;
+				};
+				margin-bottom: 30px;
+			}
+		</style>
+	</custom-style>
+
+</head>
+
+<body>
+
+<div class="container">
+	<paper-card heading="Players">
+		<player-generator-panel></player-generator-panel>
+	</paper-card>
+</div>
+
+</body>
+</html>

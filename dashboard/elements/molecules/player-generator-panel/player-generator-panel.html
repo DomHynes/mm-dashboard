@@ -1,0 +1,61 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+
+<link rel="import" href="../../atoms/player-generator/player-generator.html">
+
+<dom-module id="player-generator-panel">
+	<template>
+		<style>
+			.row {
+				@apply(--layout-horizontal);
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			.panel {
+				margin: 15px;
+			}
+			paper-button {
+				height: 120px;
+			}
+			paper-button.save {
+				background-color: var(--paper-green-500);
+				color: white;
+			}
+			paper-button.swap {
+				background-color: var(--paper-amber-500);
+			}
+			player-info {
+				@apply(--layout-flex-auto);
+			}
+		</style>
+
+
+		<div class="row panel">
+			<div class="col">
+				<player-generator></player-generator>
+			</div>
+
+
+			<div class="col">
+				<paper-button
+					raised
+					class="swap"
+					on-tap="swapPlayers">
+					<iron-icon icon="icons:swap-horiz"></iron-icon>
+				</paper-button>
+
+				<paper-button
+					raised
+					on-tap="savePlayers"
+					class="save">
+					SAVE
+				</paper-button>
+			</div>
+		</div>
+	</template>
+	<script src="player-generator-panel.js"></script>
+</dom-module>

@@ -1,6 +1,7 @@
 <link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
 
+
 <dom-module id="player-generator">
 	<template>
 		<style>
@@ -14,28 +15,35 @@
 			paper-input, character-selector, sponsor-region {
 				@apply(--layout-flex-none);
 			}
+			.twimage {
+				height: 128px;
+				width: 128px;
+			}
 
 		</style>
-
 		<div class="row">
-			<paper-input
-				label="Player Name"
-				value="{{name}}"
-			></paper-input>
-			<character-selector
-				character-index="{{characterIndex}}"
-				colour-index="{{colourIndex}}"
-				selected-game="{{selectedGame}}"></character-selector>
+			<div class="col">
+				<div class="twimage"></div>
+			</div>
+			<div class="col">
+				<paper-input
+					label="Player Name"
+					value="{{name}}">
+				</paper-input>
+				<paper-input
+					label="Player Twitter"
+					value="{{twitter}}">
+				</paper-input>
+			</div>
+			<div class="row">
+				<sponsor-region
+					sponsored="{{sponsored}}"
+					region-images="{{regionImages}}"
+					sponsor-images="{{sponsorImages}}"
+					reversed="[[_computeReversed()]]">
+				</sponsor-region>
+			</div>
 		</div>
-		<div class$="row">
-			<sponsor-region
-				sponsored="{{sponsored}}"
-				region-images="{{regionImages}}"
-				sponsor-images="{{sponsorImages}}"
-				reversed="[[_computeReversed()]]">
-			</sponsor-region>
-		</div>
-
 	</template>
 	<script src="player-generator.js"></script>
 </dom-module>

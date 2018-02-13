@@ -6,4 +6,7 @@ module.exports = function (nodecg) {
 	nodecgApiContext.set(nodecg);
 
 	require('./character-data');
+	require('./remote-obs');
+	require('./twitter');
 };
+

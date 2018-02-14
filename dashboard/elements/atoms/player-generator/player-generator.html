@@ -28,20 +28,12 @@
 			<div class="col">
 				<paper-input
 					label="Player Name"
-					value="{{name}}">
+					value="{{player.name}}">
 				</paper-input>
 				<paper-input
 					label="Player Twitter"
-					value="{{twitter}}">
+					value="{{player.twitter}}">
 				</paper-input>
-			</div>
-			<div class="row">
-				<sponsor-region
-					sponsored="{{sponsored}}"
-					region-images="{{regionImages}}"
-					sponsor-images="{{sponsorImages}}"
-					reversed="[[_computeReversed()]]">
-				</sponsor-region>
 			</div>
 		</div>
 	</template>

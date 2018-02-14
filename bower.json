@@ -18,8 +18,8 @@
     "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^2.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.0",
     "paper-input": "PolymerElements/paper-input#^2.0.0",
-    "paper-item": "PolymerElements/paper-item#^2.0.0",
-    "paper-listbox": "PolymerElements/paper-listbox#^2.0.0",
+    "paper-item": "^2.0.0",
+    "paper-listbox": "^2.0.0",
     "paper-progress": "PolymerElements/paper-progress#^2.0.0",
     "paper-styles": "PolymerElements/paper-styles#^2.0.0",
     "paper-toast": "PolymerElements/paper-toast#^2.0.0",
@@ -29,7 +29,8 @@
     "vaadin-combo-box": "vaadin/vaadin-combo-box#v2.0.0-alpha4",
     "paper-card": "PolymerElements/paper-card#^2.0.0",
     "lodash": "^4.17.4",
-    "sc-fitted-text": "SupportClass/sc-fitted-text#^1.1.1"
+    "sc-fitted-text": "SupportClass/sc-fitted-text#^1.1.1",
+    "vaadin-grid": "vaadin/vaadin-grid#^4.1.5"
   },
   "resolutions": {
     "iron-a11y-announcer": "^2.0.0",

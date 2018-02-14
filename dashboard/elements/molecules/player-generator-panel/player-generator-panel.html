@@ -3,6 +3,9 @@
 <link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 
 <link rel="import" href="../../atoms/player-generator/player-generator.html">
 
@@ -15,6 +18,9 @@
 			.col {
 				@apply(--layout-vertical);
 			}
+			.actions {
+				@apply(--layout-end);
+			}
 			.panel {
 				margin: 15px;
 			}
@@ -25,34 +31,52 @@
 				background-color: var(--paper-green-500);
 				color: white;
 			}
-			paper-button.swap {
-				background-color: var(--paper-amber-500);
-			}
 			player-info {
 				@apply(--layout-flex-auto);
+			}
+			vaadin-grid {
+				width: 100%;
 			}
 		</style>
 
 
 		<div class="row panel">
 			<div class="col">
-				<player-generator></player-generator>
+
+				<div class="row">
+
+					<vaadin-grid items="{{players}}">
+
+						<vaadin-grid-column width="9em">
+							<template class="header">
+								<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
+							</template>
+							<template>[[item.name]]</template>
+						</vaadin-grid-column>
+
+					</vaadin-grid>
+
+					<div class="col">
+						<paper-input
+							label="Player Name"
+							value="{{player.name}}">
+						</paper-input>
+						<paper-input
+							label="Player Twitter"
+							value="{{player.twitter}}">
+						</paper-input>
+					</div>
+				</div>
+
 			</div>
 
 
-			<div class="col">
+			<div class="col actions">
 				<paper-button
 					raised
-					class="swap"
-					on-tap="swapPlayers">
-					<iron-icon icon="icons:swap-horiz"></iron-icon>
-				</paper-button>
-
-				<paper-button
-					raised
-					on-tap="savePlayers"
+					on-tap="insertPlayer"
 					class="save">
-					SAVE
+					+
 				</paper-button>
 			</div>
 		</div>

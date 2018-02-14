@@ -8,22 +8,10 @@
 			return {
 				name: {
 					type: String,
-					value: '',
 					notify: true
 				},
-				sponsorRegion: {
+				twitter: {
 					type: String,
-					value: null,
-					notify: true
-				},
-				sponsorRegionImage: {
-					type: String,
-					value: null,
-					notify: true
-				},
-				sponsored: {
-					type: Boolean,
-					value: false,
 					notify: true
 				}
 			};

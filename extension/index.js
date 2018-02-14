@@ -7,6 +7,12 @@ module.exports = function (nodecg) {
 
 	require('./character-data');
 	require('./remote-obs');
-	require('./twitter');
+	// require('./twitter');
+
+	const playerDB = nodecg.Replicant('playerDB');
+
+	playerDB.on('change', db => {
+		console.log(db);
+	});
 };
 

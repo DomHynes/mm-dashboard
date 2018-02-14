@@ -9,26 +9,7 @@
 				"type": "array",
 				"minItems": 1,
 				"items": {
-					"type": "object",
-					"properties": {
-						"name": {
-							"type": "string",
-							"default": "Player"
-						},
-						"characterIndex": {
-							"type": "number",
-							"default": 0
-						},
-						"colourIndex": {
-							"type": "number",
-							"default": 0
-						},
-						"sponsored": {
-							"type": "boolean",
-							"default": false
-						}
-					},
-					"additionalProperties": false
+					"$ref": "player.json"
 				}
 			}
 		},

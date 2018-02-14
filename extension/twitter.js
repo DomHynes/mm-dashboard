@@ -15,11 +15,11 @@ if (nodecg.bundleConfig.twitter.enabled !== true) {
 		access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
 	});
 
-	nodecg.listenFor('twitter:getUser', name => {
+	nodecg.listenFor('twitter:getUser', (name, cb)=> {
 		tw.get('users/show', {
 			screen_name: name
 		})
-			.then(data => {console.log(data);})
+			.then(data => cb(null, data))
 			.catch(e => {console.log(e);});
 	});
 }

@@ -18,15 +18,20 @@
 		}
 
 		insertPlayer() {
-			console.log(this.player);
 			playerDB.value.push(this.player);
+		}
+
+		_editPlayer(e) {
+			this.player = e.model.item;
+			this.$.editModal.open();
 		}
 
 		ready() {
 			super.ready();
 
-			playerDB.on('change', players => {
-				this.players = players;
+			playerDB.on('change', playerDB => {
+				this.playerDB = playerDB;
+				this.$.grid.clearCache();
 			});
 		}
 	}

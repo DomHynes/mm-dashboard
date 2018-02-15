@@ -1,35 +1,57 @@
 {
-	"player": {
-		"$schema": "http://json-schema.org/draft-07/schema#",
-		"type": "object",
-		"properties": {
-			"name": {
-				"type": "string",
-				"required": true,
-				"default": "Player"
-			},
-			"twitter": {
-				"type": "string",
-				"required": false
-			},
-			"smashgg": {
-				"type": "string",
-				"required": false
-			},
-			"characterIndex": {
-				"type": "number",
-				"default": 0
-			},
-			"colourIndex": {
-				"type": "number",
-				"default": 0
-			},
-			"sponsored": {
-				"type": "boolean",
-				"default": false
-			},
-			"additionalProperties": false
-		}
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"properties": {
+		"name": {
+			"type": "string",
+			"required": true,
+			"default": "Player"
+		},
+		"twitter": {
+			"type": "string",
+			"required": false
+		},
+		"smashgg": {
+			"type": "string",
+			"required": false
+		},
+		"sponsored": {
+			"type": "object",
+			"properties": {
+				"oneOf": [
+					{
+						"sponsored": {
+							"const": false
+						}
+					},
+					{
+						"sponsored": {
+							"const": true
+						},
+						"team": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"region": {
+			"type": "object",
+			"properties": {
+				"country": {
+					"type": "string"
+				},
+				"state": {
+					"type": "string"
+				}
+			}
+		},
+		"games": {
+			"oneOf": {
+				"$ref": "games/ssbm.json"
+			}
+		},
+		"additionalProperties": false
 	}
 }
 

@@ -5,6 +5,7 @@
 <link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
 
 <link rel="import" href="../../atoms/player-generator/player-generator.html">
@@ -24,6 +25,9 @@
 			.panel {
 				margin: 15px;
 			}
+			.panel > * {
+				margin: 0 5px;
+			}
 			paper-button {
 				height: 120px;
 			}
@@ -32,54 +36,64 @@
 				color: white;
 			}
 			player-info {
-				@apply(--layout-flex-auto);
 			}
 			vaadin-grid {
-				width: 100%;
+				@apply(--layout-flex-auto);
 			}
 		</style>
 
 
+		<paper-dialog id="editModal" modal>
+
+			<paper-input
+				label="Player Name"
+				value="{{player.name}}">
+			</paper-input>
+			<paper-input
+				label="Player Twitter"
+				value="{{player.twitter}}">
+			</paper-input>
+
+
+		</paper-dialog>
+
 		<div class="row panel">
-			<div class="col">
 
-				<div class="row">
+			<vaadin-grid items="{{playerDB}}" id="grid">
 
-					<vaadin-grid items="{{players}}">
+				<vaadin-grid-column width="9em">
+					<template class="header">
+						<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
+					</template>
+					<template>[[item.name]]</template>
+				</vaadin-grid-column>
 
-						<vaadin-grid-column width="9em">
-							<template class="header">
-								<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
-							</template>
-							<template>[[item.name]]</template>
-						</vaadin-grid-column>
+				<vaadin-grid-column width="9em">
+					<template class="header">
+						<vaadin-grid-sorter path="twitter">Twitter</vaadin-grid-sorter>
+					</template>
+					<template>@[[item.twitter]]</template>
+				</vaadin-grid-column>
 
-					</vaadin-grid>
+				<vaadin-grid-column width="9em">
+					<template>
+						<paper-button on-tap="_editPlayer"></paper-button>
+					</template>
+				</vaadin-grid-column>
 
-					<div class="col">
-						<paper-input
-							label="Player Name"
-							value="{{player.name}}">
-						</paper-input>
-						<paper-input
-							label="Player Twitter"
-							value="{{player.twitter}}">
-						</paper-input>
-					</div>
-				</div>
-
-			</div>
-
+			</vaadin-grid>
 
 			<div class="col actions">
 				<paper-button
 					raised
-					on-tap="insertPlayer"
+					on-tap="_editPlayer"
 					class="save">
 					+
 				</paper-button>
 			</div>
 		</div>
+
+
 	</template>
 	<script src="player-generator-panel.js"></script>
 </dom-module>

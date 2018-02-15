@@ -9,13 +9,23 @@
 				score: {
 					type: Number,
 					value: 0,
-					notify: true
+					notify: true,
+					observer: '_scoreChange'
 				}
 			};
 		}
 
 		ready() {
 			super.ready();
+		}
+
+		_scoreChange(score) {
+			if (isNaN(parseInt(score, 10))) {
+				this.score = 0;
+			} else if (typeof score !== 'number') {
+				console.log('fixing');
+				this.score = parseInt(score, 10);
+			}
 		}
 
 		scoreUp() {

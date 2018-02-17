@@ -7,6 +7,7 @@ module.exports = function (nodecg) {
 
 	require('./character-data');
 	require('./remote-obs');
+	require('./smashgg');
 	// require('./twitter');
 
 	const playerDB = nodecg.Replicant('playerDB');

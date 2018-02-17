@@ -7,6 +7,7 @@
 <link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../../shared/imports/lodash.html">
 
 <link rel="import" href="../../atoms/player-generator/player-generator.html">
 
@@ -28,7 +29,7 @@
 			.panel > * {
 				margin: 0 5px;
 			}
-			paper-button {
+			.actions > paper-button {
 				height: 120px;
 			}
 			paper-button.save {
@@ -40,20 +41,55 @@
 			vaadin-grid {
 				@apply(--layout-flex-auto);
 			}
+			iron-icon[icon="create"] {
+				color: var(--paper-blue-500);
+			}
+			iron-icon[icon="delete"] {
+				color: var(--paper-red-500);
+			}
 		</style>
 
 
 		<paper-dialog id="editModal" modal>
+			<h2> Edit Player </h2>
+
+			<paper-input
+				label="Player Name"
+				value="{{player.player.name}}">
+			</paper-input>
+
+			<paper-input
+				label="Player Twitter"
+				value="{{player.player.twitter}}">
+			</paper-input>
+
+			<div class="buttons">
+				<paper-button on-tap="saveEditedPlayer" autofocus>
+					Save
+				</paper-button>
+			</div>
+
+		</paper-dialog>
+
+
+		<paper-dialog id="newModal" modal>
+			<h2> New Player </h2>
 
 			<paper-input
 				label="Player Name"
 				value="{{player.name}}">
 			</paper-input>
+
 			<paper-input
 				label="Player Twitter"
 				value="{{player.twitter}}">
 			</paper-input>
 
+			<div class="buttons">
+				<paper-button on-tap="saveNewPlayer" autofocus>
+					Save
+				</paper-button>
+			</div>
 
 		</paper-dialog>
 
@@ -75,9 +111,16 @@
 					<template>@[[item.twitter]]</template>
 				</vaadin-grid-column>
 
-				<vaadin-grid-column width="9em">
+				<vaadin-grid-column width="2em">
 					<template>
-						<paper-button on-tap="_editPlayer"></paper-button>
+						<div class="row">
+							<paper-button on-tap="_editPlayer">
+								<iron-icon icon="create"></iron-icon>
+							</paper-button>
+							<paper-button>
+								<iron-icon icon="delete"></iron-icon>
+							</paper-button>
+						</div>
 					</template>
 				</vaadin-grid-column>
 
@@ -86,9 +129,9 @@
 			<div class="col actions">
 				<paper-button
 					raised
-					on-tap="_editPlayer"
+					on-tap="newPlayer"
 					class="save">
-					+
+					<iron-icon icon="add"></iron-icon>
 				</paper-button>
 			</div>
 		</div>

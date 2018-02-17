@@ -22,8 +22,25 @@
 		}
 
 		_editPlayer(e) {
-			this.player = e.model.item;
+			this.player = {index: e.model.index, player:_.cloneDeep(e.model.item)};
 			this.$.editModal.open();
+		}
+
+		saveEditedPlayer() {
+			playerDB.value[this.player.index] = this.player.player;
+			this.$.editModal.close();
+		}
+
+		newPlayer(e) {
+			this.player = {};
+			this.$.newModal.open();
+		}
+
+		saveNewPlayer(e) {
+			console.log('asdfasdf');
+			console.log(this.player);
+			playerDB.value.push(this.player);
+			this.$.newModal.close();
 		}
 
 		ready() {

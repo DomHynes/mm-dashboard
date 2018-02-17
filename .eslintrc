@@ -6,7 +6,11 @@
 				"Polymer",
 				"nodecg.Replicant"
 			]
-		}]
+		}],
+		"operator-linebreak": [
+			"error", "after", { "overrides": { "?": "before", ":": "before" } }
+		]
+
 	},
 	"plugins": [
 		"html"

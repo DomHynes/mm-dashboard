@@ -10,12 +10,15 @@
 <dom-module id="players-panel">
 	<template>
 		<style>
+			.container {
+				@apply(--layout-vertical);
+				width: 100%;
+			}
 			.row {
 				@apply(--layout-horizontal);
 			}
 			.col {
 				@apply(--layout-vertical);
-				@apply(--layout-flex-2);
 			}
 			.panel {
 				margin: 15px;
@@ -37,7 +40,7 @@
 
 
 		<div class="row panel">
-			<div class="col">
+			<div class="container">
 				<div class="row">
 					<set-scores scores={{setinfo.scores}}></set-scores>
 				</div>

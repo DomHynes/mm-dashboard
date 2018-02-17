@@ -6,7 +6,9 @@
     "Dom Hynes <contact@domhyn.es>"
   ],
   "dependencies": {
+    "node-fetch": "^2.0.0",
     "obs-websocket-js": "^1.1.0",
+    "smashgg.js": "^1.0.5",
     "twitter": "^1.7.1",
     "twitter-stream-api": "^0.5.2"
   },
@@ -25,6 +27,12 @@
         "name": "generators",
         "title": "Generators",
         "file": "generators.html",
+        "fullbleed": true
+      },
+      {
+        "name": "tournamentinfo",
+        "title": "Tournament Info",
+        "file": "tournament-info.html",
         "fullbleed": true
       }
     ],

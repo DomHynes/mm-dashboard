@@ -26,12 +26,19 @@
 				@apply(--layout-flex-none);
 				margin: 0 15px 15px 0;
 			}
+			h2, p {
+				text-align: center;
+			}
 			paper-input {
 				width: 400px;
 
 				--paper-input-prefix: {
 					color: var(--secondary-text-color);
 				}
+			}
+			vaadin-grid {
+				height: 400px;
+				width: 100%;
 			}
 		</style>
 
@@ -40,7 +47,7 @@
 				<paper-input
 					value="{{tournamentSlug}}"
 					label="Tournament Slug">
-					<div slot="prefix" >https://smash.gg/</div>
+					<div slot="prefix">https://smash.gg/</div>
 				</paper-input>
 				<paper-button
 					on-tap="getTournament"
@@ -49,6 +56,44 @@
 			<div class="row">
 				<h2>{{tournamentData.data.entities.tournament.name}}</h2>
 			</div>
+
+			<div class="row">
+
+				<vaadin-grid items="{{tournamentData.players}}" id="grid">
+
+					<vaadin-grid-column width="9em">
+						<template class="header">
+							<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
+						</template>
+						<template>[[_makeTag(item)]]</template>
+					</vaadin-grid-column>
+
+					<vaadin-grid-column width="9em">
+						<template class="header">
+							<vaadin-grid-sorter path="twitter">Twitter</vaadin-grid-sorter>
+						</template>
+						<template>@[[item.data.raw.twitterHandle]]</template>
+					</vaadin-grid-column>
+
+					<vaadin-grid-column width="2em">
+						<template>
+							<div class="row">
+								<paper-button on-tap="_editPlayer">
+									<iron-icon icon="create"></iron-icon>
+								</paper-button>
+								<paper-button>
+									<iron-icon icon="delete"></iron-icon>
+								</paper-button>
+							</div>
+						</template>
+					</vaadin-grid-column>
+
+				</vaadin-grid>
+
+			</div>
+
+
+
 		</div>
 
 	</template>

@@ -22,7 +22,7 @@
 		}
 
 		_editPlayer(e) {
-			this.player = {index: e.model.index, player:_.cloneDeep(e.model.item)};
+			this.player = {index: e.model.index, player: _.cloneDeep(e.model.item)};
 			this.$.editModal.open();
 		}
 
@@ -37,9 +37,15 @@
 		}
 
 		saveNewPlayer(e) {
-			console.log('asdfasdf');
-			console.log(this.player);
-			playerDB.value.push(this.player);
+			nodecg.sendMessage('db:addDoc', {
+				doc: this.player,
+				type: 'player'
+			}).then(resp => {
+				console.log(resp);
+			}).catch(err => {
+				console.log(err);
+			});
+
 			this.$.newModal.close();
 		}
 

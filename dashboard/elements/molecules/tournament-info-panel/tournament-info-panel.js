@@ -30,10 +30,17 @@
 				});
 		}
 
+		_makeTag(e) {
+			return e.sponsor
+				? `${e.sponsor} | ${e.tag}`
+				: e.tag;
+		}
+
 		ready() {
 			super.ready();
 
 			tournamentData.on('change', newData => {
+				console.log(newData);
 				this.tournamentData = newData;
 			});
 		}

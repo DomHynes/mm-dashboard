@@ -6,9 +6,14 @@
     "Dom Hynes <contact@domhyn.es>"
   ],
   "dependencies": {
+    "ajv": "^6.1.1",
     "node-fetch": "^2.0.0",
     "obs-websocket-js": "^1.1.0",
-    "smashgg.js": "^1.0.5",
+    "pouchdb": "^6.4.3",
+    "pouchdb-find": "^6.4.3",
+    "pouchdb-live-find": "^0.4.0",
+    "shortid": "^2.2.8",
+    "smashgg.js": "domhynes/smashgg.js",
     "twitter": "^1.7.1",
     "twitter-stream-api": "^0.5.2"
   },

@@ -1,42 +1,100 @@
 'use strict';
 
-const nodecg = require('./util/nodecg-api-context').get();
-const PouchDB = require('pouchdb');
-const shortid = require('shortid');
-const ajv = require('ajv');
+module.exports = (nodecg, backendEvents) => {
+	const PouchDB = require('pouchdb');
+	const shortid = require('shortid');
+	const ajv = require('ajv');
 
-PouchDB.plugin(require('pouchdb-find'));
-PouchDB.plugin(require('pouchdb-live-find'));
+	PouchDB.plugin(require('pouchdb-find'));
+	PouchDB.plugin(require('pouchdb-live-find'));
 
-const db = new PouchDB('pouchdb/smashdb');
-const playerDB = nodecg.Replicant('playerDB');
+	const db = new PouchDB('pouchdb/smashdb');
 
-const playerQuery = db.liveFind({
-	selector: {},
-	aggregate: true
-});
+	const playerDB = nodecg.Replicant('playerDB');
+	const tournamentDB = nodecg.Replicant('tournamentDB');
+	const setDB = nodecg.Replicant('setDB');
 
-playerQuery.on('ready', () => {
-	console.log('playerQuery ready');
-});
-
-playerQuery.on('update', (update, aggregate) => {
-	playerDB.value = aggregate;
-});
-
-nodecg.listenFor('db:addDoc', (data, cb) => {
-	data.doc._id = `${data.type}-${shortid.generate()}`;
-	db.put(data.doc)
-		.then(resp => {
-			cb(null, resp);
-		})
-		.catch(err => {
-			cb(err);
-		});
-});
-
-db.allDocs()
-	.then(resp => {
-		console.log(resp);
+	const playerQuery = db.liveFind({
+		selector: {_id: {$regex: /^player/}},
+		aggregate: true
+	});
+	const tournamentQuery = db.liveFind({
+		selector: {_id: {$regex: /^tournament/}},
+		aggregate: true
+	});
+	const setQuery = db.liveFind({
+		selector: {_id: {$regex: /^set/}},
+		aggregate: true
 	});
 
+	/*
+	  DB Interactions
+	*/
+	const addItemToDB = (data, id, cb) => {
+		db.put(Object.assign(data.doc, {
+			_id: `${data.type}_${data.id}_${shortid.generate()}`
+		}))
+			.then(resp => {
+				cb(null, resp);
+			})
+			.catch(err => {
+				cb(err);
+			});
+	};
+
+	/*
+      PouchDB Listeners
+    */
+	playerQuery.on('ready', () => {
+		console.log('playerQuery ready');
+	});
+	tournamentQuery.on('ready', () => {
+		console.log('tournamentQuery ready');
+	});
+	setQuery.on('ready', () => {
+		console.log('setQuery ready');
+	});
+
+	playerQuery.on('update', (update, aggregate) => {
+		playerDB.value = aggregate;
+	});
+	tournamentQuery.on('update', (update, aggregate) => {
+		console.log(aggregate);
+		tournamentDB.value = aggregate;
+	});
+	setQuery.on('update', (update, aggregate) => {
+		setDB.value = aggregate;
+	});
+
+	/*
+      NodeCG Listeners
+    */
+	nodecg.listenFor('db:addDoc', addItemToDB);
+
+	nodecg.listenFor('db:setDoc', (data, cb) => {
+		console.log(data);
+		db.put(data)
+			.then(resp => {
+				cb(null, resp);
+			})
+			.catch(err => {
+				cb(err);
+			});
+	});
+
+	nodecg.listenFor('db:delDoc', (data, cb) => {
+		db.remove(data)
+			.then(resp => {
+				cb(null, resp);
+			})
+			.catch(err => {
+				cb(err);
+			});
+	});
+
+	/*
+	  NodeCG Extension Listeners
+	*/
+
+	backendEvents.on('db:addDoc', addItemToDB);
+};

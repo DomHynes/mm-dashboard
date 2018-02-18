@@ -1,14 +1,13 @@
 'use strict';
+const EventEmitter = require('events');
 
-const nodecgApiContext = require('./util/nodecg-api-context');
+const backendEvents = new EventEmitter();
 
-module.exports = function (nodecg) {
-	nodecgApiContext.set(nodecg);
-
-	require('./character-data');
-	require('./remote-obs');
-	require('./smashgg');
-	require('./db');
+module.exports = nodecg => {
+	require('./character-data')(nodecg, backendEvents);
+	require('./remote-obs')(nodecg, backendEvents);
+	require('./smashgg')(nodecg, backendEvents);
+	require('./db')(nodecg, backendEvents);
 	// require('./twitter');
 };
 

@@ -1,13 +1,14 @@
 'use strict';
 
-const nodecg = require('./util/nodecg-api-context').get();
-const gameData = nodecg.Replicant('gameData');
+module.exports = (nodecg, backendEvents) => {
+	const gameData = nodecg.Replicant('gameData');
 
-const gameArray = [];
+	const gameArray = [];
 
-nodecg.bundleConfig.games.forEach(game => {
-	gameArray.push(require(`../shared/games/${game.name}/characters`));
-});
+	nodecg.bundleConfig.games.forEach(game => {
+		gameArray.push(require(`../shared/games/${game.name}/characters`));
+	});
 
-gameData.value = gameArray;
+	gameData.value = gameArray;
+};
 

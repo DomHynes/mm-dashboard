@@ -36,7 +36,8 @@
 				background-color: var(--paper-green-500);
 				color: white;
 			}
-			player-info {
+			paper-button.close {
+				@apply(--layout-self-start);
 			}
 			vaadin-grid {
 				@apply(--layout-flex-auto);
@@ -49,31 +50,8 @@
 			}
 		</style>
 
-
 		<paper-dialog id="editModal" modal>
 			<h2> Edit Player </h2>
-
-			<paper-input
-				label="Player Name"
-				value="{{player.player.name}}">
-			</paper-input>
-
-			<paper-input
-				label="Player Twitter"
-				value="{{player.player.twitter}}">
-			</paper-input>
-
-			<div class="buttons">
-				<paper-button on-tap="saveEditedPlayer" autofocus>
-					Save
-				</paper-button>
-			</div>
-
-		</paper-dialog>
-
-
-		<paper-dialog id="newModal" modal>
-			<h2> New Player </h2>
 
 			<paper-input
 				label="Player Name"
@@ -86,6 +64,33 @@
 			</paper-input>
 
 			<div class="buttons">
+				<paper-button on-tap="closeEdit" class="close">
+					CLOSE
+				</paper-button>
+				<paper-button on-tap="saveEditedPlayer">
+					Save
+				</paper-button>
+			</div>
+
+		</paper-dialog>
+
+		<paper-dialog id="newModal" modal>
+			<h2> New Player </h2>
+
+			<paper-input autofocus
+				label="Player Name"
+				value="{{player.name}}">
+			</paper-input>
+
+			<paper-input
+				label="Player Twitter"
+				value="{{player.twitter}}">
+			</paper-input>
+
+			<div class="buttons">
+				<paper-button on-tap="closeNew" class="close">
+					CLOSE
+				</paper-button>
 				<paper-button on-tap="saveNewPlayer" autofocus>
 					Save
 				</paper-button>
@@ -117,7 +122,7 @@
 							<paper-button on-tap="_editPlayer">
 								<iron-icon icon="create"></iron-icon>
 							</paper-button>
-							<paper-button>
+							<paper-button on-tap="_delPlayer">
 								<iron-icon icon="delete"></iron-icon>
 							</paper-button>
 						</div>

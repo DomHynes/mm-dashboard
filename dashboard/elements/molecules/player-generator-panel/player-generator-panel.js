@@ -13,27 +13,42 @@
 					value() {
 						return {};
 					}
+				},
+				playerCheckName: {
+					type: String
 				}
 			};
 		}
 
-		insertPlayer() {
-			playerDB.value.push(this.player);
-		}
-
 		_editPlayer(e) {
-			this.player = {index: e.model.index, player: _.cloneDeep(e.model.item)};
+			this.player = _.cloneDeep(e.model.item);
 			this.$.editModal.open();
 		}
 
-		saveEditedPlayer() {
-			playerDB.value[this.player.index] = this.player.player;
+		newPlayer() {
+			this.player = {};
+			this.$.newModal.open();
+		}
+
+		closeEdit() {
+			this.player = null;
 			this.$.editModal.close();
 		}
 
-		newPlayer(e) {
-			this.player = {};
-			this.$.newModal.open();
+		closeNew() {
+			this.player = null;
+			this.$.newModal.close();
+		}
+
+		saveEditedPlayer() {
+			console.log(this.player);
+			nodecg.sendMessage('db:setDoc', this.player)
+				.then(resp => {
+					console.log(resp);
+				}).catch(err => {
+					console.log(err);
+				});
+			this.$.editModal.close();
 		}
 
 		saveNewPlayer(e) {
@@ -47,6 +62,15 @@
 			});
 
 			this.$.newModal.close();
+		}
+
+		_delPlayer(e) {
+			nodecg.sendMessage('db:delDoc', e.model.item)
+				.then(resp => {
+					console.log(resp);
+				}).catch(err => {
+					console.log(err);
+				});
 		}
 
 		ready() {

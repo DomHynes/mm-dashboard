@@ -1,24 +1,49 @@
 'use strict';
 
-const nodecg = require('../util/nodecg-api-context').get();
-const smashgg = require('smashgg.js');
+module.exports = (nodecg, backendEvents) => {
+	const smashgg = require('smashgg.js');
+	const tournament = nodecg.Replicant('currentTournament');
 
-const tournament = nodecg.Replicant('currentTournament');
+	nodecg.listenFor('smashgg:addTournament', (slug, cb) => {
+		const newTournament = new smashgg.Tournament(slug);
 
-nodecg.listenFor('smashgg:getTournament', (slug, cb) => {
-	const newTournament = new smashgg.Tournament(slug);
+		newTournament.on('error', err => {
+			console.error('Error in smashgg: ' + err);
+			cb(err);
+		});
 
-	newTournament.on('error', err => {
-		console.error('Error in smashgg: ' + err);
+		newTournament.on('ready', async () => {
+			const players = await newTournament.getAllPlayers();
+			const events = await newTournament.getAllEvents();
+			const data = newTournament.data;
+
+			const tournamentData = {
+				doc: {
+					players, events, data
+				},
+				id: data.entities.tournament.id,
+				type: 'tournament'
+			};
+
+			backendEvents.emit('db:addDoc', tournamentData, cb);
+		});
 	});
 
-	newTournament.on('ready', async () => {
-		const players = await newTournament.getAllPlayers();
-		const events = await newTournament.getAllEvents();
-		const data = newTournament.data;
-		tournament.value = {
-			players, events, data
-		};
-		cb(null);
+	nodecg.listenFor('smashgg:checkTournament', (slug, cb) => {
+		const newTournament = new smashgg.Tournament(slug);
+
+		newTournament.on('error', err => {
+			console.error('Error in smashgg: ' + err);
+			cb(err);
+		});
+
+		newTournament.on('ready', async () => {
+			cb(null, {
+				name: newTournament.getName(),
+				id: newTournament.getId(),
+				slug: newTournament.data.entities.tournament.shortSlug
+			});
+		});
+
 	});
-});
+};

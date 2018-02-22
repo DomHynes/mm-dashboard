@@ -30,10 +30,20 @@ module.exports = (nodecg, backendEvents) => {
 	/*
 	  DB Interactions
 	*/
-	const addItemToDB = (data, id, cb) => {
+	const addDB = (data, id, cb) => {
 		db.put(Object.assign(data.doc, {
 			_id: `${data.type}_${data.id}_${shortid.generate()}`
 		}))
+			.then(resp => {
+				cb(null, resp);
+			})
+			.catch(err => {
+				cb(err);
+			});
+	};
+
+	const delDB = (data, cb) => {
+		db.remove(data)
 			.then(resp => {
 				cb(null, resp);
 			})
@@ -69,7 +79,7 @@ module.exports = (nodecg, backendEvents) => {
 	/*
       NodeCG Listeners
     */
-	nodecg.listenFor('db:addDoc', addItemToDB);
+	nodecg.listenFor('db:addDoc', addDB);
 
 	nodecg.listenFor('db:setDoc', (data, cb) => {
 		console.log(data);
@@ -82,19 +92,12 @@ module.exports = (nodecg, backendEvents) => {
 			});
 	});
 
-	nodecg.listenFor('db:delDoc', (data, cb) => {
-		db.remove(data)
-			.then(resp => {
-				cb(null, resp);
-			})
-			.catch(err => {
-				cb(err);
-			});
-	});
+	nodecg.listenFor('db:delDoc', delDB);
 
 	/*
 	  NodeCG Extension Listeners
 	*/
 
-	backendEvents.on('db:addDoc', addItemToDB);
+	backendEvents.on('db:addDoc', addDB);
+	backendEvents.on('db:delDoc', delDB);
 };

@@ -40,8 +40,9 @@
 			.panel > * {
 				margin: 0 5px;
 			}
-			.actions > paper-button {
-				height: 120px;
+			.actions {
+				@apply (--layout-horizontal);
+				@apply (--layout-end-justified);
 			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
@@ -73,6 +74,9 @@
 			paper-button.close {
 				@apply(--layout-self-start);
 			}
+			paper-dialog {
+				min-width: 500px;
+			}
 		</style>
 
 		<paper-dialog id="newModal" modal>
@@ -80,13 +84,13 @@
 
 			<div class="col results">
 				<div class="row result">
-					<b>Name: </b> <span>{{checkTournament.name}}</span>
+					<b>Name: </b> <span>{{selectedTournament.name}}</span>
 				</div>
 				<div class="row result">
-					<b>Slug: </b> <span>{{checkTournament.slug}}</span>
+					<b>Slug: </b> <span>{{selectedTournament.slug}}</span>
 				</div>
 				<div class="row result">
-					<b>Id: </b> <span>{{checkTournament.id}}</span>
+					<b>Id: </b> <span>{{selectedTournament.id}}</span>
 				</div>
 			</div>
 
@@ -117,30 +121,66 @@
 				<paper-button on-tap="closeNew" class="close">
 					CLOSE
 				</paper-button>
-				<paper-button on-tap="addNewTournament" disabled="[[!checkTournament.id]]">
+				<paper-button on-tap="addNewTournament" disabled="[[!selectedTournament.id]]">
 					ADD
+				</paper-button>
+			</div>
+		</paper-dialog>
+
+		<paper-dialog id="deleteTournamentModal" modal>
+			<h2> Delete Tournament </h2>
+
+			<div class="col results">
+				<div class="row result">
+					<b>Name: </b> <span>{{selectedTournament.data.entities.tournament.name}}</span>
+				</div>
+				<div class="row result">
+					<b>Slug: </b> <span>{{selectedTournament.data.entities.tournament.shortSlug}}</span>
+				</div>
+				<div class="row result">
+					<b>Id: </b> <span>{{selectedTournament.data.entities.tournament.id}}</span>
+				</div>
+			</div>
+
+			<div class="buttons">
+				<paper-button on-tap="closeDel" class="close">
+					CLOSE
+				</paper-button>
+				<paper-button on-tap="deleteTournament" disabled="[[loading]]">
+					DELETE
 				</paper-button>
 			</div>
 		</paper-dialog>
 
 		<div class="row panel">
 
-				<vaadin-grid items="{{tournamentDB.value}}" id="grid">
+				<vaadin-grid items="{{tournamentDB}}" id="grid">
 
 					<vaadin-grid-column width="9em">
 						<template class="header">
-							<vaadin-grid-sorter path="twitter">Name</vaadin-grid-sorter>
+							<vaadin-grid-sorter>Name</vaadin-grid-sorter>
 						</template>
-						<template>@[[item.data.entities.tournament.name]]</template>
+						<template>[[item.data.entities.tournament.name]]</template>
+					</vaadin-grid-column>
+
+					<vaadin-grid-column width="9em">
+						<template class="header">
+							<vaadin-grid-sorter>Attendees</vaadin-grid-sorter>
+						</template>
+						<template>[[item.players.length]]</template>
+					</vaadin-grid-column>
+
+					<vaadin-grid-column width="9em">
+						<template class="header">
+							<vaadin-grid-sorter>Events</vaadin-grid-sorter>
+						</template>
+						<template>[[item.events.length]]</template>
 					</vaadin-grid-column>
 
 					<vaadin-grid-column width="2em">
 						<template>
-							<div class="row">
-								<paper-button on-tap="_editPlayer">
-									<iron-icon icon="create"></iron-icon>
-								</paper-button>
-								<paper-button>
+							<div class="row actions">
+								<paper-button on-tap="deleteTournamentModal">
 									<iron-icon icon="delete"></iron-icon>
 								</paper-button>
 							</div>

@@ -12,7 +12,7 @@
 				tournamentSlug: {
 					type: String
 				},
-				checkTournament: {
+				selectedTournament: {
 					type: Object,
 					value() {
 						return {
@@ -38,7 +38,7 @@
 			this.checkTournamentName = null;
 			nodecg.sendMessage('smashgg:checkTournament', this.tournamentSlug)
 				.then(resp => {
-					this.checkTournament = resp;
+					this.selectedTournament = resp;
 					this.loading = false;
 				})
 				.catch(err => {
@@ -48,8 +48,17 @@
 		}
 
 		addNewTournament() {
-			nodecg.sendMessage('smashgg:addTournament', this.checkTournament.slug, (err, data) => {
-				console.log(err, data);
+			this.loading = true;
+			nodecg.sendMessage('smashgg:addTournament', this.selectedTournament.slug, (err, data) => {
+				console.log('farts');
+				this.loading = false;
+				if (err) {
+					console.log(err);
+				} else {
+					this.$.newModal.close();
+					this.tournamentSlug = '';
+					this.selectedTournament = null;
+				}
 			});
 		}
 
@@ -59,13 +68,31 @@
 
 		closeNew() {
 			this.loading = false;
-			this.checkTournamentName = '';
+			this.tournamentSlug = '';
 
 			this.$.newModal.close();
 		}
 
-		saveNewTournament() {
+		deleteTournamentModal(e) {
+			console.log(_.cloneDeep(e.model.item));
+			this.selectedTournament = _.cloneDeep(e.model.item);
+			this.$.deleteTournamentModal.open();
+		}
 
+		deleteTournament() {
+			this.loading = true;
+			nodecg.sendMessage('smashgg:delTournament', this.selectedTournament, err => {
+				this.loading = false;
+				if (err) {
+					console.log(err);
+				} else {
+					this.$.deleteTournamentModal.close();
+				}
+			});
+		}
+
+		closeDel() {
+			this.$.deleteTournamentModal.close();
 		}
 
 		_makeTag(e) {

@@ -20,9 +20,6 @@
 			.col {
 				@apply(--layout-vertical);
 			}
-			.actions {
-				@apply(--layout-end);
-			}
 			.panel {
 				margin: 15px;
 			}
@@ -34,6 +31,10 @@
 			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
+				color: white;
+			}
+			paper-button.smashgg {
+				background-color: var(--paper-red-500);
 				color: white;
 			}
 			paper-button.close {
@@ -48,6 +49,10 @@
 			iron-icon[icon="delete"] {
 				color: var(--paper-red-500);
 			}
+			#newSmashGG > .name {
+
+			}
+
 		</style>
 
 		<paper-dialog id="editModal" modal>
@@ -71,7 +76,6 @@
 					Save
 				</paper-button>
 			</div>
-
 		</paper-dialog>
 
 		<paper-dialog id="newModal" modal>
@@ -95,11 +99,48 @@
 					Save
 				</paper-button>
 			</div>
+		</paper-dialog>
+
+		<paper-dialog id="newSmashGG" modal>
+			<h2> New Player (smashgg) </h2>
+
+			<div class="row">
+				<paper-input autofocus
+							 label="Player Name"
+							 value="{{smashGGSearch}}"
+							 on-input="findSmashGG">
+				</paper-input>
+				<paper-button on-tap="findSmashGG">
+					FIND
+				</paper-button>
+			</div>
+			<div class="row">
+
+				<vaadin-grid items="{{smashGGSearchResult}}" id="smashggGrid">
+
+					<vaadin-grid-column width="9em">
+						<template class="header">
+							<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
+						</template>
+						<template>[[item.tag]]</template>
+					</vaadin-grid-column>
+
+				</vaadin-grid>
+			</div>
+
+
+			<div class="buttons">
+				<paper-button on-tap="closeNewSmashGG" class="close">
+					CLOSE
+				</paper-button>
+				<paper-button on-tap="saveNewSmashGG" autofocus>
+					Save
+				</paper-button>
+			</div>
 
 		</paper-dialog>
 
 		<div class="row panel">
-
 			<vaadin-grid items="{{playerDB}}" id="grid">
 
 				<vaadin-grid-column width="9em">
@@ -138,7 +179,14 @@
 					class="save">
 					<iron-icon icon="add"></iron-icon>
 				</paper-button>
+				<paper-button
+					raised
+					on-tap="openNewSmashGG"
+					class="smashgg">
+					smashgg
+				</paper-button>
 			</div>
+
 		</div>
 
 

@@ -44,6 +44,9 @@ module.exports = (nodecg, backendEvents) => {
 				slug: newTournament.data.entities.tournament.shortSlug
 			});
 		});
+	});
 
+	nodecg.listenFor('smashgg:delTournament', (tournamentData, cb) => {
+		backendEvents.emit('db:delDoc', tournamentData, cb);
 	});
 };

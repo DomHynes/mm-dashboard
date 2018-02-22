@@ -1,5 +1,6 @@
 (function () {
 	const playerDB = nodecg.Replicant('playerDB');
+	const tournamentDB = nodecg.Replicant('tournamentDB');
 
 	class PlayerGeneratorPanel extends Polymer.Element {
 		static get is() {
@@ -16,6 +17,12 @@
 				},
 				playerCheckName: {
 					type: String
+				},
+				smashGGSearch: {
+					type: String
+				},
+				smashGGSearchResult: {
+					type: Array
 				}
 			};
 		}
@@ -38,6 +45,20 @@
 		closeNew() {
 			this.player = null;
 			this.$.newModal.close();
+		}
+
+		openNewSmashGG() {
+			console.dir(this.$.newSmashGG);
+			this.$.newSmashGG.open();
+		}
+
+		findSmashGG(e) {
+			console.log(e);
+			this.smashGGSearchResult = _(tournamentDB.value.map(tournament => tournament.players))
+				.flattenDeep()
+				.uniqBy('id')
+				.filter(player => player.tag.toLowerCase().includes(this.smashGGSearch))
+				.value();
 		}
 
 		saveEditedPlayer() {

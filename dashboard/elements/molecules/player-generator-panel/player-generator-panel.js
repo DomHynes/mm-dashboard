@@ -48,12 +48,10 @@
 		}
 
 		openNewSmashGG() {
-			console.dir(this.$.newSmashGG);
 			this.$.newSmashGG.open();
 		}
 
 		findSmashGG(e) {
-			console.log(e);
 			this.smashGGSearchResult = _(tournamentDB.value.map(tournament => tournament.players))
 				.flattenDeep()
 				.uniqBy('id')
@@ -61,8 +59,11 @@
 				.value();
 		}
 
+		closeNewSmashGG() {
+			this.$.newSmashGG.close();
+		}
+
 		saveEditedPlayer() {
-			console.log(this.player);
 			nodecg.sendMessage('db:setDoc', this.player)
 				.then(resp => {
 					console.log(resp);
@@ -87,11 +88,8 @@
 
 		_delPlayer(e) {
 			nodecg.sendMessage('db:delDoc', e.model.item)
-				.then(resp => {
-					console.log(resp);
-				}).catch(err => {
-					console.log(err);
-				});
+				.then(resp => console.log(resp))
+				.catch(err => console.log(err));
 		}
 
 		ready() {

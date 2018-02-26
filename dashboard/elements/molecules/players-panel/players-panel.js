@@ -3,6 +3,7 @@
 	const sponsorImages = nodecg.Replicant('assets:sponsors');
 	const regionImages = nodecg.Replicant('assets:regions');
 	const setinfo = nodecg.Replicant('set-info');
+	const playerDB = nodecg.Replicant('playerDB');
 
 	class PlayersPanel extends Polymer.Element {
 		static get is() {
@@ -46,6 +47,7 @@
 
 		ready() {
 			super.ready();
+
 			setinfo.on('change', newData => {
 				console.log(newData);
 				const data = _.cloneDeep(newData);
@@ -59,6 +61,9 @@
 			});
 			regionImages.on('change', newData => {
 				this.regionImages = newData;
+			});
+			playerDB.on('change', newData => {
+				this.playerDB = newData;
 			});
 		}
 	}

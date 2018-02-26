@@ -152,6 +152,24 @@
 			</div>
 		</paper-dialog>
 
+		<paper-dialog id="addPlayersToDBModal" modal>
+			<h2> Add Players From Tournament </h2>
+
+			<p>
+				This will add all players from the tournament into the database.
+				This includes updating any players in the database who have changed their smash.gg handle.
+			</p>
+
+			<div class="buttons">
+				<paper-button dialog-dismiss class="close">
+					CLOSE
+				</paper-button>
+				<paper-button on-tap="addPlayersFromTournament">
+					ADD
+				</paper-button>
+			</div>
+		</paper-dialog>
+
 		<div class="row panel">
 
 				<vaadin-grid items="{{tournamentDB}}" id="grid">
@@ -182,6 +200,9 @@
 							<div class="row actions">
 								<paper-button on-tap="deleteTournamentModal">
 									<iron-icon icon="delete"></iron-icon>
+								</paper-button>
+								<paper-button on-tap="openAddPlayersFromTournamentModal">
+									<iron-icon icon="add"></iron-icon>
 								</paper-button>
 							</div>
 						</template>

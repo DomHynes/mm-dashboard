@@ -39,16 +39,30 @@
 					type: Boolean,
 					value: false,
 					notify: true
+				},
+				playerDb: {
+					type: Array,
+					value: []
 				}
 			};
 		}
 
-		ready() {
-			super.ready();
-		}
-
 		_computeReversed() {
 			return this.reversed % 2 ? 'reversed' : '';
+		}
+
+		queryFn() {
+			return (data, query) => data.filter((item =>
+				item.tag
+					.toLowerCase()
+					.includes(query.toLowerCase())
+			));
+		}
+
+		ready() {
+			super.ready();
+
+			this.$.autocomplete.queryFn = this.queryFn();
 		}
 	}
 

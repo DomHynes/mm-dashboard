@@ -3,7 +3,6 @@
 module.exports = (nodecg, backendEvents) => {
 	const PouchDB = require('pouchdb');
 	const shortid = require('shortid');
-	const ajv = require('ajv');
 
 	PouchDB.plugin(require('pouchdb-find'));
 	PouchDB.plugin(require('pouchdb-live-find'));
@@ -69,7 +68,6 @@ module.exports = (nodecg, backendEvents) => {
 		playerDB.value = aggregate;
 	});
 	tournamentQuery.on('update', (update, aggregate) => {
-		console.log(aggregate);
 		tournamentDB.value = aggregate;
 	});
 	setQuery.on('update', (update, aggregate) => {
@@ -93,6 +91,31 @@ module.exports = (nodecg, backendEvents) => {
 	});
 
 	nodecg.listenFor('db:delDoc', delDB);
+
+	nodecg.listenFor('db:addPlayersFromTournament', (id, cb) => {
+		db.get(id)
+			.then(doc => doc.players.map(player => {
+				const result = playerDB.value.filter(oldPlayer => {
+					return oldPlayer._id.includes(player.id);
+				});
+
+				if (result.length) {
+					return Object.assign(result[0], player);
+				}
+
+				delete player._events;
+				delete player._eventsCount;
+
+				return Object.assign(player, {
+					_id: `player_${player.id}_${shortid.generate()}`
+				});
+			}))
+			.then(newPlayers => db.bulkDocs(newPlayers))
+			.then(() => {
+				cb(null, true);
+			})
+			.catch(e => cb(e));
+	});
 
 	/*
 	  NodeCG Extension Listeners

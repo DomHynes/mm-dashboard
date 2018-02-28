@@ -106,7 +106,6 @@
 		}
 
 		addPlayersFromTournament() {
-			console.log(this.selectedTournament);
 			nodecg.sendMessage('db:addPlayersFromTournament', this.selectedTournament._id)
 				.then( resp => console.log(resp))
 				.catch( e => console.log(e));

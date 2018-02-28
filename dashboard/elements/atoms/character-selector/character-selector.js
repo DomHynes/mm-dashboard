@@ -86,6 +86,7 @@
 		}
 
 		_selectedCharacterColours(selectedGame, characterIndex) {
+			console.log(selectedGame, characterIndex);
 			if (selectedGame.characters[characterIndex] !== undefined) {
 				return selectedGame.characters[characterIndex].colours;
 			}
@@ -97,7 +98,7 @@
 			}
 			characterFilter = characterFilter.toLowerCase();
 
-			return function (character) {
+			return character => {
 				const first = character.name.toLowerCase();
 				const last = character.longName.toLowerCase();
 

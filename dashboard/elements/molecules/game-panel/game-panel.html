@@ -8,18 +8,33 @@
 <dom-module id="game-panel">
 	<template>
 		<style>
-
+			.row {
+				@apply (--layout-horizontal);
+				@apply(--layout-center-justified);
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			.panel {
+				margin: 15px;
+			}
 		</style>
 
-		<paper-dropdown-menu label="Current Game">
-			<paper-listbox slot="dropdown-content">
-				<template is="dom-repeat" items="[[gameData]]">
-					<paper-item>
-						[[item.longName]]
-					</paper-item>
-				</template>
-			</paper-listbox>
-		</paper-dropdown-menu>
+		<div class="row panel">
+
+			<div class="col">
+				<paper-dropdown-menu label="Current Game" >
+					<paper-listbox slot="dropdown-content" selected="{{selectedGame}}">
+						<template is="dom-repeat" items="[[gameData]]">
+							<paper-item>
+								[[item.longName]]
+							</paper-item>
+						</template>
+					</paper-listbox>
+				</paper-dropdown-menu>
+			</div>
+
+		</div>
 
 
 	</template>

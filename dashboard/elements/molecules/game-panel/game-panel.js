@@ -1,5 +1,4 @@
 (function () {
-	const gameData = nodecg.Replicant('gameData');
 
 	class GamePanel extends Polymer.Element {
 		static get is() {
@@ -10,14 +9,12 @@
 			return {
 				gameData: {
 					type: Array
+				},
+				selectedGame: {
+					type: Number,
+					notify: true
 				}
 			};
-		}
-
-		ready() {
-			gameData.on('change', newData => {
-				this.gameData = newData;
-			});
 		}
 	}
 

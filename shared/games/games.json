@@ -3,11 +3,11 @@
 		"name": "ssbm",
 		"longName": "Super Smash Bros. Melee",
 		"shortName": "SSBM",
+		"colors": true,
 		"images": {
 			"dashboard": {
 				"scaleX": 24,
-				"scaleY": 24,
-				"colors": true
+				"scaleY": 24
 			}
 		},
 		"characters":[
@@ -149,58 +149,58 @@
 		"shortName": "SSB64",
 		"images": {
 			"dashboard": {
-				"scaleX": 45,
-				"scaleY": 42
+				"scaleX": 43,
+				"scaleY": 41
 			}
 		},
 		"characters":[
 			{
-				"name":"pikachu",
-				"longName": "Pikachu"
-			},
-			{
-				"name":"kirby",
-				"longName": "Kirby"
-			},
-			{
-				"name":"falcon",
-				"longName": "Captain Falcon"
-			},
-			{
-				"name":"fox",
-				"longName": "Fox"
+				"name":"mario",
+				"longName": "Mario"
 			},
 			{
 				"name":"yoshi",
 				"longName": "Yoshi"
 			},
 			{
-				"name":"jigglypuff",
-				"longName": "Jigglypuff"
-			},
-			{
-				"name":"mario",
-				"longName": "Mario"
-			},
-			{
-				"name":"samus",
-				"longName": "Samus"
-			},
-			{
 				"name":"dk",
 				"longName": "Donkey Kong"
 			},
 			{
-				"name":"ness",
-				"longName": "Ness"
+				"name":"kirby",
+				"longName": "Kirby"
 			},
 			{
 				"name":"link",
 				"longName": "Link"
 			},
 			{
+				"name":"fox",
+				"longName": "Fox"
+			},
+			{
+				"name":"samus",
+				"longName": "Samus"
+			},
+			{
+				"name":"pikachu",
+				"longName": "Pikachu"
+			},
+			{
 				"name":"luigi",
 				"longName": "Luigi"
+			},
+			{
+				"name":"ness",
+				"longName": "Ness"
+			},
+			{
+				"name":"falcon",
+				"longName": "Captain Falcon"
+			},
+			{
+				"name":"jigglypuff",
+				"longName": "Jigglypuff"
 			}
 		]
 	}

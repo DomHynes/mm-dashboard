@@ -43,12 +43,26 @@
 				playerDb: {
 					type: Array,
 					value: []
+				},
+				gameData: {
+					type: Object,
+					value() {
+						return {};
+					}
+				},
+				selectedGame: {
+					type: Number,
+					observer: '_gameChange'
 				}
 			};
 		}
 
 		_computeReversed() {
 			return this.reversed % 2 ? 'reversed' : '';
+		}
+
+		_gameChange(selectedGame) {
+			console.log(this.gameData);
 		}
 
 		queryFn() {

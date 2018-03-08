@@ -1,5 +1,6 @@
 (function () {
 	const gameData = nodecg.Replicant('gameData');
+	const selectedGame = nodecg.Replicant('selectedGame');
 	const sponsorImages = nodecg.Replicant('assets:sponsors');
 	const regionImages = nodecg.Replicant('assets:regions');
 	const setinfo = nodecg.Replicant('set-info');
@@ -25,13 +26,13 @@
 							type: Number
 						}
 					}
-
 				}
 			};
 		}
 
 		savePlayers() {
 			setinfo.value = this.setinfo;
+			selectedGame.value = this.selectedIndex;
 		}
 
 		swapPlayers() {
@@ -53,9 +54,6 @@
 				const data = _.cloneDeep(newData);
 				this.setinfo = data;
 			});
-			gameData.on('change', newData => {
-				this.selectedGame = newData[0];
-			});
 			sponsorImages.on('change', newData => {
 				this.sponsorImages = newData;
 			});
@@ -64,6 +62,13 @@
 			});
 			playerDB.on('change', newData => {
 				this.playerDB = newData;
+			});
+			selectedGame.on('change', selectedGame => {
+				this.selectedIndex = selectedGame;
+				this.selectedGame = this.gameData[selectedGame];
+			});
+			gameData.on('change', gameData => {
+				this.gameData = gameData;
 			});
 		}
 	}

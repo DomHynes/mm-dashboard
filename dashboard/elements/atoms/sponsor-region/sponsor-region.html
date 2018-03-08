@@ -31,7 +31,7 @@
 			}
 		</style>
 		<div class$="row {{reversed}}">
-			<template is="dom-if" if="{{!sponsored}}">
+			<template is="dom-if" if="{{!sponsored.sponsored}}">
 
 				<div class="playerboxes">
 					<paper-dropdown-menu label="Region Image">
@@ -47,7 +47,7 @@
 
 			</template>
 
-			<template is="dom-if" if="{{sponsored}}">
+			<template is="dom-if" if="{{sponsored.sponsored}}">
 
 				<div class="playerboxes">
 					<paper-input label="Sponsor Prefix" value="{{sponsorRegion}}"></paper-input>

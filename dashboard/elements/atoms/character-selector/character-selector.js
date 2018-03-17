@@ -1,5 +1,4 @@
 (function () {
-
 	class CharacterSelector extends Polymer.Element {
 		static get is() {
 			return 'character-selector';
@@ -45,14 +44,15 @@
 		}
 
 		_gameChange(gameIndex) {
-			console.log(this.selectedGame);
 			nodecg.readReplicant('gameData', newData => {
-				this.selectedGame = newData[gameIndex];
-				this.updateStyles({
-					'--character-image': `url('/bundles/mm-dashboard/shared/games/${this.selectedGame.name}/dashboard.png')`,
-					'--character-image-width': `${this.selectedGame.images.dashboard.scaleX}px`,
-					'--character-image-height': `${this.selectedGame.images.dashboard.scaleY}px`
-				});
+				if (gameIndex >= 0) {
+					this.selectedGame = newData[gameIndex];
+					this.updateStyles({
+						'--character-image': `url('/bundles/mm-dashboard/shared/games/${this.selectedGame.name}/dashboard.png')`,
+						'--character-image-width': `${this.selectedGame.images.dashboard.scaleX}px`,
+						'--character-image-height': `${this.selectedGame.images.dashboard.scaleY}px`
+					});
+				}
 			});
 		}
 
@@ -85,7 +85,6 @@
 
 		_findColourOffset(x, y, selectedGame) {
 			if (selectedGame !== undefined) {
-				console.log(selectedGame);
 				return `background-position: ${x * -(selectedGame.images.dashboard.scaleX)}px ${y * -(selectedGame.images.dashboard.scaleY)}px;`;
 			}
 		}
@@ -106,7 +105,7 @@
 
 		_selectedCharacterColours(selectedGame, characterIndex) {
 			console.log(selectedGame, characterIndex);
-			if (selectedGame.characters[characterIndex] !== undefined) {
+			if (selectedGame !== undefined && selectedGame.characters[characterIndex] !== undefined) {
 				return selectedGame.characters[characterIndex].colours;
 			}
 		}

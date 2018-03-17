@@ -29,9 +29,12 @@ module.exports = (nodecg, backendEvents) => {
 	/*
 	  DB Interactions
 	*/
-	const addDB = (data, id, cb) => {
+	const addDB = (data, cb) => {
+		console.log(data);
 		db.put(Object.assign(data.doc, {
-			_id: `${data.type}_${data.id}_${shortid.generate()}`
+			_id: data.id
+				? `${data.type}_${data.id}_${shortid.generate()}`
+				: `${data.type}_${shortid.generate()}`
 		}))
 			.then(resp => {
 				cb(null, resp);
@@ -71,6 +74,7 @@ module.exports = (nodecg, backendEvents) => {
 		tournamentDB.value = aggregate;
 	});
 	setQuery.on('update', (update, aggregate) => {
+		console.log(aggregate);
 		setDB.value = aggregate;
 	});
 

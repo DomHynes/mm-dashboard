@@ -51,18 +51,13 @@
 					}
 				},
 				selectedGame: {
-					type: Number,
-					observer: '_gameChange'
+					type: Number
 				}
 			};
 		}
 
 		_computeReversed() {
 			return this.reversed % 2 ? 'reversed' : '';
-		}
-
-		_gameChange(selectedGame) {
-			console.log(this.gameData);
 		}
 
 		queryFn() {

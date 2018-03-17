@@ -9,5 +9,9 @@ module.exports = nodecg => {
 	require('./smashgg')(nodecg, backendEvents);
 	require('./db')(nodecg, backendEvents);
 	// require('./twitter');
+
+	if (nodecg.bundleConfig.youtube.enabled) {
+		require('./youtube')(nodecg, backendEvents);
+	}
 };
 

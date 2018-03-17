@@ -7,6 +7,7 @@
 <link rel="import" href="../../../../shared/imports/lodash.html">
 
 <link rel="import" href="../../atoms/player-info/player-info.html">
+<link rel="import" href="../../atoms/set-bracket-info/set-bracket-info.html">
 <dom-module id="players-panel">
 	<template>
 		<style>
@@ -21,14 +22,26 @@
 				@apply(--layout-vertical);
 				@apply(--layout-flex-2);
 			}
+			.col.set {
+				@apply(--layout-flex-4);
+			}
 			.panel {
 				margin: 15px;
 			}
 			paper-button {
                 height: 120px;
+				text-align: center;
 			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
+				color: white;
+			}
+			paper-button.delete {
+				background-color: var(--paper-red-500);
+				color: white;
+			}
+			paper-button.edit {
+				background-color: var(--paper-blue-500);
 				color: white;
 			}
 			paper-button.swap {
@@ -44,7 +57,7 @@
 				margin-bottom: 30px;
 			}
 			hr {
-				margin: 5px 40px;
+				margin: 15px 40px;
 			}
 		</style>
 
@@ -70,8 +83,8 @@
 											sponsored="{{player.sponsored}}"
 											sponsor-images="{{sponsorImages}}"
 											region-images="{{regionImages}}"
-											selected-game="{{selectedGame}}"
-											selected-index="{{selectedIndex}}"
+											selected-game="{{setinfo.game.index}}"
+											game-data="[[gameData]]"
 											reversed="{{i}}"
 											player-db="{{playerDB}}"></player-info>
 									</div>
@@ -80,18 +93,31 @@
 						</template>
 					</div>
 
-					<hr>
-
 					<div class="row">
-						<game-panel
-							selected-game="{{selectedIndex}}"
-							game-data="[[gameData]]"
-						></game-panel>
+
+						<div class="col game">
+							<game-panel
+								game="{{setinfo.game.index}}"
+								game-data="[[gameData]]"
+							></game-panel>
+						</div>
+
+						<div class="col set">
+							<set-bracket-info
+							bracket-place="{{setinfo.bracketPlace}}"
+							tournament="{{setinfo.tournament}}"></set-bracket-info>
+						</div>
 					</div>
 				</div>
 
 
 				<div class="col">
+					<paper-button
+						raised
+						class="delete"
+						on-tap="deleteSet">
+						<iron-icon icon="icons:delete"></iron-icon>
+					</paper-button>
 					<paper-button
 						raised
 						class="swap"
@@ -101,9 +127,16 @@
 
 					<paper-button
 						raised
-						on-tap="savePlayers"
+						on-tap="editSet"
+						class="edit">
+						SAVE CHANGES
+					</paper-button>
+
+					<paper-button
+						raised
+						on-tap="addSet"
 						class="save">
-						SAVE
+						SAVE NEW
 					</paper-button>
 				</div>
 			</div>

@@ -8,7 +8,16 @@
 			return {
 				regionImages: {
 					type: Array,
-					value: [{}]
+					value() {
+						return [{}];
+					}
+				},
+				sponsorImages: {
+					type: Array,
+					observer: 'sponsorchange',
+					value() {
+						return [{}];
+					}
 				},
 				sponsorRegionImage: {
 					type: String,
@@ -27,6 +36,10 @@
 			super.ready();
 		}
 
+		sponsorchange(a) {
+			console.log(a);
+		}
+
 		_bothAssets(region, sponsor) {
 			const regionValid = region && region.length;
 			const sponsorValid = sponsor && sponsor.length;
@@ -42,7 +55,7 @@
 		}
 
 		_computeReversed() {
-			console.log(this.reversed % 2 ? 'reversed' : '')
+			console.log(this.reversed % 2 ? 'reversed' : '');
 			return this.reversed % 2 ? 'reversed' : '';
 		}
 	}

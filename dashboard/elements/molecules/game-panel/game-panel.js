@@ -1,5 +1,4 @@
 (function () {
-
 	class GamePanel extends Polymer.Element {
 		static get is() {
 			return 'game-panel';
@@ -10,7 +9,7 @@
 				gameData: {
 					type: Array
 				},
-				selectedGame: {
+				game: {
 					type: Number,
 					notify: true
 				}

@@ -8,6 +8,7 @@ module.exports = nodecg => {
 	require('./remote-obs')(nodecg, backendEvents);
 	require('./smashgg')(nodecg, backendEvents);
 	require('./db')(nodecg, backendEvents);
+	require('./fs')(nodecg, backendEvents);
 	// require('./twitter');
 
 	if (nodecg.bundleConfig.youtube.enabled) {

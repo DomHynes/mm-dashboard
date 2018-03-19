@@ -10,6 +10,16 @@
 				"scaleY": 24
 			}
 		},
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			},
+			{
+				"name": "doubles",
+				"players": 2
+			}
+		],
 		"characters":[
 			{
 				"name":"fox",
@@ -153,6 +163,12 @@
 				"scaleY": 41
 			}
 		},
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
 		"characters":[
 			{
 				"name":"mario",

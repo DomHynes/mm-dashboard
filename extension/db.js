@@ -54,6 +54,17 @@ module.exports = (nodecg, backendEvents) => {
 			});
 	};
 
+	const setDoc = (data, cb) => {
+		console.log(data);
+		db.put(data)
+			.then(resp => {
+				cb(null, resp);
+			})
+			.catch(err => {
+				cb(err);
+			});
+	}
+
 	/*
       PouchDB Listeners
     */
@@ -83,16 +94,7 @@ module.exports = (nodecg, backendEvents) => {
     */
 	nodecg.listenFor('db:addDoc', addDB);
 
-	nodecg.listenFor('db:setDoc', (data, cb) => {
-		console.log(data);
-		db.put(data)
-			.then(resp => {
-				cb(null, resp);
-			})
-			.catch(err => {
-				cb(err);
-			});
-	});
+	nodecg.listenFor('db:setDoc', setDoc);
 
 	nodecg.listenFor('db:delDoc', delDB);
 
@@ -126,5 +128,6 @@ module.exports = (nodecg, backendEvents) => {
 	*/
 
 	backendEvents.on('db:addDoc', addDB);
+	backendEvents.on('db:setDoc', setDoc);
 	backendEvents.on('db:delDoc', delDB);
 };

@@ -45,6 +45,15 @@
 						value() {
 							return {};
 						}
+					},
+					event: {
+						type: Number
+					},
+					video: {
+						type: Object,
+						value() {
+							return {};
+						}
 					}
 				},
 				gameIndex: {
@@ -65,15 +74,12 @@
 		}
 
 		_gameChange(a) {
-			console.log(gameData.value);
 			this.gameIndex = gameData.value.findIndex(game => game._id === this.setinfo.game._id);
 		}
 
 		_gameIndexChange(a) {
 			if (a >= 0) {
-				nodecg.readReplicant('gameData', data => {
-					this.set('setinfo.game', {name: data[a].name});
-				});
+				this.setinfo.game = a;
 			}
 		}
 

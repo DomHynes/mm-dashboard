@@ -1,0 +1,46 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+
+<dom-module id="vod-path">
+	<template>
+		<style>
+			.filename-input {
+				@apply(--layout-flex-auto);
+			}
+			.row {
+				@apply(--layout-horizontal);
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			iron-icon[icon="autorenew"]{
+				cursor: pointer;
+			}
+
+		</style>
+
+		<div class="col">
+			<paper-input
+				label="Recording Folder"
+				value="{{basePath}}"
+			></paper-input>
+
+			<div class="row">
+				<paper-input
+					label="Recording Filename"
+					class="filename-input"
+					value="{{videoName}}">
+					<iron-icon
+						slot="suffix"
+						on-tap="grabLatestVOD"
+						icon="autorenew">
+					</iron-icon>
+				</paper-input>
+			</div>
+		</div>
+
+	</template>
+	<script src="vod-path.js"></script>
+</dom-module>

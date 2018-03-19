@@ -8,6 +8,7 @@
 
 <link rel="import" href="../../atoms/player-info/player-info.html">
 <link rel="import" href="../../atoms/set-bracket-info/set-bracket-info.html">
+<link rel="import" href="../../molecules/vod-path/vod-path.html">
 <dom-module id="players-panel">
 	<template>
 		<style>
@@ -23,7 +24,10 @@
 				@apply(--layout-flex-2);
 			}
 			.col.set {
-				@apply(--layout-flex-4);
+				@apply(--layout-flex-2);
+			}
+			.col.vod {
+				@apply(--layout-flex-2);
 			}
 			.panel {
 				margin: 15px;
@@ -83,7 +87,7 @@
 											sponsored="{{player.sponsored}}"
 											sponsor-images="{{sponsorImages}}"
 											region-images="{{regionImages}}"
-											selected-game="{{setinfo.game.index}}"
+											selected-game="{{setinfo.game}}"
 											game-data="[[gameData]]"
 											reversed="{{i}}"
 											player-db="{{playerDB}}"></player-info>
@@ -97,8 +101,9 @@
 
 						<div class="col game">
 							<game-panel
-								game="{{setinfo.game.index}}"
+								game="{{setinfo.game}}"
 								game-data="[[gameData]]"
+								event="{{setinfo.event}}"
 							></game-panel>
 						</div>
 
@@ -106,6 +111,14 @@
 							<set-bracket-info
 							bracket-place="{{setinfo.bracketPlace}}"
 							tournament="{{setinfo.tournament}}"></set-bracket-info>
+						</div>
+
+						<div class="col vod">
+							<vod-path
+								video-name="{{setinfo.video.videoName}}"
+								base-path="{{setinfo.video.basePath}}"
+								file-size="{{setinfo.video.fileSize}}"
+							></vod-path>
 						</div>
 					</div>
 				</div>

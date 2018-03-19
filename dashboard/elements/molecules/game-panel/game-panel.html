@@ -23,6 +23,16 @@
 			</paper-listbox>
 		</paper-dropdown-menu>
 
+		<paper-dropdown-menu label="Current Event" >
+			<paper-listbox slot="dropdown-content" selected="{{event}}">
+				<template is="dom-repeat" items="[[_getEvents(gameData, game, event)]]">
+					<paper-item>
+						[[item.name]]
+					</paper-item>
+				</template>
+			</paper-listbox>
+		</paper-dropdown-menu>
+
 	</template>
 	<script src="game-panel.js"></script>
 </dom-module>

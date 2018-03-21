@@ -111,7 +111,10 @@
 
 		uploadSet(e) {
 			nodecg.sendMessage('yt:uploadSet', e.model.item, (err, data) => {
-
+				if (err) {
+					console.log(err);
+				}
+				console.log(data);
 			});
 		}
 

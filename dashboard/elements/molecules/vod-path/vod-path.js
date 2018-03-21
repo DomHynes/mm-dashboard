@@ -37,7 +37,7 @@
 				this.set('basePath', data.basePath);
 				this.set('fileSize', data.fileSize);
 				this.set('videoName', data.videoName);
-				this.set('videoName', 0);
+				this.set('uploaded', 0);
 			});
 		}
 	}

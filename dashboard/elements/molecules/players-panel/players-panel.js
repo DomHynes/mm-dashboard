@@ -116,6 +116,7 @@
 		addSet() {
 			this.setinfo._id = null;
 			this.setinfo._rev = null;
+			this.setinfo.video.uploaded = 0;
 			nodecg.sendMessage('db:addDoc', {
 				doc: this.setinfo,
 				type: 'set'

@@ -46,14 +46,15 @@ module.exports = (nodecg, backendEvents) => {
 	});
 
 	nodecg.listenFor('yt:uploadSet', (data, cb) => {
-		console.log(data);
-		let video;
+		let video, progress;
+
 		try {
 			video = fs.createReadStream(path.join(data.video.basePath, data.video.videoName));
 		} catch (e) {
 			cb(e);
 			return;
 		}
+
 		const upload = yt.videos.insert({
 			resource: {
 				snippet: {
@@ -69,21 +70,37 @@ module.exports = (nodecg, backendEvents) => {
 			media: {
 				body: video
 			}
-		}, (err, data) => {
+		}, (err, resource) => {
 			if (err) {
 				cb(err);
 			}
+			clearInterval(progress);
+
+			console.log(upload);
+			console.log(resource);
+
+			data.video.snippet = resource.snippet;
+			data.video.id = resource.id;
+
+			backendEvents.emit('db:setDoc', data, (err, resp) => {
+				if (err) {
+					console.log(err);
+				}
+				data._rev = resp.rev;
+				data.video.uploaded = upload.req.connection._bytesDispatched;
+			});
+
 			cb(null, data);
 		});
-		const progress = setInterval(() => {
-			try {
-				console.log(upload.req.connection._bytesDispatched);
-				setinfo.value.video.uploaded = upload.req.connection._bytesDispatched;
 
-				console.log(setinfo.value);
-			} catch (e) {
-				console.log(e);
-			}
+		progress = setInterval(() => {
+			backendEvents.emit('db:setDoc', data, (err, resp) => {
+				if (err) {
+					console.log(err);
+				}
+				data._rev = resp.rev;
+				data.video.uploaded = upload.req.connection._bytesDispatched;
+			});
 		}, 1000);
 	});
 };

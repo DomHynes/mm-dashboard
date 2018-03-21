@@ -1,5 +1,6 @@
 <link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-autocomplete/paper-autocomplete.html">
 
 <link rel="import" href="../character-selector/character-selector.html">
 <link rel="import" href="../sponsor-region/sponsor-region.html">
@@ -14,21 +15,30 @@
 			.reversed {
 				@apply(--layout-horizontal-reverse);
 			}
-			paper-input, character-selector, sponsor-region {
+			paper-autocomplete {
+				@apply(--layout-flex-auto);
+			}
+			character-selector, sponsor-region {
 				@apply(--layout-flex-none);
 			}
 
 		</style>
 
 		<div class$="[[_computeReversed()]] row">
-			<paper-input
-				label="Player Name"
-				value="{{name}}"
-				></paper-input>
+
+			<paper-autocomplete
+					label="Player Name"
+					id="autocomplete"
+					text="{{name}}"
+					source="{{playerDb}}"
+					text-property="tag">
+			</paper-autocomplete>
+
+
 			<character-selector
 				character-index="{{characterIndex}}"
 				colour-index="{{colourIndex}}"
-				selected-game="{{selectedGame}}"></character-selector>
+				game-index="[[selectedGame]]"></character-selector>
 		</div>
 		<div class$="row">
 			<sponsor-region

@@ -11,6 +11,12 @@
 					"shortName": "string"
 				}
 			}
+		},
+		"youtube": {
+			"type": "object",
+			"properties": {
+				"enabled": "boolean"
+			}
 		}
 	},
 	"default": {
@@ -20,6 +26,12 @@
 				"longName": "Super Smash Bros. Melee",
 				"shortName": "SSBM"
 			}
-		]
+		],
+		"youtube": {
+			"enabled": true,
+			"client_id": "string",
+			"client_secret": "string",
+			"redirect_uri": "string"
+		}
 	}
 }

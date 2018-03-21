@@ -1,0 +1,263 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="../../../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../../../../shared/imports/lodash.html">
+
+<link rel="import" href="../../atoms/player-generator/player-generator.html">
+
+<dom-module id="set-list">
+	<template>
+		<style>
+			.row {
+				@apply(--layout-horizontal);
+			}
+			.row.head {
+				@apply(--layout-center-justified);
+			}
+			.row.loading {
+				width: 70px;
+			}
+			.row.result {
+				width: 60%;
+			}
+			.row.actions {
+				width: 60%;
+			}
+			.row.table {
+				@apply(--layout-between-aligned);
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			.row.table > span {
+				@apply(--layout-flex-2);
+				text-align: center;
+			}
+			.left {
+				@apply(--layout-flex-2);
+			}
+			.right {
+				@apply(--layout-flex-8);
+				@apply(--layout-horizontal);
+				@apply(--layout-around-justified);
+			}
+			.panel {
+				margin: 15px;
+			}
+			.panel > * {
+				margin: 0 5px;
+			}
+			.actions {
+				@apply (--layout-horizontal);
+				@apply (--layout-end-justified);
+			}
+			.actions > paper-button {
+				height: 120px;
+			}
+			.setactions {
+				@apply (--layout-horizontal);
+				@apply (--layout-end-justified);
+			}
+			paper-button {
+				text-align: center;
+			}
+			paper-button.save {
+				background-color: var(--paper-green-500);
+				color: white;
+			}
+			h2, p {
+				text-align: center;
+			}
+			paper-input {
+				width: 400px;
+
+				--paper-input-prefix: {
+					color: var(--secondary-text-color);
+				}
+			}
+			vaadin-grid {
+				@apply(--layout-flex-auto);
+			}
+			paper-button.close {
+				@apply(--layout-self-start);
+			}
+			paper-dialog {
+				min-width: 800px;
+			}
+		</style>
+
+		<div class="row panel">
+
+			<vaadin-grid items="{{setDB}}" id="grid">
+
+				<vaadin-grid-column width="4em">
+					<template class="header">
+						<vaadin-grid-sorter>Players</vaadin-grid-sorter>
+					</template>
+					<template>[[_getTeamName(item.players.0)]]</template>
+				</vaadin-grid-column>
+
+				<vaadin-grid-column width="4em">
+					<template class="header">
+						<vaadin-grid-sorter>Players</vaadin-grid-sorter>
+					</template>
+					<template>[[_getTeamName(item.players.1)]]</template>
+				</vaadin-grid-column>
+
+				<vaadin-grid-column width="9em">
+					<template class="header">
+						<vaadin-grid-sorter>Bracket Place</vaadin-grid-sorter>
+					</template>
+					<template>[[item.bracketPlace]]</template>
+				</vaadin-grid-column>
+
+
+				<vaadin-grid-column width="9em">
+					<template class="header">
+						<vaadin-grid-sorter>Tournament</vaadin-grid-sorter>
+					</template>
+					<template>[[item.tournament.slug]]</template>
+				</vaadin-grid-column>
+
+
+				<vaadin-grid-column width="4em">
+					<template class="header">
+						<vaadin-grid-sorter>Game</vaadin-grid-sorter>
+					</template>
+					<template>[[_getGameName(item.game)]]</template>
+				</vaadin-grid-column>
+
+
+				<vaadin-grid-column width="4em">
+					<template class="header">
+						<vaadin-grid-sorter>Event</vaadin-grid-sorter>
+					</template>
+					<template>[[_getEventName(item.event, item.game)]]</template>
+				</vaadin-grid-column>
+
+
+				<vaadin-grid-column width="4em">
+					<template class="header">
+						<vaadin-grid-sorter>Upload Progress</vaadin-grid-sorter>
+					</template>
+					<template>
+						<div class="col">
+							<paper-progress
+								min=0
+								value="[[item.video.uploaded]]"
+								max="[[item.video.fileSize]]">
+							</paper-progress>
+						</div>
+					</template>
+				</vaadin-grid-column>
+
+				<vaadin-grid-column width="9em">
+					<template>
+						<div class="row setactions">
+							<paper-button on-tap="uploadSet">
+								<iron-icon icon="file-upload">
+								</iron-icon>
+							</paper-button>
+							<paper-button on-tap="openEditSetModal">
+								<iron-icon icon="create">
+								</iron-icon>
+							</paper-button>
+						</div>
+					</template>
+				</vaadin-grid-column>
+
+			</vaadin-grid>
+
+		</div>
+
+
+
+		<paper-dialog
+			id="editSetModal" modal
+		  	on-iron-overlay-opened="onEditSetOpen"
+		>
+			<h2> Edit Set </h2>
+
+			<div class="col results">
+
+				<div class="col">
+					<div class="row table">
+						<b class="left">Players</b>
+						<div class="right">
+							<span>[[selectedSet.players.0.0.name]]</span>
+							<span>[[selectedSet.players.1.0.name]]</span>
+						</div>
+					</div>
+
+					<div class="row table">
+						<span>[[item.bracketPlace]]</span>
+					</div>
+
+					<div class="row table">
+						<span>[[selectedSet.data.entities.tournament.name]]</span>
+					</div>
+
+				</div>
+
+				<div class="col">
+					<div class="row table">
+
+						<b class="left">
+							Characters
+						</b>
+
+						<div class="right">
+							<span>
+								[[_getCharacter(selectedSet.players.0.0.characterIndex, game)]]
+							</span>
+							<span>
+								[[_getCharacter(selectedSet.players.1.0.characterIndex, game)]]
+							</span>
+
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col">
+					<div class="row table">
+
+						<b class="left">
+							Game
+						</b>
+
+						<div class="right">
+							<span>
+								[[game.longName]]
+							</span>
+
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="buttons">
+				<paper-button on-tap="closeDel" class="close" dialog-dismiss >
+					CLOSE
+				</paper-button>
+				<paper-button on-tap="deleteSet" disabled="[[loading]]">
+					DELETE
+				</paper-button>
+			</div>
+		</paper-dialog>
+
+
+	</template>
+	<script src="set-list.js"></script>
+</dom-module>

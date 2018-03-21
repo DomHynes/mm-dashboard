@@ -1,0 +1,37 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+<dom-module id="set-bracket-info">
+	<template>
+		<style>
+			.col {
+				@apply(--layout-vertical)
+			}
+
+
+		</style>
+
+
+		<div class="col">
+			<paper-input
+				placeholder="Bracket Place"
+				value="{{bracketPlace}}">
+			</paper-input>
+
+			<paper-dropdown-menu>
+				<paper-listbox slot="dropdown-content" selected="{{tournamentIndex}}">
+					<template is="dom-repeat" items="[[tournamentDB]]">
+						<paper-item>
+							[[item.data.entities.tournament.shortSlug]]
+						</paper-item>
+					</template>
+				</paper-listbox>
+			</paper-dropdown-menu>
+		</div>
+	</template>
+
+	<script src="set-bracket-info.js"></script>
+</dom-module>

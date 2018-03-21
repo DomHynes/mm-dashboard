@@ -7,15 +7,20 @@
   ],
   "dependencies": {
     "ajv": "^6.1.1",
+    "lien": "^3.2.0",
+    "moment": "^2.21.0",
     "node-fetch": "^2.0.0",
     "obs-websocket-js": "^1.1.0",
+    "opn": "^5.3.0",
     "pouchdb": "^6.4.3",
     "pouchdb-find": "^6.4.3",
     "pouchdb-live-find": "^0.4.0",
     "shortid": "^2.2.8",
     "smashgg.js": "domhynes/smashgg.js",
     "twitter": "^1.7.1",
-    "twitter-stream-api": "^0.5.2"
+    "twitter-stream-api": "^0.5.2",
+    "youtube-api": "^2.0.9",
+    "ytdl-core": "^0.20.2"
   },
   "homepage": "https://domhyn.es",
   "license": "MIT",
@@ -29,15 +34,21 @@
         "fullbleed": true
       },
       {
-        "name": "generators",
-        "title": "Generators",
+        "name": "players",
+        "title": "Players",
         "file": "generators.html",
         "fullbleed": true
       },
       {
-        "name": "tournamentinfo",
-        "title": "Tournament Info",
+        "name": "tournaments",
+        "title": "Tournaments",
         "file": "tournament-info.html",
+        "fullbleed": true
+      },
+      {
+        "name": "sets",
+        "title": "Sets",
+        "file": "set-list.html",
         "fullbleed": true
       }
     ],

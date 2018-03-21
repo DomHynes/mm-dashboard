@@ -74,7 +74,6 @@
 		}
 
 		deleteTournamentModal(e) {
-			console.log(_.cloneDeep(e.model.item));
 			this.selectedTournament = _.cloneDeep(e.model.item);
 			this.$.deleteTournamentModal.open();
 		}
@@ -99,6 +98,17 @@
 			return e.sponsor
 				? `${e.sponsor} | ${e.tag}`
 				: e.tag;
+		}
+
+		openAddPlayersFromTournamentModal(e) {
+			this.selectedTournament = _.cloneDeep(e.model.item);
+			this.$.addPlayersToDBModal.open();
+		}
+
+		addPlayersFromTournament() {
+			nodecg.sendMessage('db:addPlayersFromTournament', this.selectedTournament._id)
+				.then( resp => console.log(resp))
+				.catch( e => console.log(e));
 		}
 
 		ready() {

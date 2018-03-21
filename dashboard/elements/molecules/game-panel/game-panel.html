@@ -1,0 +1,38 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="game-panel">
+	<template>
+		<style>
+			paper-dropdown-menu {
+				width: 100%;
+			}
+		</style>
+
+		<paper-dropdown-menu label="Current Game" >
+			<paper-listbox slot="dropdown-content" selected="{{game}}">
+				<template is="dom-repeat" items="[[gameData]]">
+					<paper-item>
+						[[item.longName]]
+					</paper-item>
+				</template>
+			</paper-listbox>
+		</paper-dropdown-menu>
+
+		<paper-dropdown-menu label="Current Event" >
+			<paper-listbox slot="dropdown-content" selected="{{event}}">
+				<template is="dom-repeat" items="[[_getEvents(gameData, game, event)]]">
+					<paper-item>
+						[[item.name]]
+					</paper-item>
+				</template>
+			</paper-listbox>
+		</paper-dropdown-menu>
+
+	</template>
+	<script src="game-panel.js"></script>
+</dom-module>

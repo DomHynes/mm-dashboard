@@ -7,6 +7,8 @@
 <link rel="import" href="../../../../shared/imports/lodash.html">
 
 <link rel="import" href="../../atoms/player-info/player-info.html">
+<link rel="import" href="../../atoms/set-bracket-info/set-bracket-info.html">
+<link rel="import" href="../../molecules/vod-path/vod-path.html">
 <dom-module id="players-panel">
 	<template>
 		<style>
@@ -19,38 +21,63 @@
 			}
 			.col {
 				@apply(--layout-vertical);
+				@apply(--layout-flex-2);
+			}
+			.col.set {
+				@apply(--layout-flex-2);
+			}
+			.col.vod {
+				@apply(--layout-flex-2);
 			}
 			.panel {
 				margin: 15px;
 			}
 			paper-button {
                 height: 120px;
+				text-align: center;
 			}
 			paper-button.save {
 				background-color: var(--paper-green-500);
 				color: white;
 			}
+			paper-button.delete {
+				background-color: var(--paper-red-500);
+				color: white;
+			}
+			paper-button.edit {
+				background-color: var(--paper-blue-500);
+				color: white;
+			}
 			paper-button.swap {
 				background-color: var(--paper-amber-500);
 			}
-			player-info {
+			player-info, game-panel {
 				@apply(--layout-flex-auto);
+			}
+			paper-card {
+				--paper-card-header-text: {
+					text-align: center;
+				};
+				margin-bottom: 30px;
+			}
+			hr {
+				margin: 15px 40px;
 			}
 		</style>
 
+		<paper-card heading="Players">
+			<div class="row panel">
+				<div class="container">
+					<div class="row">
+						<set-scores scores={{setinfo.scores}}></set-scores>
+					</div>
 
-		<div class="row panel">
-			<div class="container">
-				<div class="row">
-					<set-scores scores={{setinfo.scores}}></set-scores>
-				</div>
+					<br>
 
-				<br>
-
-				<div class="row">
-					<template is="dom-repeat" items="{{setinfo.players}}" as="team" index-as="i">
-						<div class="col">
-							<template is="dom-repeat" items="{{team}}" as="player">
+					<div class="row">
+						<template is="dom-repeat" items="{{setinfo.players}}" as="team" index-as="i">
+							<div class="col">
+								<template is="dom-repeat" items="{{team}}" as="player">
 									<div class="row">
 										<player-info
 											id="p{{index}}"
@@ -60,32 +87,79 @@
 											sponsored="{{player.sponsored}}"
 											sponsor-images="{{sponsorImages}}"
 											region-images="{{regionImages}}"
-											selected-game="{{selectedGame}}"
-											reversed="{{i}}"></player-info>
+											selected-game="{{setinfo.game}}"
+											game-data="[[gameData]]"
+											reversed="{{i}}"
+											player-db="{{playerDB}}"></player-info>
 									</div>
-							</template>
+								</template>
+							</div>
+						</template>
+					</div>
+
+					<div class="row">
+
+						<div class="col game">
+							<game-panel
+								game="{{setinfo.game}}"
+								game-data="[[gameData]]"
+								event="{{setinfo.event}}"
+							></game-panel>
 						</div>
-					</template>
+
+						<div class="col set">
+							<set-bracket-info
+							bracket-place="{{setinfo.bracketPlace}}"
+							tournament="{{setinfo.tournament}}"></set-bracket-info>
+						</div>
+
+						<div class="col vod">
+							<vod-path
+								video-name="{{setinfo.video.videoName}}"
+								base-path="{{setinfo.video.basePath}}"
+								file-size="{{setinfo.video.fileSize}}"
+							></vod-path>
+						</div>
+					</div>
 				</div>
-			</div>
 
 
-			<div class="col">
-				<paper-button
+				<div class="col">
+					<paper-button
+						raised
+						class="delete"
+						on-tap="deleteSet">
+						<iron-icon icon="icons:delete"></iron-icon>
+					</paper-button>
+					<paper-button
 						raised
 						class="swap"
 						on-tap="swapPlayers">
-					<iron-icon icon="icons:swap-horiz"></iron-icon>
-				</paper-button>
+						<iron-icon icon="icons:swap-horiz"></iron-icon>
+					</paper-button>
 
-				<paper-button
+					<paper-button
 						raised
-						on-tap="savePlayers"
+						on-tap="editSet"
+						class="edit">
+						SAVE CHANGES
+					</paper-button>
+
+					<paper-button
+						raised
+						on-tap="addSet"
 						class="save">
-					SAVE
-				</paper-button>
+						SAVE NEW
+					</paper-button>
+				</div>
 			</div>
-		</div>
+		</paper-card>
+
+
+
+
+
+
 	</template>
 	<script src="players-panel.js"></script>
 </dom-module>

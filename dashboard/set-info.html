@@ -6,6 +6,7 @@
   <script src="../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
   <link rel="import" href="elements/molecules/players-panel/players-panel.html">
   <link rel="import" href="elements/molecules/comms-panel/comms-panel.html">
+  <link rel="import" href="elements/molecules/game-panel/game-panel.html">
   <link rel="import" href="elements/atoms/scores/scores.html">
 
 	<custom-style>
@@ -23,7 +24,7 @@
 				--paper-card-header-text: {
 					text-align: center;
 				};
-				margin-bottom: 30px;
+			margin-bottom: 30px;
 			}
 		</style>
 	</custom-style>
@@ -34,9 +35,7 @@
 
 <div class="container">
 	<div class="col">
-		<paper-card heading="Players">
-			<players-panel></players-panel>
-		</paper-card>
+		<players-panel></players-panel>
 	</div>
 	<div class="col">
 		<paper-card heading="Commentators">

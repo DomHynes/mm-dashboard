@@ -31,11 +31,11 @@
 			}
 		</style>
 		<div class$="row {{reversed}}">
-			<template is="dom-if" if="{{!sponsored}}">
+			<template is="dom-if" if="{{!sponsored.sponsored}}">
 
 				<div class="playerboxes">
 					<paper-dropdown-menu label="Region Image">
-						<paper-listbox slot="dropdown-content">
+						<paper-listbox slot="dropdown-content" selected="{{sponsored.regionIndex}}">
 							<template is="dom-repeat" items="{{regionImages}}">
 								<paper-item>
 									<div style$={{getBgImage(item)}}></div>
@@ -47,17 +47,16 @@
 
 			</template>
 
-			<template is="dom-if" if="{{sponsored}}">
+			<template is="dom-if" if="{{sponsored.sponsored}}">
 
 				<div class="playerboxes">
-					<paper-input label="Sponsor Prefix" value="{{sponsorRegion}}"></paper-input>
+					<paper-input label="Sponsor Prefix" value="{{sponsored.sponsorName}}"></paper-input>
 					<paper-dropdown-menu label="Sponsor Image">
-						<template is="dom-repeat" items="{{sponsorImages}}">
-							<paper-item>
-								<div class="sponsorImage" style$="{{getBgImage(item)}}"></div>
-								<span>  -  {{item.name}}</span>
-							</paper-item>
-						</template>
+						<paper-listbox slot="dropdown-content" selected="{{sponsored.sponsorIndex}}">
+							<template is="dom-repeat" items="{{sponsorImages}}">
+								<paper-item>{{item.name}}</paper-item>
+							</template>
+						</paper-listbox>
 					</paper-dropdown-menu>
 				</div>
 

@@ -20,6 +20,9 @@
 				"type": "number",
 				"default": 0
 			}
+		},
+		"video": {
+			"type": "object"
 		}
 
 	}

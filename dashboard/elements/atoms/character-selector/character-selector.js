@@ -22,23 +22,38 @@
 					type: Number,
 					notify: true
 				},
+				gameIndex: {
+					type: Number,
+					observer: '_gameChange'
+				},
 				selectedGame: {
 					type: Object,
-					value: {
-						characters: [{}],
-						images: {
-							dashboard: {
-								scaleX: 24,
-								scaleY: 24
+					value() {
+						return {
+							characters: [{}],
+							images: {
+								dashboard: {
+									scaleX: 24,
+									scaleY: 24
+								}
 							}
-						}
+						};
 					}
 				}
 			};
 		}
 
-		ready() {
-			super.ready();
+		_gameChange(gameIndex) {
+			nodecg.readReplicant('gameData', newData => {
+				if (gameIndex >= 0) {
+					this.selectedGame = newData[gameIndex];
+					this.updateStyles({
+						'--character-image': `url('/bundles/mm-dashboard/shared/games/${this.selectedGame.name}/dashboard.png')`,
+						'--character-image-width': `${this.selectedGame.images.dashboard.scaleX}px`,
+						'--character-image-height': `${this.selectedGame.images.dashboard.scaleY}px`
+					});
+				}
+			});
 		}
 
 		openCharacterDialog() {
@@ -76,8 +91,11 @@
 
 		_selectCharacter(e) {
 			this.characterIndex = this._findCharIndex(e.model.item);
+			this.colourIndex = 0;
 			this.$.characterDialog.close();
-			this.$.colourDialog.open();
+			if (this.selectedGame.colors) {
+				this.$.colourDialog.open();
+			}
 		}
 
 		_selectColor(e) {
@@ -86,7 +104,8 @@
 		}
 
 		_selectedCharacterColours(selectedGame, characterIndex) {
-			if (selectedGame.characters[characterIndex] !== undefined) {
+			console.log(selectedGame, characterIndex);
+			if (selectedGame !== undefined && selectedGame.characters[characterIndex] !== undefined) {
 				return selectedGame.characters[characterIndex].colours;
 			}
 		}
@@ -97,9 +116,12 @@
 			}
 			characterFilter = characterFilter.toLowerCase();
 
-			return function (character) {
+			return character => {
 				const first = character.name.toLowerCase();
 				const last = character.longName.toLowerCase();
+				console.log(character, characterFilter, first, last);
+				console.log(first.indexOf(characterFilter) !== -1 ||
+					last.indexOf(characterFilter) !== -1);
 
 				return (
 						first.indexOf(characterFilter) !== -1 ||

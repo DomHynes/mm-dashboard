@@ -7,10 +7,15 @@
 <dom-module id="character-selector">
 	<template>
 		<style>
+			:host {
+				--character-image: none;
+				--character-image-height: 24px;
+				--character-image-width: 24px;
+			}
 			.icon {
-				background-image: url('/bundles/mm-dashboard/shared/games/ssbm/dashboard.png');
-				width: 24px;
-				height: 24px;
+				background-image: var(--character-image);
+				width: var(--character-image-width);
+				height: var(--character-image-height);
 				image-rendering: pixelated;
 			}
 			paper-dialog {

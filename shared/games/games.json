@@ -1,0 +1,223 @@
+[
+	{
+		"name": "ssbm",
+		"longName": "Super Smash Bros. Melee",
+		"shortName": "SSBM",
+		"colors": true,
+		"images": {
+			"dashboard": {
+				"scaleX": 24,
+				"scaleY": 24
+			}
+		},
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			},
+			{
+				"name": "doubles",
+				"players": 2
+			}
+		],
+		"characters":[
+			{
+				"name":"fox",
+				"longName": "Fox",
+				"colours": ["neutral", "red", "blue", "green"]
+			},
+			{
+				"name":"falco",
+				"longName": "Falco",
+				"colours": ["neutral", "red", "blue", "green"]
+			},
+			{
+				"name":"sheik",
+				"longName": "Sheik",
+				"colours": ["neutral", "red", "blue", "green", "black"]
+			},
+			{
+				"name":"marth",
+				"longName": "Marth",
+				"colours": ["neutral", "red", "green", "black", "white"]
+			},
+			{
+				"name":"falcon",
+				"longName": "Captain Falcon",
+				"colours": ["neutral", "black", "red", "white", "green", "blue"]
+			},
+			{
+				"name":"jigglypuff",
+				"longName": "Jigglypuff",
+				"colours": ["neutral", "red", "blue", "green", "yellow"]
+			},
+			{
+				"name":"ics",
+				"longName": "Ice Climbers",
+				"colours": ["neutral", "green", "orange", "red"]
+			},
+			{
+				"name":"peach",
+				"longName": "Peach",
+				"colours": ["neutral", "yellow", "white", "blue", "green"]
+			},
+			{
+				"name":"pikachu",
+				"longName": "Pikachu",
+				"colours": ["neutral", "red", "blue", "green"]
+			},
+			{
+				"name":"samus",
+				"longName": "Samus",
+				"colours": ["neutral", "red", "black", "green", "blue"]
+			},
+			{
+				"name":"doc",
+				"longName": "Dr. Mario",
+				"colours": ["neutral", "red", "blue", "green", "black"]
+			},
+			{
+				"name":"yoshi",
+				"longName": "Yoshi",
+				"colours": ["neutral", "red", "blue", "yellow", "pink", "cyan"]
+			},
+			{
+				"name":"luigi",
+				"longName": "Luigi",
+				"colours": ["neutral", "white", "blue", "red"]
+			},
+			{
+				"name":"mario",
+				"longName": "Mario",
+				"colours": ["neutral", "yellow", "black", "blue", "green"]
+			},
+			{
+				"name":"link",
+				"longName": "Link",
+				"colours": ["neutral", "red", "blue", "black", "white"]
+			},
+			{
+				"name":"ylink",
+				"longName": "Young Link",
+				"colours": ["neutral", "red", "blue", "white", "black"]
+			},
+			{
+				"name":"dk",
+				"longName": "Donkey Kong",
+				"colours": 	["neutral", "black", "red", "blue", "green"]
+			},
+			{
+				"name":"ganondorf",
+				"longName": "Ganondorf",
+				"colours": ["neutral", "red", "blue", "green", "purple"]
+			},
+			{
+				"name":"roy",
+				"longName": "Roy",
+				"colours": ["neutral", "red", "blue", "green", "yellow"]
+			},
+			{
+				"name":"gnw",
+				"longName": "Mr Game and Watch",
+				"colours": ["neutral", "red", "blue", "green"]
+			},
+			{
+				"name":"mewtwo",
+				"longName": "Mewtwo",
+				"colours": ["neutral", "red", "blue", "green"]
+			},
+			{
+				"name":"zelda",
+				"longName": "Zelda",
+				"colours": ["neutral", "red", "blue", "green", "white"]
+			},
+			{
+				"name":"ness",
+				"longName": "Ness",
+				"colours": ["neutral", "yellow", "blue", "green"]
+			},
+			{
+				"name":"pichu",
+				"longName": "Pichu",
+				"colours": ["neutral", "red", "blue", "green"]
+			},
+			{
+				"name":"kirby",
+				"longName": "Kirby",
+				"colours": ["neutral", "yellow", "blue", "red", "green"]
+			},
+			{
+				"name":"bowser",
+				"longName": "Bowser",
+				"colours": ["neutral", "red", "blue", "black"]
+			}
+		]
+	},
+	{
+		"name": "ssb64",
+		"longName": "Super Smash Bros. 64",
+		"shortName": "SSB64",
+		"images": {
+			"dashboard": {
+				"scaleX": 43,
+				"scaleY": 41
+			}
+		},
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"characters":[
+			{
+				"name":"mario",
+				"longName": "Mario"
+			},
+			{
+				"name":"yoshi",
+				"longName": "Yoshi"
+			},
+			{
+				"name":"dk",
+				"longName": "Donkey Kong"
+			},
+			{
+				"name":"kirby",
+				"longName": "Kirby"
+			},
+			{
+				"name":"link",
+				"longName": "Link"
+			},
+			{
+				"name":"fox",
+				"longName": "Fox"
+			},
+			{
+				"name":"samus",
+				"longName": "Samus"
+			},
+			{
+				"name":"pikachu",
+				"longName": "Pikachu"
+			},
+			{
+				"name":"luigi",
+				"longName": "Luigi"
+			},
+			{
+				"name":"ness",
+				"longName": "Ness"
+			},
+			{
+				"name":"falcon",
+				"longName": "Captain Falcon"
+			},
+			{
+				"name":"jigglypuff",
+				"longName": "Jigglypuff"
+			}
+		]
+	}
+]

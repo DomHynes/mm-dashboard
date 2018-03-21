@@ -40,9 +40,6 @@
 			paper-button.close {
 				@apply(--layout-self-start);
 			}
-			vaadin-grid {
-				@apply(--layout-flex-auto);
-			}
 			iron-icon[icon="create"] {
 				color: var(--paper-blue-500);
 			}
@@ -51,6 +48,10 @@
 			}
 			#newSmashGG > .name {
 
+			}
+			vaadin-grid {
+				@apply(--layout-flex-auto);
+				min-width: 400px;
 			}
 
 		</style>
@@ -110,9 +111,6 @@
 							 value="{{smashGGSearch}}"
 							 on-input="findSmashGG">
 				</paper-input>
-				<paper-button on-tap="findSmashGG">
-					FIND
-				</paper-button>
 			</div>
 			<div class="row">
 
@@ -123,6 +121,13 @@
 							<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
 						</template>
 						<template>[[item.tag]]</template>
+					</vaadin-grid-column>
+
+					<vaadin-grid-column width="9em">
+						<template class="header">
+							<vaadin-grid-sorter path="name">Region</vaadin-grid-sorter>
+						</template>
+						<template>[[item.data.raw.state]], [[item.data.raw.country]]</template>
 					</vaadin-grid-column>
 
 				</vaadin-grid>
@@ -143,18 +148,25 @@
 		<div class="row panel">
 			<vaadin-grid items="{{playerDB}}" id="grid">
 
-				<vaadin-grid-column width="9em">
+				<vaadin-grid-column width="3em">
 					<template class="header">
-						<vaadin-grid-sorter path="name">Name</vaadin-grid-sorter>
+						<vaadin-grid-sorter path="name">Sponsor</vaadin-grid-sorter>
 					</template>
-					<template>[[item.name]]</template>
+					<template>[[item.sponsor]]</template>
+				</vaadin-grid-column>
+
+				<vaadin-grid-column width="4em">
+					<template class="header">
+						<vaadin-grid-sorter path="name">Tag</vaadin-grid-sorter>
+					</template>
+					<template>[[item.tag]]</template>
 				</vaadin-grid-column>
 
 				<vaadin-grid-column width="9em">
 					<template class="header">
-						<vaadin-grid-sorter path="twitter">Twitter</vaadin-grid-sorter>
+						<vaadin-grid-sorter path="twitter">Name</vaadin-grid-sorter>
 					</template>
-					<template>@[[item.twitter]]</template>
+					<template>[[item.name]]</template>
 				</vaadin-grid-column>
 
 				<vaadin-grid-column width="2em">

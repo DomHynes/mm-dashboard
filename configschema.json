@@ -1,17 +1,6 @@
 {
 	"type": "object",
 	"properties": {
-		"games":{
-			"type": "array",
-			"items": {
-				"type": "object",
-				"properties": {
-					"name": "string",
-					"longName": "string",
-					"shortName": "string"
-				}
-			}
-		},
 		"youtube": {
 			"type": "object",
 			"properties": {
@@ -20,13 +9,6 @@
 		}
 	},
 	"default": {
-		"games": [
-			{
-				"name": "ssbm",
-				"longName": "Super Smash Bros. Melee",
-				"shortName": "SSBM"
-			}
-		],
 		"youtube": {
 			"enabled": true,
 			"client_id": "string",

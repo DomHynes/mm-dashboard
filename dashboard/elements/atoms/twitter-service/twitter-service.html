@@ -1,0 +1,67 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../../../../shared/imports/lodash.html">
+
+
+<dom-module id="twitter-service">
+	<template>
+		<style>
+			:host {
+				--twitter-profile-image: '';
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			.col.pane {
+
+			}
+			.row {
+				@apply(--layout-horizontal);
+			}
+			paper-card {
+				margin: 15px;
+				padding: 15px;
+			}
+			.profileimage {
+				background-image: var(--twitter-profile-image);
+				background-repeat: no-repeat;
+				height: 100px;
+				width: 100px;
+				background-size: contain;
+				border-radius: 10px;
+			}
+		</style>
+
+		<paper-card heading="Twitter">
+			<div class="col panel">
+				<div class="row">
+					<paper-card>
+						<div class="row">
+							<div class="profileimage"></div>
+							<div class="col">
+								<p>
+									<b>Username: </b>[[profile.profile.username]]
+								</p>
+								<p>
+									<b>Display Name: </b>[[profile.profile.displayName]]
+								</p>
+							</div>
+						</div>
+					</paper-card>
+				</div>
+				<div class="row">
+
+				</div>
+			</div>
+		</paper-card>
+
+
+
+
+
+	</template>
+	<script src="twitter-service.js"></script>
+</dom-module>

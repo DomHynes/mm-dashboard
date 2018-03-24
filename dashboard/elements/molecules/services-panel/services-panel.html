@@ -1,0 +1,25 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../../atoms/twitch-service/twitch-service.html">
+<link rel="import" href="../../atoms/twitter-service/twitter-service.html">
+<link rel="import" href="../../atoms/youtube-service/youtube-service.html">
+
+<dom-module id="services-panel">
+	<template>
+		<style>
+			.row {
+				@apply(--layout-horizontal);
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+		</style>
+
+		<twitch-service></twitch-service>
+		<twitter-service></twitter-service>
+		<youtube-service></youtube-service>
+	</template>
+
+	<script src="services-panel.js"></script>
+
+</dom-module>

@@ -1,0 +1,30 @@
+@font-face {
+	font-family: 'avant-garde';
+	src: url('AVANT GARDE BOOK BT_0.TTF');
+	font-weight: 400;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'avant-garde';
+	src: url('AVANT GARDE BOOK OBLIQUE BT.TTF');
+	font-weight: 400;
+	font-style: oblique;
+}
+@font-face {
+	font-family: 'avant-garde';
+	src: url('AVANT GARDE DEMI BT.TTF');
+	font-weight: 700;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'avant-garde';
+	src: url('AVANT GARDE DEMI OBLIQUE BT.TTF');
+	font-weight: 700;
+	font-style: oblique;
+}
+@font-face {
+	font-family: 'avant-garde';
+	src: url('AVANT GARDE MEDIUM BT.TTF');
+	font-weight: 600;
+	font-style: normal;
+}

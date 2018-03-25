@@ -37,10 +37,15 @@ module.exports = (nodecg, backendEvents) => {
 					return name;
 				}).join(' ')).join(' vs ');
 
-			console.log(players);
-
 			const tournamentName = tournament.data.entities.tournament.hashtag ||
 				tournament.data.entities.tournament.name;
+
+			backendEvents.emit('db:setDoc', Object.assign({}, set, {video: {uploading: true}}), (err, resp) => {
+				if (err) {
+					console.log(err);
+				}
+				set._rev = resp.rev;
+			});
 
 			const upload = youtube.videos.insert({
 				resource: {
@@ -56,18 +61,13 @@ module.exports = (nodecg, backendEvents) => {
 				part: 'id,snippet, status',
 				media: {
 					body: video
-				},
-				onUploadProgress: evt => {
-					const progress = (evt.bytesRead / set.video.fileSize) * 100;
-					console.log(`${Math.round(progress)}% complete`);
 				}
-
 			}, (err, resource) => {
 				if (err) {
+					console.log(err);
 					cb(err);
 				}
 
-				console.log(upload);
 				console.log(resource);
 
 				set.video.snippet = resource.data.snippet;

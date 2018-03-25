@@ -3,18 +3,31 @@
 <link rel="import" href="../../atoms/score-info/score-info.html">
 <link rel="import" href="../../../../../shared/imports/gsap.html">
 
+<link rel="import" href="../../../../../shared/fonts/avantgarde/import.html">
+
+
 <dom-module id="set-info">
 	<template>
 		<style>
+			:host {
+				font-family: 'avant-garde';
+				color: #FFFFFF;
+			}
+			.container {
+				background-color: #7BDFF2;
+			}
 
 		</style>
+		<div class="container">
 
-		<score-info score = {{scores.0}}></score-info>
-		<score-info score = {{scores.1}}></score-info>
+			<score-info score = {{scores.0}}></score-info>
+			<score-info score = {{scores.1}}></score-info>
 
-		<template is="dom-repeat" items="{{players}}" as="team">
-			<player-info name="{{team.0.name}}"></player-info>
-		</template>
+			<template is="dom-repeat" items="{{players}}" as="team">
+				<player-info name="{{team.0.name}}"></player-info>
+			</template>
+
+		</div>
 
 	</template>
 

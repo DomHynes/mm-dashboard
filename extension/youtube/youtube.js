@@ -1,7 +1,7 @@
 'use strict';
 
 // Const yt = require('youtube-api');
-const {google} = require('googleapis');
+const google = require('googleapis');
 const youtube = google.youtube('v3');
 const moment = require('moment');
 const fs = require('fs');
@@ -9,7 +9,8 @@ const path = require('path');
 
 module.exports = (nodecg, backendEvents) => {
 	nodecg.listenFor('yt:uploadSet', (set, cb) => {
-		let video, progress;
+		let video;
+		let progress;
 
 		try {
 			video = fs.createReadStream(path.join(set.video.basePath, set.video.videoName));
@@ -63,26 +64,42 @@ module.exports = (nodecg, backendEvents) => {
 					body: video
 				}
 			}, (err, resource) => {
+				clearInterval(progress);
 				if (err) {
 					console.log(err);
-					cb(err);
+					return cb(err);
 				}
 
 				console.log(resource);
 
-				set.video.snippet = resource.data.snippet;
-				set.video.id = resource.data.id;
+				set.video.snippet = resource.snippet;
+				set.video.id = resource.id;
 
 				backendEvents.emit('db:setDoc', set, (err, resp) => {
 					if (err) {
 						console.log(err);
+						return;
+					}
+					set._rev = resp.rev;
+				});
+
+				cb(null, resource);
+			});
+
+			progress = setInterval(() => {
+				console.log(upload.req.socket._bytesDispatched);
+				set.video.uploaded = upload.req.connection._bytesDispatched;
+
+				backendEvents.emit('db:setDoc', set, (err, resp) => {
+					if (err) {
+						console.log(err);
+						return;
 					}
 					set._rev = resp.rev;
 					set.video.uploaded = upload.req.connection._bytesDispatched;
 				});
 
-				cb(null, resource);
-			});
+			}, 500);
 		};
 
 		const tournaments = nodecg.readReplicant('tournamentDB');

@@ -2,7 +2,7 @@
 const express = require('express');
 const passport = require('passport');
 
-const {google} = require('googleapis');
+const google = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
 
 const YoutubeStrategy = require('passport-youtube-v3').Strategy;
@@ -35,10 +35,13 @@ module.exports = (nodecg, backendEvents) => {
 			(accessToken, refreshToken, profile, done) => {
 				console.log(accessToken, refreshToken, profile);
 
-				oauth.setCredentials({
+
+				console.log(oauth);
+
+				oauth.credentials = {
 					access_token: accessToken,
 					refresh_token: refreshToken
-				});
+				};
 
 				console.log({
 					accessToken, refreshToken, profile

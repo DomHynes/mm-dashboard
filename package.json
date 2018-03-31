@@ -20,8 +20,7 @@
     "pouchdb-live-find": "^0.4.0",
     "shortid": "^2.2.8",
     "smashgg.js": "domhynes/smashgg.js",
-    "twitter": "^1.7.1",
-    "twitter-stream-api": "^0.5.2",
+    "twit": "^2.2.9",
     "youtube-api": "^2.0.9",
     "ytdl-core": "^0.20.2"
   },

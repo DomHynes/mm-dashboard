@@ -21,8 +21,6 @@
 			super.ready();
 			tokenStore.on('change', newData => {
 				this.profile = newData.youtube;
-				console.log(`url(${this.profile.profile._json.items[0].snippet.thumbnails.high.url})`);
-				console.log(`url(${this.profile.profile._json.items[0].snippet.thumbnails.high.url})`);
 				this.updateStyles({
 					'--youtube-profile-image': `url("${this.profile.profile._json.items[0].snippet.thumbnails.high.url}")`
 				});

@@ -1,20 +1,21 @@
 'use strict';
 
 module.exports = (nodecg, backendEvents) => {
-	const twitter = require('twitter');
+	const Twit = require('twit');
+	const tokenStore = nodecg.Replicant('token-store');
 
-	if (nodecg.bundleConfig.twitter.enabled !== true) {
-		console.log('not loading twitter, disabled in config');
-	} else {
-		console.log('Loading twitter');
+	let tw;
 
-		const tw = new twitter({
-			consumer_key: process.env.TWITTER_CONSUMER_KEY,
-			consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-			access_token_key: process.env.TWITTER_ACCESS_TOKEN,
-			access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+	tokenStore.on('change', newData => {
+		tw = new Twit({
+			consumer_key: nodecg.bundleConfig.twitter.consumerKey,
+			consumer_secret: nodecg.bundleConfig.twitter.consumerSecret,
+			access_token: newData.twitter.token,
+			access_token_secret: newData.twitter.tokenSecret
 		});
+	});
 
+	tokenStore.once('change', () => {
 		nodecg.listenFor('twitter:getUser', (name, cb) => {
 			tw.get('users/show', {
 				screen_name: name
@@ -28,11 +29,13 @@ module.exports = (nodecg, backendEvents) => {
 		nodecg.listenFor('twitter:post', (data, cb) => {
 			tw.post('statuses/update', {status: data})
 				.then(tweet => {
+					console.log(tweet);
 					cb(null, tweet);
 				})
 				.catch(e => {
+					console.log(e);
 					cb(e);
 				});
 		});
-	}
+	});
 };

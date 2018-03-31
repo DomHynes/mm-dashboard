@@ -22,34 +22,27 @@ module.exports = (nodecg, backendEvents) => {
 	});
 
 	tokenStore.once('change', data => {
-		console.log(data);
-
-		tokenStore.on('change', data => {
-			console.log(data);
-		});
-
 		app.use(passport.initialize());
+
+		oauth.credentials = {
+			access_token: data.youtube.accessToken,
+			refresh_token: data.youtube.refreshToken
+		};
+		console.log(oauth.credentials);
+		console.log(data.youtube);
 
 		passport.use(new YoutubeStrategy(
 			nodecg.bundleConfig.youtube,
 			(accessToken, refreshToken, profile, done) => {
-				console.log(accessToken, refreshToken, profile);
-
-
-				console.log(oauth);
-
 				oauth.credentials = {
 					access_token: accessToken,
 					refresh_token: refreshToken
 				};
 
-				console.log({
+				Object.assign(tokenStore.value.youtube, {
 					accessToken, refreshToken, profile
 				});
-
-				Object.assign(tokenStore.value.youtube, {
-					profile
-				});
+				console.log(tokenStore.value)
 
 				return done(null, true);
 			}

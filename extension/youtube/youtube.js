@@ -8,6 +8,8 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = (nodecg, backendEvents) => {
+	const twitterActions = nodecg.Replicant('twitter-actions');
+
 	nodecg.listenFor('yt:uploadSet', (set, cb) => {
 		let video;
 		let progress;
@@ -19,13 +21,13 @@ module.exports = (nodecg, backendEvents) => {
 			return;
 		}
 
-		const uploadVideo = (set, tournament, cb) => {
-			const players = set.players.map(teams =>
+		const playersTitle = set =>
+			set.players.map(teams =>
 				teams.map((player, index, players) => {
 					let name;
 					if (player.sponsored &&
-							player.sponsored.sponsored &&
-							player.sponsored.sponsorName) {
+						player.sponsored.sponsored &&
+						player.sponsored.sponsorName) {
 						name = `${player.sponsored.sponsorName} | ${player.name}`;
 					} else {
 						name = player.name;
@@ -38,15 +40,11 @@ module.exports = (nodecg, backendEvents) => {
 					return name;
 				}).join(' ')).join(' vs ');
 
+		const uploadVideo = (set, tournament, cb) => {
+			const players = playersTitle(set);
+
 			const tournamentName = tournament.data.entities.tournament.hashtag ||
 				tournament.data.entities.tournament.name;
-
-			backendEvents.emit('db:setDoc', Object.assign({}, set, {video: {uploading: true}}), (err, resp) => {
-				if (err) {
-					console.log(err);
-				}
-				set._rev = resp.rev;
-			});
 
 			const upload = youtube.videos.insert({
 				resource: {
@@ -64,6 +62,7 @@ module.exports = (nodecg, backendEvents) => {
 					body: video
 				}
 			}, (err, resource) => {
+				console.log('yt callback');
 				clearInterval(progress);
 				if (err) {
 					console.log(err);
@@ -83,22 +82,36 @@ module.exports = (nodecg, backendEvents) => {
 					set._rev = resp.rev;
 				});
 
+				backendEvents.emit('db:addDoc', {
+					doc: {
+						status: `${tournamentName}\n\n${players}\n\nhttps://youtube.com/watch?v=${set.video.id}`,
+						origin: 'youtube'
+					},
+					type: 'tweet'
+				}, err => {
+					if (err) {
+						console.log(err);
+					}
+				});
+
 				cb(null, resource);
 			});
 
 			progress = setInterval(() => {
-				console.log(upload.req.socket._bytesDispatched);
-				set.video.uploaded = upload.req.connection._bytesDispatched;
-
-				backendEvents.emit('db:setDoc', set, (err, resp) => {
-					if (err) {
-						console.log(err);
-						return;
-					}
-					set._rev = resp.rev;
+				try {
 					set.video.uploaded = upload.req.connection._bytesDispatched;
-				});
 
+					backendEvents.emit('db:setDoc', set, (err, resp) => {
+						if (err) {
+							console.log(err);
+							return;
+						}
+						set._rev = resp.rev;
+						set.video.uploaded = upload.req.connection._bytesDispatched;
+					});
+				} catch (e) {
+					console.log(e);
+				}
 			}, 500);
 		};
 

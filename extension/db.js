@@ -12,6 +12,11 @@ module.exports = (nodecg, backendEvents) => {
 	const playerDB = nodecg.Replicant('playerDB');
 	const tournamentDB = nodecg.Replicant('tournamentDB');
 	const setDB = nodecg.Replicant('setDB');
+	const twitterActions = nodecg.Replicant('twitter-actions');
+
+	/*
+		Indexes/Queries
+	 */
 
 	const playerQuery = db.liveFind({
 		selector: {_id: {$regex: /^player/}},
@@ -23,6 +28,10 @@ module.exports = (nodecg, backendEvents) => {
 	});
 	const setQuery = db.liveFind({
 		selector: {_id: {$regex: /^set/}},
+		aggregate: true
+	});
+	const tweetQuery = db.liveFind({
+		selector: {_id: {$regex: /^tweet/}},
 		aggregate: true
 	});
 
@@ -63,7 +72,7 @@ module.exports = (nodecg, backendEvents) => {
 			.catch(err => {
 				cb(err);
 			});
-	}
+	};
 
 	/*
       PouchDB Listeners
@@ -77,6 +86,9 @@ module.exports = (nodecg, backendEvents) => {
 	setQuery.on('ready', () => {
 		console.log('setQuery ready');
 	});
+	tweetQuery.on('ready', () => {
+		console.log('tweetQuery ready');
+	});
 
 	playerQuery.on('update', (update, aggregate) => {
 		playerDB.value = aggregate;
@@ -85,19 +97,18 @@ module.exports = (nodecg, backendEvents) => {
 		tournamentDB.value = aggregate;
 	});
 	setQuery.on('update', (update, aggregate) => {
-		console.log(aggregate);
 		setDB.value = aggregate;
+	});
+	tweetQuery.on('update', (update, aggregate) => {
+		twitterActions.value = aggregate;
 	});
 
 	/*
       NodeCG Listeners
     */
 	nodecg.listenFor('db:addDoc', addDB);
-
 	nodecg.listenFor('db:setDoc', setDoc);
-
 	nodecg.listenFor('db:delDoc', delDB);
-
 	nodecg.listenFor('db:addPlayersFromTournament', (id, cb) => {
 		db.get(id)
 			.then(doc => doc.players.map(player => {

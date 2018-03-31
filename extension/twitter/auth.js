@@ -11,28 +11,9 @@ module.exports = (nodecg, backendEvents) => {
 	const tokenStore = nodecg.Replicant('token-store');
 
 	tokenStore.once('change', data => {
-		console.log(data);
-
-		// If (data.twitch && data.twitch.refreshToken) {
-		// 	fetch('https://id.twitch.tv/oauth2/token' +
-		// 		'?grant_type=refresh_token' +
-		// 		`&refresh_token=${data.twitch.refreshToken}` +
-		// 		`&client_id=${nodecg.bundleConfig.twitch.clientID}` +
-		// 		`&client_secret=${nodecg.bundleConfig.twitch.clientSecret}`, {
-		// 		method: 'POST'
-		// 	})
-		// 	.then(resp => resp.json())
-		// 	.then(json => {
-		//
-		// 	});
-		// }
-
-		tokenStore.on('change', data => {
-			console.log(data);
-		});
+		tokenStore.on('change', data => {});
 
 		app.use(session({secret: 'ssh'}));
-
 		app.use(passport.initialize());
 
 		passport.use(new TwitterStrategy(

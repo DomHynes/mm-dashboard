@@ -11,7 +11,6 @@ module.exports = (nodecg, backendEvents) => {
 	const tokenStore = nodecg.Replicant('token-store');
 
 	tokenStore.once('change', data => {
-		console.log(data);
 
 		backendEvents.on('twitch:refreshToken', (data, cb) => {
 			fetch('https://id.twitch.tv/oauth2/token' +
@@ -28,9 +27,7 @@ module.exports = (nodecg, backendEvents) => {
 				});
 		});
 
-		tokenStore.on('change', data => {
-			console.log(data);
-		});
+		tokenStore.on('change', data => {});
 		app.use(passport.initialize());
 
 		passport.use(new TwitchStrategy(

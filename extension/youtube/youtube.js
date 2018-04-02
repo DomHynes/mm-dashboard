@@ -8,8 +8,6 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = (nodecg, backendEvents) => {
-	const twitterActions = nodecg.Replicant('twitter-actions');
-
 	nodecg.listenFor('yt:uploadSet', (set, cb) => {
 		let video;
 		let progress;
@@ -49,27 +47,24 @@ module.exports = (nodecg, backendEvents) => {
 			const upload = youtube.videos.insert({
 				resource: {
 					snippet: {
-						title: `${tournamentName} | ${players}`,
+						title: `${tournamentName} - ${players}`,
 						description: 'also test'
 					},
 					status: {
-						privacyStatus: 'private',
-						notifySubscribers: false
+						privacyStatus: 'private'
 					}
 				},
-				part: 'id,snippet, status',
+				notifySubscribers: false,
+				part: 'id,snippet,status',
 				media: {
 					body: video
 				}
 			}, (err, resource) => {
-				console.log('yt callback');
 				clearInterval(progress);
 				if (err) {
 					console.log(err);
 					return cb(err);
 				}
-
-				console.log(resource);
 
 				set.video.snippet = resource.snippet;
 				set.video.id = resource.id;
@@ -108,6 +103,10 @@ module.exports = (nodecg, backendEvents) => {
 						}
 						set._rev = resp.rev;
 						set.video.uploaded = upload.req.connection._bytesDispatched;
+
+						if (set.video.uploaded > set.video.fileSize) {
+							clearInterval(progress);
+						}
 					});
 				} catch (e) {
 					console.log(e);

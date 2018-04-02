@@ -1,0 +1,27 @@
+<link rel="import" href="../../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="character-display">
+	<template>
+		<style>
+			:host {
+				--character-image: none;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+			.icon {
+				background-image: var(--character-image);
+				image-rendering: pixelated;
+				width: 24px;
+				height: 24px;
+			};
+		</style>
+
+		<div class="icon"
+			style="[[_findColourOffset(colourIndex, characterIndex, selectedGame)]]"
+		></div>
+
+	</template>
+
+	<script src="character-display.js"></script>
+</dom-module>

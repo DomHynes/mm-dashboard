@@ -55,7 +55,6 @@
 		}
 
 		_computeReversed() {
-			console.log(this.reversed % 2 ? 'reversed' : '');
 			return this.reversed % 2 ? 'reversed' : '';
 		}
 	}

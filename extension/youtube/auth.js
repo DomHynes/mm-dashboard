@@ -28,8 +28,16 @@ module.exports = (nodecg, backendEvents) => {
 			access_token: data.youtube.accessToken,
 			refresh_token: data.youtube.refreshToken
 		};
-		console.log(oauth.credentials);
-		console.log(data.youtube);
+
+		oauth.refreshAccessToken((err, tokens) => {
+			if (err) {
+				console.log(err);
+				console.log('yt token error, nuking');
+				tokenStore.value.youtube = {};
+			}
+			console.log(tokens);
+			Object.assign(tokenStore.value.youtube, tokens);
+		});
 
 		passport.use(new YoutubeStrategy(
 			nodecg.bundleConfig.youtube,
@@ -42,7 +50,7 @@ module.exports = (nodecg, backendEvents) => {
 				Object.assign(tokenStore.value.youtube, {
 					accessToken, refreshToken, profile
 				});
-				console.log(tokenStore.value)
+				console.log(tokenStore.value);
 
 				return done(null, true);
 			}

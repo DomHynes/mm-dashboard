@@ -1,1 +1,10 @@
-@import '../../shared/fonts/amiko/stylesheet.css';
+body {
+	margin: 0;
+	width: 1280px;
+	height: 720px;
+}
+
+#container {
+	position: absolute;
+	overflow: hidden;
+}

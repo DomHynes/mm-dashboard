@@ -3,9 +3,9 @@
 const {colorScenes} = require('./utils');
 
 module.exports = (nodecg, backendEvents, pad) => {
-	const obsScenes = nodecg.Replicant('obs-scenes');
+	const obsData = nodecg.Replicant('obs-data');
 
-	obsScenes.on('change', newData => {
+	obsData.on('change', newData => {
 		colorScenes(pad, newData);
 	});
 

@@ -7,10 +7,10 @@ module.exports = (nodecg, backendEvents) => {
 		return;
 	}
 	const pad = new Launchpad();
-	console.log(pad);
 
 	require('./pad-listeners')(nodecg, backendEvents, pad);
 	require('./ext-listeners')(nodecg, backendEvents, pad);
+
 	pad.connect();
 };
 

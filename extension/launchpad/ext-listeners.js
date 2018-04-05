@@ -4,9 +4,17 @@ const {colorScenes} = require('./utils');
 
 module.exports = (nodecg, backendEvents, pad) => {
 	const obsData = nodecg.Replicant('obs-data');
+	const setInfo = nodecg.Replicant('set-info');
 
-	obsData.on('change', newData => {
-		colorScenes(pad, newData);
+	const updatePad = () => {
+		colorScenes(pad, obsData.value, setInfo.value);
+	};
+
+	obsData.on('change', () => {
+		updatePad();
+	});
+	setInfo.on('change', () => {
+		updatePad();
 	});
 
 	nodecg.listenFor('launchpad:connect', () => {

@@ -18,6 +18,11 @@
 			{
 				"name": "doubles",
 				"players": 2
+			},
+			{
+				"name": "crews",
+				"players": 4,
+				"crews": true
 			}
 		],
 		"characters":[

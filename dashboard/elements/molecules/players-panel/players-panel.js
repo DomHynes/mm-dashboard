@@ -73,8 +73,18 @@
 			};
 		}
 
+		static get observers() {
+			return [
+				'_eventChange(setinfo.event)'
+			];
+		}
+
 		_gameChange(a) {
 			this.gameIndex = gameData.value.findIndex(game => game._id === this.setinfo.game._id);
+		}
+
+		_eventChange(e) {
+			console.log(e);
 		}
 
 		_gameIndexChange(a) {

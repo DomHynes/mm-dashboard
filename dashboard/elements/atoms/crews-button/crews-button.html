@@ -1,0 +1,36 @@
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="crews-button">
+	<template>
+		<style>
+			:host {
+				cursor: pointer;
+			}
+		</style>
+
+		<paper-card raised on-tap="_toggleCondition">
+			<template is="dom-if" if="[[icons]]">
+				<template is="dom-if" if="[[condition]]">
+					<iron-icon icon="[[positive]]"></iron-icon>
+				</template>
+				<template is="dom-if" if="[[!condition]]">
+					<iron-icon icon="[[negative]]"></iron-icon>
+				</template>
+			</template>
+
+			<template is="dom-if" if="[[!icons]]">
+				<template is="dom-if" if="[[condition]]">
+					<span>[[positive]]</span>
+				</template>
+				<template is="dom-if" if="[[!condition]]">
+					<span>[[negative]]</span>
+				</template>
+			</template>
+		</paper-card>
+	</template>
+
+	<script src="crews-button.js"></script>
+</dom-module>

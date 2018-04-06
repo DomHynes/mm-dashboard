@@ -4,6 +4,7 @@
 
 <link rel="import" href="../character-selector/character-selector.html">
 <link rel="import" href="../sponsor-region/sponsor-region.html">
+<link rel="import" href="../crews-button/crews-button.html">
 
 <dom-module id="player-info">
 	<template>
@@ -11,6 +12,9 @@
 			.row {
 				@apply(--layout-horizontal);
 				@apply(--layout-center);
+			}
+			.col {
+				@apply(--layout-vertical);
 			}
 			.reversed {
 				@apply(--layout-horizontal-reverse);
@@ -38,6 +42,22 @@
 				character-index="{{characterIndex}}"
 				colour-index="{{colourIndex}}"
 				game-index="[[selectedGame]]"></character-selector>
+			<template is="dom-if" if="[[crews]]">
+				<div class="col">
+					<crews-button
+						positive="💖"
+						negative="💀"
+						condition="{{alive}}"
+					></crews-button>
+					<crews-button
+						positive="icons:check"
+						negative="icons:close"
+						icons="true"
+						condition="{{currentlyPlaying}}"
+					></crews-button>
+				</div>
+
+			</template>
 		</div>
 		<div class$="row">
 			<sponsor-region

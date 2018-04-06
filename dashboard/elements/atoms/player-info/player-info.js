@@ -16,6 +16,9 @@
 					value: 0,
 					notify: true
 				},
+				event: {
+					type: Number
+				},
 				name: {
 					type: String,
 					value: '',
@@ -40,9 +43,23 @@
 					value: false,
 					notify: true
 				},
+				alive: {
+					type: Boolean,
+					value: true,
+					notify: true
+				},
+				currentlyPlaying: {
+					type: Boolean,
+					value: false,
+					notify: true
+				},
 				playerDb: {
 					type: Array,
 					value: []
+				},
+				crews: {
+					type: Boolean,
+					value: false
 				},
 				gameData: {
 					type: Object,
@@ -54,6 +71,16 @@
 					type: Number
 				}
 			};
+		}
+
+		static get observers() {
+			return [
+				'_checkCrews(event, gameData, selectedGame)'
+			];
+		}
+
+		_checkCrews(event, gameData, selectedGame) {
+			this.crews = gameData[selectedGame].events[event].name === 'crews';
 		}
 
 		_computeReversed() {

@@ -16,6 +16,10 @@
 				event: {
 					type: Number,
 					notify: true
+				},
+				players: {
+					type: Object,
+					notify: true
 				}
 			};
 		}
@@ -28,9 +32,23 @@
 
 		checkEvent(game, gameData, event) {
 			const ready = game !== undefined && gameData !== undefined && event !== undefined;
-			console.log(gameData[game].events.length, event);
 			if (ready && gameData[game].events.length <= event) {
 				this.event = 0;
+			} else if (ready) {
+				this.players.forEach((team, index) => {
+					while (team.length < gameData[game].events[event].players) {
+						this.push(['players', index], ({
+							characterIndex: 0,
+							colourIndex: 0,
+							name: 'Player',
+							sponsored: {},
+							region: {}
+						}));
+					}
+					while (team.length > gameData[game].events[event].players) {
+						this.pop(['players', index]);
+					}
+				});
 			}
 		}
 

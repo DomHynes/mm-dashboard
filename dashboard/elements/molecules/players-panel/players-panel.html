@@ -90,6 +90,9 @@
 											selected-game="{{setinfo.game}}"
 											game-data="[[gameData]]"
 											reversed="{{i}}"
+											event="{{setinfo.event}}"
+											alive="{{player.alive}}"
+											currently-playing="{{player.currentlyPlaying}}"
 											player-db="{{playerDB}}"></player-info>
 									</div>
 								</template>
@@ -104,6 +107,7 @@
 								game="{{setinfo.game}}"
 								game-data="[[gameData]]"
 								event="{{setinfo.event}}"
+								players="{{setinfo.players}}"
 							></game-panel>
 						</div>
 

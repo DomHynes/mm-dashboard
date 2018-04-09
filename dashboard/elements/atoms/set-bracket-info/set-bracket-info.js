@@ -24,6 +24,10 @@
 						return {};
 					},
 					observer: '_tournamentObjectChange'
+				},
+				bracketPlace: {
+					type: String,
+					notify: true
 				}
 			};
 		}

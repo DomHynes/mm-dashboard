@@ -10,6 +10,7 @@
 <link rel="import" href="../../../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../../../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="../../../../bower_components/paper-progress/paper-progress.html">
+<link rel="import" href="../../../../bower_components/vaadin-grid/vaadin-grid-sorter.html">
 <link rel="import" href="../../../../shared/imports/lodash.html">
 
 <link rel="import" href="../../atoms/player-generator/player-generator.html">
@@ -97,7 +98,7 @@
 
 		<div class="row panel">
 
-			<vaadin-grid items="{{setDB}}" id="grid">
+			<vaadin-grid items="{{setDB}}" id="grid" multi-sort>
 
 				<vaadin-grid-column width="4em">
 					<template class="header">
@@ -115,7 +116,7 @@
 
 				<vaadin-grid-column width="9em">
 					<template class="header">
-						<vaadin-grid-sorter>Bracket Place</vaadin-grid-sorter>
+						<vaadin-grid-sorter path="bracketPlace">Bracket Place</vaadin-grid-sorter>
 					</template>
 					<template>[[item.bracketPlace]]</template>
 				</vaadin-grid-column>
@@ -123,7 +124,7 @@
 
 				<vaadin-grid-column width="9em">
 					<template class="header">
-						<vaadin-grid-sorter>Tournament</vaadin-grid-sorter>
+						<vaadin-grid-sorter path="tournament.slug">Tournament</vaadin-grid-sorter>
 					</template>
 					<template>[[item.tournament.slug]]</template>
 				</vaadin-grid-column>
@@ -131,7 +132,7 @@
 
 				<vaadin-grid-column width="4em">
 					<template class="header">
-						<vaadin-grid-sorter>Game</vaadin-grid-sorter>
+						<vaadin-grid-sorter path="game">Game</vaadin-grid-sorter>
 					</template>
 					<template>[[_getGameName(item.game)]]</template>
 				</vaadin-grid-column>
@@ -139,7 +140,7 @@
 
 				<vaadin-grid-column width="4em">
 					<template class="header">
-						<vaadin-grid-sorter>Event</vaadin-grid-sorter>
+						<vaadin-grid-sorter path="event">Event</vaadin-grid-sorter>
 					</template>
 					<template>[[_getEventName(item.event, item.game)]]</template>
 				</vaadin-grid-column>

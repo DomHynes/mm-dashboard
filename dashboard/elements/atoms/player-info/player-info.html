@@ -38,10 +38,14 @@
 					text-property="tag">
 			</paper-autocomplete>
 
-			<character-selector
-				character-index="{{characterIndex}}"
-				colour-index="{{colourIndex}}"
-				game-index="[[selectedGame]]"></character-selector>
+			<template is="dom-if" if="[[characters]]">
+				<character-selector
+					character-index="{{characterIndex}}"
+					colour-index="{{colourIndex}}"
+					game-index="[[selectedGame]]">
+				</character-selector>
+			</template>
+
 			<template is="dom-if" if="[[crews]]">
 				<div class="col">
 					<crews-button

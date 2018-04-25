@@ -69,18 +69,30 @@
 				},
 				selectedGame: {
 					type: Number
+				},
+				characters: {
+					type: Boolean
 				}
 			};
 		}
 
 		static get observers() {
 			return [
-				'_checkCrews(event, gameData, selectedGame)'
+				'_checkCrews(event, gameData, selectedGame)',
+				'_checkCharacters(gameData, selectedGame)'
 			];
 		}
 
 		_checkCrews(event, gameData, selectedGame) {
 			this.crews = gameData[selectedGame].events[event].name === 'crews';
+		}
+
+		_checkCharacters(gameData, selectedGame) {
+			this.characters = gameData[selectedGame].characters;
+			if (!this.characters) {
+				this.characterIndex = null;
+				this.colourIndex = null;
+			}
 		}
 
 		_computeReversed() {

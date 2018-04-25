@@ -7,18 +7,22 @@
   <link rel="import" href="elements/molecules/players-panel/players-panel.html">
   <link rel="import" href="elements/molecules/comms-panel/comms-panel.html">
   <link rel="import" href="elements/molecules/game-panel/game-panel.html">
+  <link rel="import" href="elements/molecules/socials-panel/socials-panel.html">
   <link rel="import" href="elements/atoms/scores/scores.html">
 
 	<custom-style>
 		<style>
 			.container {
-				@apply(--layout-horizontal);
+				@apply(--layout-vertical);
 			}
 			.col {
 				@apply(--layout-vertical);
 				@apply(--layout-flex-none);
 				width: 680px;
 				margin: 0 15px 15px 0;
+			}
+			.row {
+				@apply(--layout-horizontal);
 			}
 			paper-card {
 				--paper-card-header-text: {
@@ -34,13 +38,18 @@
 <body>
 
 <div class="container">
-	<div class="col">
-		<players-panel></players-panel>
+	<div class="row">
+		<div class="col">
+			<players-panel></players-panel>
+		</div>
+		<div class="col">
+			<paper-card heading="Commentators">
+				<comms-panel></comms-panel>
+			</paper-card>
+		</div>
 	</div>
-	<div class="col">
-		<paper-card heading="Commentators">
-			<comms-panel></comms-panel>
-		</paper-card>
+	<div class="row">
+		<socials-panel></socials-panel>
 	</div>
 </div>
 

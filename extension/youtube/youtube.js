@@ -12,6 +12,12 @@ module.exports = (nodecg, backendEvents) => {
 		let video;
 		let progress;
 
+		const game = nodecg.readReplicant('gameData')[set.game];
+		const event = game.events[set.event];
+
+		console.log(game);
+		console.log(event);
+
 		try {
 			video = fs.createReadStream(path.join(set.video.basePath, set.video.videoName));
 		} catch (e) {
@@ -47,7 +53,7 @@ module.exports = (nodecg, backendEvents) => {
 			const upload = youtube.videos.insert({
 				resource: {
 					snippet: {
-						title: `${tournamentName} - ${players}`,
+						title: `${tournamentName} - ${players} - ${game.shortName} ${`${event.name[0].toUpperCase()}${event.name.slice(1)}`} ${set.bracketPlace}`,
 						description: 'also test'
 					},
 					status: {

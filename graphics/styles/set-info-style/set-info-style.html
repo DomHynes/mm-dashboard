@@ -1,0 +1,88 @@
+<dom-module id="set-info-style">
+	<template>
+		<style>
+			.container {
+				font-family: 'avant-garde';
+				color: #FFFFFF;
+				width: 1920px;
+				height: 1080px;
+			}
+			.containerbgSingles {
+				/*background: url('img/bg.png') no-repeat;*/
+			}
+			.containerbgCrews {
+				background: url('img/crewsbg.png') no-repeat;
+			}
+			.player {
+				display: flex;
+				flex-direction: column;
+				width: 225px;
+				height: 66px;
+				position: absolute;
+				top: 27px;
+			}
+			.p1 {
+				left: 177px;
+			}
+			.p2 {
+				left: 1325px;
+			}
+
+			.score-row {
+				display: flex;
+				justify-content: flex-end;
+			}
+			.row {
+				height: 33px;
+			}
+			.reversed {
+				flex-direction: row-reverse;
+			}
+
+			.crews {
+				background: url('img/crewsbox.png') no-repeat;
+				position: absolute;
+				width: 227px;
+				height: 173px;
+				top: 492px;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				justify-content: space-around;
+				text-transform: uppercase;
+				font-weight: bold;
+				font-style: oblique;
+				font-size: 18px;
+				text-shadow: 2px 2px 0 black;
+			}
+			.dead {
+				color: grey;
+			}
+			.crews.p1 {
+				left: 5px;
+			}
+			.crews.p2 {
+				left: 1048px;
+			}
+			.hidden {
+				opacity: 0;
+			}
+			.titles {
+				position: absolute;
+				top: 4px;
+				display: flex;
+				flex-direction: row;
+				left: 236px;
+				width: 807px;
+				justify-content: space-between;
+			}
+			.bracketPlace {
+
+			}
+			.eventName {
+
+			}
+
+		</style>
+	</template>
+</dom-module>

@@ -6,4 +6,5 @@ module.exports = (nodecg, backendEvents) => {
 	}
 
 	require('./auth')(nodecg, backendEvents);
+	require('./twitch')(nodecg, backendEvents);
 };

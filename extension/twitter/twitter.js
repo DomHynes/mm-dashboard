@@ -7,6 +7,7 @@ module.exports = (nodecg, backendEvents) => {
 	let tw;
 
 	tokenStore.on('change', newData => {
+		console.log(newData);
 		tw = new Twit({
 			consumer_key: nodecg.bundleConfig.twitter.consumerKey,
 			consumer_secret: nodecg.bundleConfig.twitter.consumerSecret,
@@ -26,16 +27,15 @@ module.exports = (nodecg, backendEvents) => {
 				});
 		});
 
-		nodecg.listenFor('twitter:post', (data, cb) => {
-			tw.post('statuses/update', {status: data})
-				.then(tweet => {
-					console.log(tweet);
-					cb(null, tweet);
-				})
-				.catch(e => {
-					console.log(e);
-					cb(e);
-				});
+		nodecg.listenFor('twitter:post', async (data, cb) => {
+			console.log(`tweeting: ${data}`);
+			const tweet = await tw.post('statuses/update', {status: data});
+			console.log(tweet);
+			if (tweet.data.errors && tweet.data.errors.length > 0) {
+				tweet.errors.forEach(err => console.log(err));
+				return cb(tweet.errors);
+			}
+			cb(null, tweet);
 		});
 	});
 };

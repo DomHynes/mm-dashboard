@@ -1,0 +1,45 @@
+<script src="../../../../extension/twitter/twitter.js"></script>
+<link href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link href="../../../../bower_components/paper-input/paper-input.html">
+<link href="../../../../bower_components/paper-input/paper-textarea.html">
+<link href="../../../../bower_components/paper-progress/paper-progress.html">
+
+<dom-module id="socials-twitter">
+	<template>
+		<style>
+			:host {
+				margin: 15px;
+			}
+			.col {
+				@apply(--layout-vertical);
+			}
+			.row {
+				@apply(--layout-horizontal);
+			}
+			paper-input {
+				@apply(--layout-flex-auto);
+				@apply(--layout-self-end);
+				margin-bottom: 20px;
+			}
+			paper-button {
+				height: 120px;
+				text-align: center;
+			}
+		</style>
+
+		<div class="col">
+			<div class="row">
+				<paper-input value="{{text}}" disabled="[[posting]]"></paper-input>
+
+				<div class="col actions">
+					<paper-button raised on-tap="post">
+						SEND
+					</paper-button>
+				</div>
+			</div>
+		</div>
+
+
+	</template>
+	<script src="socials-twitter.js"></script>
+</dom-module>

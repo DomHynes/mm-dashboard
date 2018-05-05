@@ -224,5 +224,51 @@
 				"longName": "Jigglypuff"
 			}
 		]
+	},
+	{
+		"name": "sfv",
+		"longName": "Street Fighter V",
+		"shortName": "SFV",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"all": {
+				"top": "27px"
+			},
+			"players": [
+				{
+					"left": "177px"
+				}, {
+					"left": "1325px"
+				}
+			]
+		}
+	},
+	{
+		"name": "tk7",
+		"longName": "Tekken 7",
+		"shortName": "Tekken 7",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"all": {
+				"top": "37px"
+			},
+			"players": [
+				{
+					"left": "247px"
+				}, {
+					"left": "1255px"
+				}
+			]
+		}
 	}
 ]

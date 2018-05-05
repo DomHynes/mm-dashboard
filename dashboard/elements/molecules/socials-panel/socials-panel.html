@@ -1,17 +1,50 @@
-<link rel="import" href="../../atoms/socials-twitch/socials-twitch.html">
 <link rel="import" href="../../../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<link rel="import" href="../../atoms/socials-twitter/socials-twitter.html">
+<link rel="import" href="../../atoms/socials-twitch/socials-twitch.html">
+
 
 <dom-module id="socials-panel">
 	<template>
-
 		<style>
+			.container {
+				@apply(--layout-vertical);
+			}
+			.col {
+				@apply(--layout-vertical);
+				@apply(--layout-flex-none);
+				width: 680px;
+				margin: 0 15px 15px 0;
+			}
+			.row {
+				@apply(--layout-horizontal);
+			}
+			paper-card {
+				--paper-card-header-text: {
+					text-align: center;
+				};
+				margin-bottom: 30px;
+			}
 
 		</style>
 
 
-		<paper-card>
-			<socials-twitch></socials-twitch>
-		</paper-card>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<paper-card heading="Twitch">
+						<socials-twitch></socials-twitch>
+					</paper-card>
+				</div>
+
+				<div class="col">
+					<paper-card heading="Quick Tweet">
+						<socials-twitter></socials-twitter>
+					</paper-card>
+				</div>
+			</div>
+		</div>
 	</template>
 
 	<script src="socials-panel.js"></script>

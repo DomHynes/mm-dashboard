@@ -1,5 +1,51 @@
-<template id="socials-twitch">
+<link href="../../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link href="../../../../bower_components/paper-input/paper-input.html">
+<link href="../../../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="socials-twitch">
+	<template>
+		<style  include="iron-flex">
+			.col {
+				@apply(--layout-vertical);
+			}
+			.row {
+				@apply(--layout-horizontal);
+			}
+			.flex-auto {
+				@apply(--layout-flex-auto);
+			}
+			paper-card, .panel {
+				margin: 15px;
+			}
+			.twitch {
+				background-color: #6441A4;
+				color: white;
+			}
+		</style>
+
+		<div class="panel col">
+			<div class="row">
+				<div class="col flex-auto">
+					<paper-card class="flex-auto" heading="Last Clip">
+						<div class="panel">
+							<p><b>Clipped at:</b> [[lastClipDate]]</p>
+							<p><b>Clipped at:</b> [[lastClipDate]]</p>
+						</div>
+					</paper-card>
+				</div>
+
+				<div class="col">
+					<paper-input label="Channel to Clip">
+
+					</paper-input>
+					<paper-button raised class="flex-auto twitch" on-tap="clip">
+						MAKE CLIP
+					</paper-button>
+				</div>
+			</div>
+		</div>
 
 
+	</template>
 	<script src="socials-twitch.js"></script>
-</template>
+</dom-module>

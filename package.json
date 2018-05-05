@@ -7,13 +7,12 @@
   ],
   "dependencies": {
     "ajv": "^6.1.1",
+    "axios": "^0.18.0",
     "googleapis": "^23.0.1",
     "launchpad-mini": "^2.1.2",
-    "lien": "^3.2.0",
     "moment": "^2.21.0",
     "node-fetch": "^2.0.0",
     "obs-websocket-js": "^1.2.0",
-    "opn": "^5.3.0",
     "passport-twitter": "^1.0.4",
     "passport-youtube-v3": "^2.1.0",
     "pouchdb": "^6.4.3",
@@ -22,6 +21,8 @@
     "shortid": "^2.2.8",
     "smashgg.js": "domhynes/smashgg.js",
     "twit": "^2.2.9",
+    "twitch-api-v5": "^2.0.2",
+    "twitch-helix": "^1.0.7",
     "youtube-api": "^2.0.9",
     "ytdl-core": "^0.20.2"
   },
@@ -63,12 +64,12 @@
     ],
     "graphics": [
       {
-        "file": "CoM/singles.html",
+        "file": "BAM10/singles.html",
         "width": 1280,
         "height": 720
       },
       {
-        "file": "CoM/commentators.html",
+        "file": "BAM10/commentators.html",
         "width": 1280,
         "height": 720
       }

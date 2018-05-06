@@ -3,9 +3,18 @@
 		static get is() {
 			return 'socials-twitch';
 		}
+		static get properties() {
+		  return {
+		    channel: {
+		      type: String
+        }
+      }
+    }
 
-		makeClip() {
-			nodecg.sendMessage('')
+		getClip() {
+			nodecg.sendMessage('twitch:getClip', this.channel, (err, data) => {
+			  console.log(err, data);
+      });
 		}
 	}
 

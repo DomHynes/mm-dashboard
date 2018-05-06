@@ -12,15 +12,23 @@ module.exports = (nodecg, backendEvents) => {
 
 	tokenStore.on('change', async newData => {
 		helix.defaults.headers.common.Authorization = `Bearer ${newData.twitch.accessToken}`;
-		const broadcasterID = await helix.get('/users', {
-			params: {login: 'btssmash'}
-		});
-		const clip = await helix.post('/clips', {
-			broadcaster_id: broadcasterID.data.data[0].id
-		});
 	});
 
-	nodecg.listenFor('twitch:getClip', (channel, cb) => {
-
-	});
+	tokenStore.once('change', async newData => {
+    nodecg.listenFor('twitch:getClip', async (channel, cb) => {
+    	console.log(channel);
+    	try {
+        const broadcasterID = await helix.get('/users', {
+          params: {login: channel},
+        });
+        const clip = await helix.post('/clips', {
+          broadcaster_id: broadcasterID.data.data[0].id
+        });
+        cb(null, clip.data);
+      } catch (e) {
+    		console.log(e);
+    		cb({message: e.message});
+			}
+    });
+	})
 };

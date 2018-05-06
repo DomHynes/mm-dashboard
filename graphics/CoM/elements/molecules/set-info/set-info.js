@@ -21,17 +21,79 @@ class SetInfo extends Polymer.Element {
 					}
 				]
 			],
-			scores: [
-				0, 0
-			]
+			scores: {
+				type: Array,
+				value() {
+					return [];
+				}
+			},
+			currentPlayer1: {
+				type: Object,
+				value() {
+					return {};
+				}
+			},
+			currentPlayer2: {
+				type: Object,
+				value() {
+					return {};
+				}
+			}
 		};
+	}
+
+	_getAliveClass(e) {
+		return e
+			? 'alive'
+			: 'dead';
+	}
+
+	crewsVisible(players) {
+		console.log(players);
+		return players && !(players[0].length > 2)
+			? 'hidden'
+			: 'visible';
+	}
+
+	crewsInvisible(players) {
+		console.log(players);
+		return players && !(players[0].length > 2)
+			? 'visible'
+			: 'hidden';
+	}
+
+	bgClass(players) {
+		return players && !(players[0].length > 2)
+			? 'containerbgSingles'
+			: 'containerbgCrews';
 	}
 
 	ready() {
 		super.ready();
-		setinfo.on('change', newData => {
-			this.scores = newData.scores;
+		setinfo.on('change', async newData => {
+			this.scores = _.cloneDeep(newData.scores);
 			this.players = newData.players;
+			this.bracketPlace = newData.bracketPlace;
+			console.log(newData);
+
+			nodecg.readReplicant('gameData', data => {
+				this.eventName = data[newData.game].events[newData.event].name;
+			});
+
+			if (this.players[0].length > 2) {
+				this.players.forEach((team, teamIndex) => {
+					team.forEach((player, playerIndex) => {
+						if (player.currentlyPlaying) {
+							this[`currentPlayer${teamIndex + 1}`] = _.cloneDeep(player);
+						}
+					});
+				});
+			} else {
+				this.players.forEach((team, teamIndex) => {
+					this[`currentPlayer${teamIndex + 1}`] = _.cloneDeep(team[0]);
+				});
+			}
+			console.log(this.currentPlayer1);
 		});
 	}
 }

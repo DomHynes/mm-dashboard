@@ -5,7 +5,14 @@
 <dom-module id="comms-info">
 	<template>
 		<style>
-
+			:host {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-around;
+				position: absolute;
+				top: 575px;
+				width: 1280px;
+			}
 		</style>
 
 		<template is="dom-repeat" items="{{comms}}">

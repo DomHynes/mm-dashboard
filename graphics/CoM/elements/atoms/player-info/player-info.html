@@ -1,4 +1,7 @@
 <link rel="import" href="../../../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../../../bower_components/html-echo/html-echo.html">
+<link rel="import" href="../../../../../shared/elements/atoms/character-display/character-display.html">
+<link rel="import" href="../../../../../shared/imports/textFit.html">
 
 <dom-module id="player-info">
 	<template>
@@ -7,13 +10,41 @@
 				text-transform: uppercase;
 				font-weight: bold;
 				font-style: oblique;
-				font-size: 60px;
+				font-size: 28px;
+				text-shadow: 2px 2px 0 black;
+				width: 100%;
+			}
+			#name{
+				width: 181px;
+				padding: 0 5px;
+				display: flex;
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+			}
+			#character {
+				width: 33px;
+			}
+			.container {
+				display: flex;
+				height: 33px;
+				justify-content: space-between;
+				width: 100%;
+			}
+			.reversed {
+				flex-direction: row-reverse;
 			}
 
 		</style>
 
-		<div id="name">{{_name}}</div>
-
+		<div class$="container [[_computeReversed()]]">
+			<html-echo id="name" html="[[_processName(_name)]]"></html-echo>
+			<character-display id="character"
+			   character-index="{{_characterIndex}}"
+			   colour-index="{{_colourIndex}}"
+			   selected-game="[[_selectedGame]]"
+			></character-display>
+		</div>
 	</template>
 
 	<script src="player-info.js"></script>

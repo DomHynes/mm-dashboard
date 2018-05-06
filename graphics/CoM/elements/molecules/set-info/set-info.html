@@ -1,7 +1,9 @@
 <link rel="import" href="../../../../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../atoms/player-info/player-info.html">
 <link rel="import" href="../../atoms/score-info/score-info.html">
+<link rel="import" href="../../atoms/title-display/title-display.html">
 <link rel="import" href="../../../../../shared/imports/gsap.html">
+<link rel="import" href="../../../../../shared/imports/lodash.html">
 
 <link rel="import" href="../../../../../shared/fonts/avantgarde/import.html">
 
@@ -9,23 +11,143 @@
 <dom-module id="set-info">
 	<template>
 		<style>
-			:host {
+			.container {
 				font-family: 'avant-garde';
 				color: #FFFFFF;
+				width: 1280px;
+				height: 720px;
 			}
-			.container {
-				background-color: #7BDFF2;
+			.containerbgSingles {
+				background: url('img/bg.png') no-repeat;
+			}
+			.containerbgCrews {
+		    	background: url('img/crewsbg.png') no-repeat;
+			}
+			.player {
+				display: flex;
+				flex-direction: column;
+				width: 225px;
+				height: 66px;
+				position: absolute;
+				top: 420px;
+			}
+			.score-row {
+				display: flex;
+				justify-content: flex-end;
+			}
+			.row {
+				height: 33px;
+			}
+			.reversed {
+				flex-direction: row-reverse;
+			}
+			.p1 {
+				left: 6px;
+			}
+
+			.p2 {
+				left: 1049px;
+			}
+
+			.crews {
+				background: url('img/crewsbox.png') no-repeat;
+				position: absolute;
+				width: 227px;
+				height: 173px;
+				top: 492px;
+				display: flex;
+				flex-direction: column;
+				text-align: center;
+				justify-content: space-around;
+				text-transform: uppercase;
+				font-weight: bold;
+				font-style: oblique;
+				font-size: 18px;
+				text-shadow: 2px 2px 0 black;
+			}
+			.dead {
+				color: grey;
+			}
+			.crews.p1 {
+				left: 5px;
+			}
+			.crews.p2 {
+				left: 1048px;
+			}
+			.hidden {
+				opacity: 0;
+			}
+			.titles {
+				position: absolute;
+				top: 4px;
+				display: flex;
+				flex-direction: row;
+				left: 236px;
+				width: 807px;
+				justify-content: space-between;
+			}
+			.bracketPlace {
+
+			}
+			.eventName {
+
 			}
 
 		</style>
-		<div class="container">
+		<div class$="container [[bgClass(players)]]">
+			<div class="titles">
+				<title-display
+					title="[[bracketPlace]]"
+					class=" bracketPlace"
+				></title-display>
+				<title-display
+					title="[[eventName]]"
+					class=" eventName"
+				></title-display>
+			</div>
 
-			<score-info score = {{scores.0}}></score-info>
-			<score-info score = {{scores.1}}></score-info>
 
-			<template is="dom-repeat" items="{{players}}" as="team">
-				<player-info name="{{team.0.name}}"></player-info>
-			</template>
+
+			<div class="p1 player">
+				<div class="score-row row">
+					<score-info class$=[[crewsInvisible(players)]] score={{scores.0}}></score-info>
+				</div>
+				<div class="player-row row">
+					<player-info
+						name="{{currentPlayer1.name}}"
+						character-index="[[currentPlayer1.characterIndex]]"
+						colour-index="[[currentPlayer1.colourIndex]]"
+					></player-info>
+				</div>
+			</div>
+			<div class="p2 player">
+				<div class="score-row row reversed">
+					<score-info class$=[[crewsInvisible(players)]] score={{scores.1}}></score-info>
+				</div>
+				<div class="player-row row reversed">
+					<player-info
+						name="{{currentPlayer2.name}}"
+						character-index="[[currentPlayer2.characterIndex]]"
+						colour-index="[[currentPlayer2.colourIndex]]"
+						reversed
+					></player-info>
+				</div>
+			</div>
+
+			<div class$="crews p1 [[crewsVisible(players)]]">
+				<template is="dom-repeat" items="[[players.0]]">
+					<span class$="[[_getAliveClass(item.alive)]]">
+						[[item.name]]
+					</span>
+				</template>
+			</div>
+			<div class$="crews p2 [[crewsVisible(players)]]">
+				<template is="dom-repeat" items="[[players.1]]">
+					<span class$="[[_getAliveClass(item.alive)]]">
+						[[item.name]]
+					</span>
+				</template>
+			</div>
 
 		</div>
 

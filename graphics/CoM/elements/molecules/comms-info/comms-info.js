@@ -23,6 +23,7 @@ class CommsInfo extends Polymer.Element {
 	ready() {
 		super.ready();
 		commsinfo.on('change', newData => {
+			console.log(newData);
 			this.comms = newData;
 		});
 	}

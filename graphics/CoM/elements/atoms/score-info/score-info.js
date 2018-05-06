@@ -18,6 +18,7 @@ class ScoreInfo extends Polymer.Element {
 
 	_scoreChanged() {
 		new TimelineMax()
+			.delay(0.3)
 			.to(this.$.score, 0.5, {opacity: 0})
 			.call(() => {
 				this._score = this.score;

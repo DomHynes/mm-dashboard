@@ -1,14 +1,51 @@
 <link rel="import" href="../../../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../../../bower_components/html-echo/html-echo.html">
+<link rel="import" href="../../../../../shared/imports/textFit.html">
+
+<link rel="import" href="../../../../../shared/fonts/avantgarde/import.html">
 
 <dom-module id="commentator-info">
 	<template>
 		<style>
-
+			.container {
+				font-family: 'avant-garde';
+				color: #FFFFFF;
+				text-transform: uppercase;
+				font-weight: bold;
+				font-style: oblique;
+				font-size: 28px;
+				text-shadow: 2px 2px 0 black;
+				display: flex;
+				flex-direction: column;
+				background: url('img/comboard.png') no-repeat;
+				width: 339px;
+				height: 113px;
+			}
+			.com {
+				padding: 0 5px;
+				display: flex;
+				text-align: center;
+				align-items: center;
+				justify-content: center;
+				width: 307px;
+			}
+			#name {
+				height: 50px;
+				margin: 6px;
+			}
+			#tw {
+				height: 35px;
+			}
+			.textFitted {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
 		</style>
 
-		<div>
-			<p>{{_name}}</p>
-			<p>@{{_tw}}</p>
+		<div class="container">
+			<html-echo class="com" id="name" html="[[_processTitle(_name)]]"></html-echo>
+			<html-echo class="com" id="tw" html="[[_processTitle(_tw)]]"></html-echo>
 		</div>
 
 	</template>

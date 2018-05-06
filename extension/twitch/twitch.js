@@ -2,6 +2,7 @@
 
 const axios = require('axios');
 const CircularJSON = require('circular-json');
+const moment = require('moment');
 
 module.exports = (nodecg, backendEvents) => {
 	const tokenStore = nodecg.Replicant('token-store');
@@ -20,8 +21,9 @@ module.exports = (nodecg, backendEvents) => {
 	helix.interceptors.response.use(
 		response => response,
 		err => {
-			if (err.response.status === 401 && err.response) {
-				backendEvents.call('twitch:refreshToken');
+			console.log(err);
+			if (err.response.status === 401) {
+				backendEvents.emit('twitch:refreshToken');
 			}
 			return err;
 		}
@@ -33,7 +35,6 @@ module.exports = (nodecg, backendEvents) => {
 
 	tokenStore.once('change', async newData => {
 		nodecg.listenFor('twitch:getClip', async (channel, cb) => {
-			console.log(channel);
 			try {
 				const broadcasterID = await helix.get('/users', {
 					params: {login: channel}
@@ -42,9 +43,8 @@ module.exports = (nodecg, backendEvents) => {
 					broadcaster_id: broadcasterID.data.data[0].id
 				});
 				clipData.value = Object.assign({}, clip.data.data[0], {
-					timestamp: Date.now()
+					timestamp: moment().format('D/M/YYYY h:ma')
 				});
-				console.log(clipData.value);
 				cb(null, clip.data);
 			} catch (e) {
 				console.log(e);

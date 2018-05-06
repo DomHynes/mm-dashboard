@@ -8,7 +8,7 @@
     "iron-list": "PolymerElements/iron-list#^2.0.12",
     "iron-pages": "PolymerElements/iron-pages#^1.0.8",
     "iron-validator-behavior": "PolymerElements/iron-validator-behavior#^2.0.0",
-    "moment": "^2.18.1",
+    "moment": "^2.22.1",
     "nodecg-replicant": "NodeCGElements/nodecg-replicant#^1.0.0",
     "nodecg-replicant-input": "NodeCGElements/nodecg-replicant-input#^0.4.0",
     "nodecg-toast": "NodeCGElements/nodecg-toast#^1.0.0",
@@ -31,7 +31,8 @@
     "lodash": "^4.17.4",
     "sc-fitted-text": "SupportClass/sc-fitted-text#^1.1.1",
     "vaadin-grid": "vaadin/vaadin-grid#^4.1.5",
-    "paper-spinner": "PolymerElements/paper-spinner#^2.1.0"
+    "paper-spinner": "PolymerElements/paper-spinner#^2.1.0",
+    "web-animations-js": "web-animations/web-animations-js#^2.3.1"
   },
   "resolutions": {
     "iron-a11y-announcer": "^2.0.0",

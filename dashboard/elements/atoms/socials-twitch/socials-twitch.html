@@ -28,8 +28,13 @@
 				<div class="col flex-auto">
 					<paper-card class="flex-auto" heading="Last Clip">
 						<div class="panel">
-							<p><b>Clipped at:</b> [[lastClipDate]]</p>
-							<p><b>Clipped at:</b> [[lastClipDate]]</p>
+							<p
+							><b>Clip:</b>
+								<template is="dom-if" if="[[editURL]]">
+									<a href="[[editURL]]">[[clipID]]</a>
+								</template>
+							</p>
+							<p><b>Timestamp:</b> [[clipDate]]</p>
 						</div>
 					</paper-card>
 				</div>

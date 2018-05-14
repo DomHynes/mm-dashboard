@@ -109,12 +109,11 @@
 		}
 
 		editSet() {
-			setinfo.value = this.setinfo;
 			selectedGame.value = this.selectedIndex;
 
 			nodecg.sendMessage('db:setDoc', this.setinfo)
 				.then(resp => {
-					setinfo.value = Object.assign(setinfo.value, {
+					setinfo.value = Object.assign(this.setinfo, {
 						_rev: resp.rev
 					});
 				})

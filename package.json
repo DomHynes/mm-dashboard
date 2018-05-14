@@ -65,13 +65,13 @@
     "graphics": [
       {
         "file": "BAM10/singles.html",
-        "width": 1280,
-        "height": 720
+        "width": 1920,
+        "height": 1080
       },
       {
         "file": "BAM10/commentators.html",
-        "width": 1280,
-        "height": 720
+        "width": 1920,
+        "height": 1080
       }
     ],
     "assetCategories": [

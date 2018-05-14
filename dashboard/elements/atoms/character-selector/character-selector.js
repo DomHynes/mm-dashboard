@@ -47,11 +47,13 @@
 			nodecg.readReplicant('gameData', newData => {
 				if (gameIndex >= 0) {
 					this.selectedGame = newData[gameIndex];
-					this.updateStyles({
-						'--character-image': `url('/bundles/mm-dashboard/shared/games/${this.selectedGame.name}/dashboard.png')`,
-						'--character-image-width': `${this.selectedGame.images.dashboard.scaleX}px`,
-						'--character-image-height': `${this.selectedGame.images.dashboard.scaleY}px`
-					});
+					if (this.selectedGame.name && this.selectedGame.images) {
+						this.updateStyles({
+							'--character-image': `url('/bundles/mm-dashboard/shared/games/${this.selectedGame.name}/dashboard.png')`,
+							'--character-image-width': `${this.selectedGame.images.dashboard.scaleX}px`,
+							'--character-image-height': `${this.selectedGame.images.dashboard.scaleY}px`
+						});
+					}
 				}
 			});
 		}
@@ -84,7 +86,10 @@
 		}
 
 		_findColourOffset(x, y, selectedGame) {
-			if (selectedGame !== undefined) {
+			if (x === undefined || y === undefined || selectedGame === undefined) {
+				return;
+			}
+			if (selectedGame.images !== undefined) {
 				return `background-position: ${x * -(selectedGame.images.dashboard.scaleX)}px ${y * -(selectedGame.images.dashboard.scaleY)}px;`;
 			}
 		}
@@ -105,7 +110,7 @@
 
 		_selectedCharacterColours(selectedGame, characterIndex) {
 			console.log(selectedGame, characterIndex);
-			if (selectedGame !== undefined && selectedGame.characters[characterIndex] !== undefined) {
+			if (selectedGame !== undefined && selectedGame.characters && selectedGame.characters[characterIndex] !== undefined) {
 				return selectedGame.characters[characterIndex].colours;
 			}
 		}

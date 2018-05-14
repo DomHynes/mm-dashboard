@@ -37,9 +37,7 @@
 					<paper-dropdown-menu label="Region Image">
 						<paper-listbox slot="dropdown-content" selected="{{sponsored.regionIndex}}">
 							<template is="dom-repeat" items="{{regionImages}}">
-								<paper-item>
-									<div style$={{getBgImage(item)}}></div>
-								</paper-item>
+								<paper-item>{{item.name}}</paper-item>
 							</template>
 						</paper-listbox>
 					</paper-dropdown-menu>

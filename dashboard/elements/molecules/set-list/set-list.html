@@ -146,35 +146,35 @@
 				</vaadin-grid-column>
 
 
-				<vaadin-grid-column width="4em">
-					<template class="header">
-						<vaadin-grid-sorter>Upload Progress</vaadin-grid-sorter>
-					</template>
-					<template>
-						<div class="col">
-							<paper-progress
-								min=0
-								value="[[item.video.uploaded]]"
-								max="[[item.video.fileSize]]">
-							</paper-progress>
-						</div>
-					</template>
-				</vaadin-grid-column>
+				<!--<vaadin-grid-column width="4em">-->
+					<!--<template class="header">-->
+						<!--<vaadin-grid-sorter>Upload Progress</vaadin-grid-sorter>-->
+					<!--</template>-->
+					<!--<template>-->
+						<!--<div class="col">-->
+							<!--<paper-progress-->
+								<!--min=0-->
+								<!--value="[[item.video.uploaded]]"-->
+								<!--max="[[item.video.fileSize]]">-->
+							<!--</paper-progress>-->
+						<!--</div>-->
+					<!--</template>-->
+				<!--</vaadin-grid-column>-->
 
-				<vaadin-grid-column width="9em">
-					<template>
-						<div class="row setactions">
-							<paper-button on-tap="uploadSet">
-								<iron-icon icon="file-upload">
-								</iron-icon>
-							</paper-button>
-							<paper-button on-tap="openEditSetModal">
-								<iron-icon icon="create">
-								</iron-icon>
-							</paper-button>
-						</div>
-					</template>
-				</vaadin-grid-column>
+				<!--<vaadin-grid-column width="9em">-->
+					<!--<template>-->
+						<!--<div class="row setactions">-->
+							<!--<paper-button on-tap="uploadSet">-->
+								<!--<iron-icon icon="file-upload">-->
+								<!--</iron-icon>-->
+							<!--</paper-button>-->
+							<!--<paper-button on-tap="openEditSetModal">-->
+								<!--<iron-icon icon="create">-->
+								<!--</iron-icon>-->
+							<!--</paper-button>-->
+						<!--</div>-->
+					<!--</template>-->
+				<!--</vaadin-grid-column>-->
 
 			</vaadin-grid>
 

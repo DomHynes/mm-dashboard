@@ -78,7 +78,6 @@
 
 		static get observers() {
 			return [
-				'_checkCrews(event, gameData, selectedGame)',
 				'_checkCharacters(gameData, selectedGame)'
 			];
 		}

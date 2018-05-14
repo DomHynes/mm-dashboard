@@ -1,7 +1,6 @@
 'use strict';
 
 const axios = require('axios');
-const CircularJSON = require('circular-json');
 const moment = require('moment');
 
 module.exports = (nodecg, backendEvents) => {

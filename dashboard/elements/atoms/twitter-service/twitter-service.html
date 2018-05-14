@@ -12,6 +12,82 @@
 
 <dom-module id="twitter-service">
 	<template>
+		<!--<style>-->
+			<!--:host {-->
+				<!--&#45;&#45;twitter-profile-image: '';-->
+			<!--}-->
+			<!--.col {-->
+				<!--@apply(&#45;&#45;layout-vertical);-->
+			<!--}-->
+			<!--.row {-->
+				<!--@apply(&#45;&#45;layout-horizontal);-->
+			<!--}-->
+			<!--paper-card {-->
+				<!--margin: 15px;-->
+				<!--padding: 15px;-->
+			<!--}-->
+			<!--paper-button.save {-->
+				<!--background-color: var(&#45;&#45;paper-green-500);-->
+				<!--color: white;-->
+			<!--}-->
+			<!--paper-button.delete {-->
+				<!--background-color: var(&#45;&#45;paper-red-500);-->
+				<!--color: white;-->
+			<!--}-->
+			<!--paper-button.edit {-->
+				<!--background-color: var(&#45;&#45;paper-blue-500);-->
+				<!--color: white;-->
+			<!--}-->
+			<!--paper-button.swap {-->
+				<!--background-color: var(&#45;&#45;paper-amber-500);-->
+			<!--}-->
+
+			<!--vaadin-grid {-->
+				<!--@apply(&#45;&#45;layout-flex-auto);-->
+			<!--}-->
+		<!--</style>-->
+
+		<!--<paper-card heading="Twitter" class="col">-->
+			<!--<vaadin-grid items="{{twitterActions}}" id="twitterActionsGrid">-->
+
+				<!--<vaadin-grid-column width="12em">-->
+					<!--<template class="header">-->
+						<!--<vaadin-grid-sorter path="name">Tweet</vaadin-grid-sorter>-->
+					<!--</template>-->
+					<!--<template>[[item.status]]</template>-->
+				<!--</vaadin-grid-column>-->
+
+				<!--<vaadin-grid-column width="3em">-->
+					<!--<template class="header">-->
+						<!--<vaadin-grid-sorter path="name">Origin</vaadin-grid-sorter>-->
+					<!--</template>-->
+					<!--<template>[[item.origin]]</template>-->
+				<!--</vaadin-grid-column>-->
+
+				<!--<vaadin-grid-column width="4em">-->
+					<!--<template class="header">-->
+						<!--<vaadin-grid-sorter path="name">Actions</vaadin-grid-sorter>-->
+					<!--</template>-->
+					<!--<template>-->
+						<!--<div class="actions">-->
+							<!--<paper-button-->
+								<!--raised-->
+								<!--class="save"-->
+								<!--on-tap="tweetAction">-->
+								<!--<iron-icon icon="check"></iron-icon>-->
+							<!--</paper-button>-->
+							<!--<paper-button-->
+								<!--raised-->
+								<!--class="delete"-->
+								<!--on-tap="delTweet">-->
+								<!--<iron-icon icon="delete"></iron-icon>-->
+							<!--</paper-button>-->
+						<!--</div>-->
+					<!--</template>-->
+				<!--</vaadin-grid-column>-->
+
+			<!--</vaadin-grid>-->
+		<!--</paper-card>-->
 		<style>
 			:host {
 				--twitter-profile-image: '';
@@ -26,68 +102,39 @@
 				margin: 15px;
 				padding: 15px;
 			}
-			paper-button.save {
-				background-color: var(--paper-green-500);
-				color: white;
-			}
-			paper-button.delete {
-				background-color: var(--paper-red-500);
-				color: white;
-			}
-			paper-button.edit {
-				background-color: var(--paper-blue-500);
-				color: white;
-			}
-			paper-button.swap {
-				background-color: var(--paper-amber-500);
-			}
-
-			vaadin-grid {
-				@apply(--layout-flex-auto);
+			.profileimage {
+				background-image: var(--twitter-profile-image);
+				background-repeat: no-repeat;
+				height: 100px;
+				width: 100px;
+				background-size: contain;
+				border-radius: 10px;
 			}
 		</style>
 
-		<paper-card heading="Twitter" class="col">
-			<vaadin-grid items="{{twitterActions}}" id="twitterActionsGrid">
-
-				<vaadin-grid-column width="12em">
-					<template class="header">
-						<vaadin-grid-sorter path="name">Tweet</vaadin-grid-sorter>
-					</template>
-					<template>[[item.status]]</template>
-				</vaadin-grid-column>
-
-				<vaadin-grid-column width="3em">
-					<template class="header">
-						<vaadin-grid-sorter path="name">Origin</vaadin-grid-sorter>
-					</template>
-					<template>[[item.origin]]</template>
-				</vaadin-grid-column>
-
-				<vaadin-grid-column width="4em">
-					<template class="header">
-						<vaadin-grid-sorter path="name">Actions</vaadin-grid-sorter>
-					</template>
-					<template>
-						<div class="actions">
-							<paper-button
-								raised
-								class="save"
-								on-tap="tweetAction">
-								<iron-icon icon="check"></iron-icon>
-							</paper-button>
-							<paper-button
-								raised
-								class="delete"
-								on-tap="delTweet">
-								<iron-icon icon="delete"></iron-icon>
-							</paper-button>
+		<paper-card heading="Twitter">
+			<div class="col panel">
+				<div class="row">
+					<paper-card>
+						<div class="row">
+							<div class="profileimage"></div>
+							<div class="col">
+								<p>
+									<b>Username: </b>[[profile.username]]
+								</p>
+								<p>
+									<a target="_blank" href="http://localhost:9090/ext-auth/twitch">Change Account</a>
+								</p>
+							</div>
 						</div>
-					</template>
-				</vaadin-grid-column>
+					</paper-card>
+				</div>
+				<div class="row">
 
-			</vaadin-grid>
+				</div>
+			</div>
 		</paper-card>
+
 
 
 

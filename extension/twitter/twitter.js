@@ -7,13 +7,19 @@ module.exports = (nodecg, backendEvents) => {
 	let tw;
 
 	tokenStore.on('change', newData => {
-		console.log(newData);
-		tw = new Twit({
-			consumer_key: nodecg.bundleConfig.twitter.consumerKey,
-			consumer_secret: nodecg.bundleConfig.twitter.consumerSecret,
-			access_token: newData.twitter.token,
-			access_token_secret: newData.twitter.tokenSecret
-		});
+		if (
+			nodecg.bundleConfig.twitter.consumerKey &&
+			nodecg.bundleConfig.twitter.consumerSecret &&
+			newData.twitter.token &&
+			newData.twitter.tokenSecret
+		) {
+			tw = new Twit({
+				consumer_key: nodecg.bundleConfig.twitter.consumerKey,
+				consumer_secret: nodecg.bundleConfig.twitter.consumerSecret,
+				access_token: newData.twitter.token,
+				access_token_secret: newData.twitter.tokenSecret
+			});
+		}
 	});
 
 	tokenStore.once('change', () => {

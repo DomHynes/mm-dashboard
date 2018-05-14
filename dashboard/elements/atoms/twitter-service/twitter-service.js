@@ -1,5 +1,6 @@
 (function () {
 	const twitterActions = nodecg.Replicant('twitter-actions');
+	const tokenStore = nodecg.Replicant('token-store');
 
 	class TwitterService extends Polymer.Element {
 		static get is() {
@@ -38,6 +39,12 @@
 			twitterActions.on('change', newData => {
 				console.log(newData);
 				this.twitterActions = newData;
+			});
+			tokenStore.on('change', newData => {
+				this.profile = newData.twitter.profile;
+				this.updateStyles({
+					'--twitter-profile-image': `url(${newData.twitter.profile.photos[0].value})`
+				});
 			});
 		}
 	}

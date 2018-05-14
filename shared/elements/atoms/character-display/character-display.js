@@ -22,10 +22,10 @@ class CharacterDisplay extends Polymer.Element {
 		if (x === undefined || y === undefined || selectedGame === undefined) {
 			return;
 		}
-		this.updateStyles({
-			'--character-image': `url('/bundles/mm-dashboard/shared/games/${selectedGame.name}/dashboard.png')`
-		});
-		if (selectedGame !== undefined) {
+		if (selectedGame !== undefined && selectedGame.images !== undefined && selectedGame.images.dashboard !== undefined) {
+			this.updateStyles({
+				'--character-image': `url('/bundles/mm-dashboard/shared/games/${selectedGame.name}/dashboard.png')`
+			});
 			return `background-position: ${x * -(selectedGame.images.dashboard.scaleX)}px ${y * -(selectedGame.images.dashboard.scaleY)}px;`;
 		}
 	}

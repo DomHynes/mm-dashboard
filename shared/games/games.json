@@ -20,7 +20,7 @@
 					"left": "0px"
 				},
 				{
-					"left": "1621px"
+					"left": "1655px"
 				}
 			]
 		},
@@ -408,7 +408,7 @@
 					"left": "177px"
 				},
 				{
-					"left": "1325px"
+					"left": "1223px"
 				}
 			]
 		}
@@ -433,7 +433,136 @@
 					"left": "247px"
 				},
 				{
-					"left": "1255px"
+					"left": "1153px"
+				}
+			]
+		}
+	},
+	{
+		"name": "inj2",
+		"ratio": "16x9",
+		"longName": "Injustice 2",
+		"shortName": "INJ2",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"all": {
+				"top": "18px"
+			},
+			"players": [
+				{
+					"left": "508px"
+				},
+				{
+					"left": "892px"
+				}
+			],
+			"bracketPlace": {
+				"top": "1009px"
+			}
+		}
+	},
+	{
+		"name": "GGXRD",
+		"ratio": "16x9",
+		"longName": "Guilty Gear Xrd 2",
+		"shortName": "GGXRD",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"all": {
+				"top": "0px"
+			},
+			"players": [
+				{
+					"left": "320px"
+				},
+				{
+					"left": "1080px"
+				}
+			]
+		}
+	},
+	{
+		"name": "DBFZ",
+		"ratio": "16x9",
+		"longName": "Dragon Ball FighterZ",
+		"shortName": "DBFZ",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"all": {
+				"top": "0px"
+			},
+			"players": [
+				{
+					"left": "246px"
+				},
+				{
+					"left": "1154px"
+				}
+			]
+		}
+	},
+	{
+		"name": "FG43",
+		"ratio": "4x3",
+		"longName": "FGC 4x3",
+		"shortName": "FG43",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"nameWidth": "186px",
+			"all": {
+				"top": "467px"
+			},
+			"players": [
+				{
+					"left": "0px"
+				},
+				{
+					"left": "1655px"
+				}
+			]
+		}
+	},
+	{
+		"name": "FG16",
+		"ratio": "16x9",
+		"longName": "FGC 16x9",
+		"shortName": "DBFZ",
+		"events": [
+			{
+				"name": "singles",
+				"players": 1
+			}
+		],
+		"display": {
+			"all": {
+				"top": "0px"
+			},
+			"players": [
+				{
+					"left": "246px"
+				},
+				{
+					"left": "1154px"
 				}
 			]
 		}
